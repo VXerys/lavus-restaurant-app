@@ -1,4 +1,3 @@
-# Lavus Project Overview
 
 ## About the Project
 
@@ -27,6 +26,8 @@ Following a goal-directed design process for this project, I rounded out some ke
 ## Design Process
 
 **Process Flow:** Discover → Define → Ideate → Design → Test
+<img width="1715" height="632" alt="image" src="https://github.com/user-attachments/assets/3c2c9b9c-b4ba-4954-ba16-de790dcfdbc8" />
+
 
 ### Discover Phase
 
@@ -63,6 +64,8 @@ In this phase, let's 'think outside the box' to identify new solutions. And we w
 A user flow represents the path taken by users complete tasks. It takes them from their entry point through a set of steps towards a successful outcome and final action, such as purchasing a product.
 
 **Flow:** Splash Screen → Onboarding → Login Options → Home Screen, etc.
+<img width="819" height="852" alt="flow" src="https://github.com/user-attachments/assets/8479a2d7-cd9f-4186-b545-ecc67f60d972" />
+
 
 ---
 
@@ -86,6 +89,8 @@ We used the "overt green" **#95AE45** as the branding color. It represents the a
 
 #### Main Typeface
 
+<img width="776" height="526" alt="image" src="https://github.com/user-attachments/assets/9d63cbea-56c1-48fb-bdd4-0562aac07573" />
+
 - **Font:** Butler
 - **Type:** Serif
 - **Designer:** Fabian De Smet
@@ -104,6 +109,9 @@ We used the "overt green" **#95AE45** as the branding color. It represents the a
 
 ### Colors
 
+<img width="756" height="412" alt="image" src="https://github.com/user-attachments/assets/3c4f6cb8-cb4f-4adf-a35e-ce6d039c6f67" />
+
+
 | Color Name          | Hex Code  |
 |---------------------|-----------|
 | Overt Green         | #95AE45   |
@@ -118,6 +126,9 @@ We used the "overt green" **#95AE45** as the branding color. It represents the a
 
 Icons used in the design system include:
 
+<img width="753" height="228" alt="image" src="https://github.com/user-attachments/assets/dbbaee7d-af00-4704-b16d-128881b43bd2" />
+
+
 - Salad
 - Drink
 - Pizza
@@ -129,3 +140,5 @@ Icons used in the design system include:
 - Scan
 - Gift
 - Calendar
+
+<img width="754" height="763" alt="image" src="https://github.com/user-attachments/assets/63458049-451c-4762-96ec-2cdeb52aee93" />
