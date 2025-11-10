@@ -28,14 +28,13 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-	  <!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -50,5 +49,120 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>NotoSerif-Italic-VariableFont_wdth,wght.ttf</string>
+		<string>NotoSerif-VariableFont_wdth,wght.ttf</string>
+		<string>NotoSerif-Black.ttf</string>
+		<string>NotoSerif-BlackItalic.ttf</string>
+		<string>NotoSerif-Bold.ttf</string>
+		<string>NotoSerif-BoldItalic.ttf</string>
+		<string>NotoSerif-ExtraBold.ttf</string>
+		<string>NotoSerif-ExtraBoldItalic.ttf</string>
+		<string>NotoSerif-ExtraLight.ttf</string>
+		<string>NotoSerif-ExtraLightItalic.ttf</string>
+		<string>NotoSerif-Italic.ttf</string>
+		<string>NotoSerif-Light.ttf</string>
+		<string>NotoSerif-LightItalic.ttf</string>
+		<string>NotoSerif-Medium.ttf</string>
+		<string>NotoSerif-MediumItalic.ttf</string>
+		<string>NotoSerif-Regular.ttf</string>
+		<string>NotoSerif-SemiBold.ttf</string>
+		<string>NotoSerif-SemiBoldItalic.ttf</string>
+		<string>NotoSerif-Thin.ttf</string>
+		<string>NotoSerif-ThinItalic.ttf</string>
+		<string>NotoSerif_Condensed-Black.ttf</string>
+		<string>NotoSerif_Condensed-BlackItalic.ttf</string>
+		<string>NotoSerif_Condensed-Bold.ttf</string>
+		<string>NotoSerif_Condensed-BoldItalic.ttf</string>
+		<string>NotoSerif_Condensed-ExtraBold.ttf</string>
+		<string>NotoSerif_Condensed-ExtraBoldItalic.ttf</string>
+		<string>NotoSerif_Condensed-ExtraLight.ttf</string>
+		<string>NotoSerif_Condensed-ExtraLightItalic.ttf</string>
+		<string>NotoSerif_Condensed-Italic.ttf</string>
+		<string>NotoSerif_Condensed-Light.ttf</string>
+		<string>NotoSerif_Condensed-LightItalic.ttf</string>
+		<string>NotoSerif_Condensed-Medium.ttf</string>
+		<string>NotoSerif_Condensed-MediumItalic.ttf</string>
+		<string>NotoSerif_Condensed-Regular.ttf</string>
+		<string>NotoSerif_Condensed-SemiBold.ttf</string>
+		<string>NotoSerif_Condensed-SemiBoldItalic.ttf</string>
+		<string>NotoSerif_Condensed-Thin.ttf</string>
+		<string>NotoSerif_Condensed-ThinItalic.ttf</string>
+		<string>NotoSerif_ExtraCondensed-Black.ttf</string>
+		<string>NotoSerif_ExtraCondensed-BlackItalic.ttf</string>
+		<string>NotoSerif_ExtraCondensed-Bold.ttf</string>
+		<string>NotoSerif_ExtraCondensed-BoldItalic.ttf</string>
+		<string>NotoSerif_ExtraCondensed-ExtraBold.ttf</string>
+		<string>NotoSerif_ExtraCondensed-ExtraBoldItalic.ttf</string>
+		<string>NotoSerif_ExtraCondensed-ExtraLight.ttf</string>
+		<string>NotoSerif_ExtraCondensed-ExtraLightItalic.ttf</string>
+		<string>NotoSerif_ExtraCondensed-Italic.ttf</string>
+		<string>NotoSerif_ExtraCondensed-Light.ttf</string>
+		<string>NotoSerif_ExtraCondensed-LightItalic.ttf</string>
+		<string>NotoSerif_ExtraCondensed-Medium.ttf</string>
+		<string>NotoSerif_ExtraCondensed-MediumItalic.ttf</string>
+		<string>NotoSerif_ExtraCondensed-Regular.ttf</string>
+		<string>NotoSerif_ExtraCondensed-SemiBold.ttf</string>
+		<string>NotoSerif_ExtraCondensed-SemiBoldItalic.ttf</string>
+		<string>NotoSerif_ExtraCondensed-Thin.ttf</string>
+		<string>NotoSerif_ExtraCondensed-ThinItalic.ttf</string>
+		<string>NotoSerif_SemiCondensed-Black.ttf</string>
+		<string>NotoSerif_SemiCondensed-BlackItalic.ttf</string>
+		<string>NotoSerif_SemiCondensed-Bold.ttf</string>
+		<string>NotoSerif_SemiCondensed-BoldItalic.ttf</string>
+		<string>NotoSerif_SemiCondensed-ExtraBold.ttf</string>
+		<string>NotoSerif_SemiCondensed-ExtraBoldItalic.ttf</string>
+		<string>NotoSerif_SemiCondensed-ExtraLight.ttf</string>
+		<string>NotoSerif_SemiCondensed-ExtraLightItalic.ttf</string>
+		<string>NotoSerif_SemiCondensed-Italic.ttf</string>
+		<string>NotoSerif_SemiCondensed-Light.ttf</string>
+		<string>NotoSerif_SemiCondensed-LightItalic.ttf</string>
+		<string>NotoSerif_SemiCondensed-Medium.ttf</string>
+		<string>NotoSerif_SemiCondensed-MediumItalic.ttf</string>
+		<string>NotoSerif_SemiCondensed-Regular.ttf</string>
+		<string>NotoSerif_SemiCondensed-SemiBold.ttf</string>
+		<string>NotoSerif_SemiCondensed-SemiBoldItalic.ttf</string>
+		<string>NotoSerif_SemiCondensed-Thin.ttf</string>
+		<string>NotoSerif_SemiCondensed-ThinItalic.ttf</string>
+		<string>OpenSans-Italic-VariableFont_wdth,wght.ttf</string>
+		<string>OpenSans-VariableFont_wdth,wght.ttf</string>
+		<string>OpenSans-Bold.ttf</string>
+		<string>OpenSans-BoldItalic.ttf</string>
+		<string>OpenSans-ExtraBold.ttf</string>
+		<string>OpenSans-ExtraBoldItalic.ttf</string>
+		<string>OpenSans-Italic.ttf</string>
+		<string>OpenSans-Light.ttf</string>
+		<string>OpenSans-LightItalic.ttf</string>
+		<string>OpenSans-Medium.ttf</string>
+		<string>OpenSans-MediumItalic.ttf</string>
+		<string>OpenSans-Regular.ttf</string>
+		<string>OpenSans-SemiBold.ttf</string>
+		<string>OpenSans-SemiBoldItalic.ttf</string>
+		<string>OpenSans_Condensed-Bold.ttf</string>
+		<string>OpenSans_Condensed-BoldItalic.ttf</string>
+		<string>OpenSans_Condensed-ExtraBold.ttf</string>
+		<string>OpenSans_Condensed-ExtraBoldItalic.ttf</string>
+		<string>OpenSans_Condensed-Italic.ttf</string>
+		<string>OpenSans_Condensed-Light.ttf</string>
+		<string>OpenSans_Condensed-LightItalic.ttf</string>
+		<string>OpenSans_Condensed-Medium.ttf</string>
+		<string>OpenSans_Condensed-MediumItalic.ttf</string>
+		<string>OpenSans_Condensed-Regular.ttf</string>
+		<string>OpenSans_Condensed-SemiBold.ttf</string>
+		<string>OpenSans_Condensed-SemiBoldItalic.ttf</string>
+		<string>OpenSans_SemiCondensed-Bold.ttf</string>
+		<string>OpenSans_SemiCondensed-BoldItalic.ttf</string>
+		<string>OpenSans_SemiCondensed-ExtraBold.ttf</string>
+		<string>OpenSans_SemiCondensed-ExtraBoldItalic.ttf</string>
+		<string>OpenSans_SemiCondensed-Italic.ttf</string>
+		<string>OpenSans_SemiCondensed-Light.ttf</string>
+		<string>OpenSans_SemiCondensed-LightItalic.ttf</string>
+		<string>OpenSans_SemiCondensed-Medium.ttf</string>
+		<string>OpenSans_SemiCondensed-MediumItalic.ttf</string>
+		<string>OpenSans_SemiCondensed-Regular.ttf</string>
+		<string>OpenSans_SemiCondensed-SemiBold.ttf</string>
+		<string>OpenSans_SemiCondensed-SemiBoldItalic.ttf</string>
+	</array>
 </dict>
 </plist>

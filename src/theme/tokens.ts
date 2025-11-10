@@ -1,5 +1,5 @@
 export const Colors = {
-  primary: '#7DA23B', // green used in logo/buttons
+  primary: '#95AE45', // green used in logo/buttons
   black: '#111111',
   text: '#222222',
   muted: '#7A7A7A',

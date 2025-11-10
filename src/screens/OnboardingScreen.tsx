@@ -64,7 +64,9 @@ const OnboardingScreen: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
         onViewableItemsChanged={onViewableItemsChanged}
         viewabilityConfig={viewConfigRef}
       />
-      <PagerDots total={slides.length} index={index} />
+      <View style={styles.dotsContainer}>
+        <PagerDots total={slides.length} index={index} />
+      </View>
       <Pressable style={styles.button} onPress={onDone}>        
         <AppText weight="medium" style={styles.buttonText}>Getting Started</AppText>
       </Pressable>
@@ -77,25 +79,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.white,
     alignItems: 'center',
-    paddingBottom: Spacing.xl + Spacing.sm,
+    paddingBottom: Spacing.xxl + Spacing.lg,
   },
   slide: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: Spacing.xl + Spacing.sm,
+    paddingBottom: Spacing.xxl,
   },
   image: {
     width: width * 0.75,
     height: width * 0.75,
     resizeMode: 'contain',
-    marginBottom: Spacing.xl,
+    marginBottom: Spacing.lg,
   },
   title: {
     fontSize: 32,
     color: Colors.black,
     textAlign: 'center',
-    marginBottom: Spacing.md,
+    marginBottom: Spacing.sm,
   },
   subtitle: {
     fontSize: 15,
@@ -104,6 +107,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     maxWidth: width * 0.8,
     paddingHorizontal: Spacing.lg,
+  },
+  dotsContainer: {
+    marginTop: Spacing.lg,
+    marginBottom: Spacing.lg,
   },
   button: {
     backgroundColor: Colors.black,
@@ -115,7 +122,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
-    marginTop: Spacing.lg,
     minWidth: width * 0.6,
   },
   buttonText: {
