@@ -5,16 +5,20 @@ buildscript {
         compileSdkVersion = 36
         targetSdkVersion = 36
         ndkVersion = "27.1.12297006"
-        kotlinVersion = "2.1.20"
+        // Pin a Kotlin version known stable with current React Native tooling to reduce memory & threading issues
+        kotlinVersion = "1.9.24"
+        // Pin Android Gradle Plugin (AGP) to avoid resolving an arbitrary latest which contributed to heavy worker spawning
+        androidGradlePluginVersion = "8.5.2"
+        reactNativeGradlePluginVersion = "0.82.1"
     }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle")
-        classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+        classpath("com.android.tools.build:gradle:${androidGradlePluginVersion}")
+        classpath("com.facebook.react:react-native-gradle-plugin:${reactNativeGradlePluginVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
     }
 }
 

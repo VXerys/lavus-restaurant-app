@@ -4,6 +4,7 @@ module.exports = {
     '^@components/(.*)$': '<rootDir>/src/components/$1',
     '^@screens/(.*)$': '<rootDir>/src/screens/$1',
     '^@navigation/(.*)$': '<rootDir>/src/navigation/$1',
+  '^@theme$': '<rootDir>/src/theme/index.ts',
   '^@theme/(.*)$': '<rootDir>/src/theme/$1',
     '^@hooks/(.*)$': '<rootDir>/src/hooks/$1',
     '^@services/(.*)$': '<rootDir>/src/services/$1',

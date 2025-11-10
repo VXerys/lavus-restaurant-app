@@ -5,7 +5,7 @@
  * @format
  */
 
-import { StatusBar, StyleSheet, useColorScheme } from 'react-native';
+import { StatusBar, useColorScheme } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import RootNavigator from '@navigation/RootNavigator';
 
@@ -24,6 +24,6 @@ function AppContent() {
   return <RootNavigator />;
 }
 
-const styles = StyleSheet.create({});
+// no styles needed here
 
 export default App;
