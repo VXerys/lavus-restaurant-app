@@ -316,21 +316,21 @@ Pull Request wajib checklist DoD & lint/typecheck lulus (lihat `docs/BRANCH_STRA
 
 | File | Tujuan |
 |------|--------|
-| `docs/PROJECT_STRUCTURE.md` | Struktur direktori & rasional |
-| `docs/PATH_ALIASES_SETUP.md` | Konfigurasi alias impor |
-| `docs/DEFINITION_OF_DONE.md` | Standar kelengkapan fitur |
-| `docs/DEVELOPMENT_CHECKLIST.md` | Checklist onboarding & PR |
-| `docs/BRANCH_STRATEGY.md` | Model branching & PR governance |
-| `docs/BRANCH_SUMMARY.md` | Ringkas perintah git |
-| `docs/AGILE_SCRUM_PLAN.md` | Rencana sprint & cadence |
-| `docs/SPRINT_CEREMONIES.md` | Format setiap ceremony |
-| `docs/SPRINT_TRACKING.md` | Metrik & tracking sprint |
-| `docs/TESTING_STRATEGY.md` | Layer dan tujuan pengujian |
-| `docs/SETUP_COMPLETE.md` | Verifikasi environment |
-| `docs/QUICK_REFERENCE.md` | Cheat-sheet perintah harian |
-| `docs/IMPROVEMENT_SUMMARY.md` | Log perbaikan & aksi lanjutan |
-| `docs/rubrik-penilaian.md` | Rubrik penilaian sumber |
-| `docs/Lavus-Project-Overview.md` | Dokumen desain & brand |
+| [`docs/PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md) | Struktur direktori & rasional |
+| [`docs/PATH_ALIASES_SETUP.md`](docs/PATH_ALIASES_SETUP.md) | Konfigurasi alias impor |
+| [`docs/DEFINITION_OF_DONE.md`](docs/DEFINITION_OF_DONE.md) | Standar kelengkapan fitur |
+| [`docs/DEVELOPMENT_CHECKLIST.md`](docs/DEVELOPMENT_CHECKLIST.md) | Checklist onboarding & PR |
+| [`docs/BRANCH_STRATEGY.md`](docs/BRANCH_STRATEGY.md) | Model branching & PR governance |
+| [`docs/BRANCH_SUMMARY.md`](docs/BRANCH_SUMMARY.md) | Ringkas perintah git |
+| [`docs/AGILE_SCRUM_PLAN.md`](docs/AGILE_SCRUM_PLAN.md) | Rencana sprint & cadence |
+| [`docs/SPRINT_CEREMONIES.md`](docs/SPRINT_CEREMONIES.md) | Format setiap ceremony |
+| [`docs/SPRINT_TRACKING.md`](docs/SPRINT_TRACKING.md) | Metrik & tracking sprint |
+| [`docs/TESTING_STRATEGY.md`](docs/TESTING_STRATEGY.md) | Layer dan tujuan pengujian |
+| [`docs/SETUP_COMPLETE.md`](docs/SETUP_COMPLETE.md) | Verifikasi environment |
+| [`docs/QUICK_REFERENCE.md`](docs/QUICK_REFERENCE.md) | Cheat-sheet perintah harian |
+| [`docs/IMPROVEMENT_SUMMARY.md`](docs/IMPROVEMENT_SUMMARY.md) | Log perbaikan & aksi lanjutan |
+| [`docs/rubrik-penilaian.md`](docs/rubrik-penilaian.md) | Rubrik penilaian sumber |
+| [`docs/Lavus-Project-Overview.md`](docs/Lavus-Project-Overview.md) | Dokumen desain & brand |
 
 ---
 
