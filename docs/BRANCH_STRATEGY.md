@@ -5,9 +5,11 @@ Ringkasan: Model branching Git untuk Lavus Restaurant App agar pengembangan fitu
 Last Updated: 2025-11-10
 
 ## Tujuan
+
 Menetapkan pola konsisten untuk pembuatan, penamaan, review, dan merge branch sehingga integrasi kode aman dan dapat ditelusuri.
 
 ## Cabang Utama
+
 | Branch | Fungsi | Catatan |
 |--------|--------|---------|
 | `main` | Source kode siap produksi / release | Proteksi: wajib PR + CI hijau |
@@ -16,6 +18,7 @@ Menetapkan pola konsisten untuk pembuatan, penamaan, review, dan merge branch se
 Jika tanpa `develop`, pastikan release tagging dari `main`.
 
 ## Tipe Branch
+
 | Tipe | Format Nama | Tujuan | Contoh |
 |------|-------------|--------|--------|
 | Feature | `feature/<kata-kunci>` | Fitur baru | `feature/menu-ui` |
@@ -26,6 +29,7 @@ Jika tanpa `develop`, pastikan release tagging dari `main`.
 | Docs | `docs/<topik>` | Dokumentasi | `docs/testing-strategy` |
 
 ## Aturan Pembuatan Branch
+
 1. Selalu branch dari target yang benar:
    - Feature / Bugfix / Chore: dari `develop` (atau `main` jika tanpa develop).
    - Hotfix: dari `main`.
@@ -35,12 +39,17 @@ Jika tanpa `develop`, pastikan release tagging dari `main`.
 4. Hindari nama generik: gunakan kata kerja atau domain: `feature/reservation-flow`.
 
 ## Komit Pesan (Conventional Style Ringan)
+
 Format: `<type>(<optional-scope>): <deskripsi singkat>`
+
 Jenis: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `perf`, `build`.
+
 Contoh: `feat(menu): tambah filter kategori Salad`.
 
 ## Pull Request (PR) Checklist
+
 Sebelum minta review:
+
 - [ ] Deskripsi PR menjelaskan WHAT + WHY.
 - [ ] Link ke issue / user story `#<<ISSUE_NUMBER>>`.
 - [ ] Screenshot / GIF untuk perubahan UI (Home/Menu/Checkout/Reserve/Profile).
@@ -52,6 +61,7 @@ Sebelum minta review:
 - [ ] Semua TODO di kode dihapus atau ticket dibuat.
 
 ## CI Wajib Lulus
+
 | Check | Tools | Kriteria |
 |-------|-------|----------|
 | Lint | ESLint | Tidak ada error (warning boleh ≤ agreed) |
@@ -61,6 +71,7 @@ Sebelum minta review:
 | Type Check | `tsc --noEmit` | 0 error |
 
 ## Strategi Merge
+
 | Scenario | Aksi | Alasan |
 |----------|------|--------|
 | Feature selesai | Squash & merge | History bersih, 1 komit per feature di main |
@@ -70,13 +81,15 @@ Sebelum minta review:
 Gunakan Squash default kecuali tabel di atas menentukan lain.
 
 ## Konflik Merge
+
 1. Tarik perubahan terbaru (`git fetch origin`).
 2. Rebase atau merge `develop`/`main` ke branch fitur.
 3. Selesaikan konflik (prioritas logika terbaru + jaga kompatibilitas API).
 4. Jalankan ulang test lokal.
 
 ## Contoh Alur Feature
-```
+
+```bash
 # Buat branch
 git checkout -b feature/reservation-flow develop
 # Kerjakan kode, commit
@@ -87,13 +100,15 @@ git push -u origin feature/reservation-flow
 ```
 
 ## Release Flow (Dengan develop)
+
 1. Pastikan `develop` stabil.
 2. Buat `release/1.2.0` dari `develop`.
 3. Hanya bugfix dan docs masuk (feature baru ditahan).
 4. Setelah siap: merge ke `main` lalu tag `v1.2.0`, merge balik ke `develop`.
 
 ## Hotfix Flow
-```
+
+```bash
 # Dari main
 git checkout -b hotfix/checkout-null-crash main
 # Perbaiki bug, tambah test regresi
@@ -103,17 +118,28 @@ git checkout -b hotfix/checkout-null-crash main
 ```
 
 ## Otomatisasi yang Direkomendasikan
+
 - Protected branch: `main` (dan `develop` bila ada) -> butuh 1–2 approvals.
 - Status checks: lint, test, build.
 - PR template: file `.github/pull_request_template.md` (tambahkan placeholder).
 
 ## Placeholder yang Sering Muncul
+
 `<<ISSUE_NUMBER>>`, `<<VERSI_RILIS>>`, `<<REPO_URL>>`.
 
 ## Cara Mengganti Placeholder
+
 Cari teks `<<...>>` dan ganti dengan nilai aktual. Jika belum tahu versi saat membuat release branch, gunakan `<<VERSI_CALON>>` dan perbarui sebelum tag.
 
+## Alignment dengan Rubrik Penilaian
+
+- Project Setup & Structure (10%): Menetapkan alur branch dan proteksi PR agar struktur repo terjaga.
+- Code Quality & Documentation (5%): Checklist PR dan aturan merge meningkatkan kualitas kode dan dokumentasi.
+- Functionality & Interactivity (20%) dan State/Navigation/API: Alur branch memisahkan pekerjaan per fitur sehingga fungsi diuji dan ditinjau terpisah.
+- Presentation & Demonstration (Bonus 5%): Riwayat bersih (squash) memudahkan presentasi perubahan.
+
 ## Related Docs
+
 - `BRANCH_SUMMARY.md`
 - `DEFINITION_OF_DONE.md`
 - `TESTING_STRATEGY.md`

@@ -5,10 +5,12 @@ Ringkasan: Struktur folder yang direkomendasikan untuk Lavus Restaurant App bese
 Last Updated: 2025-11-10
 
 ## Tujuan Struktur
+
 Memisahkan concern (UI, navigasi, state, layanan, util) agar maintainability tinggi dan onboarding cepat.
 
 ## Struktur Direkomendasikan
-```
+
+```text
 lavus-restaurant-app/
 ├─ app.json
 ├─ App.tsx
@@ -38,6 +40,7 @@ lavus-restaurant-app/
 ```
 
 ## Penjelasan Folder
+
 | Folder | Fungsi | Contoh File |
 |--------|--------|-------------|
 | `assets/images` | Gambar statis | `salad.png`, `logo.png` |
@@ -53,6 +56,7 @@ lavus-restaurant-app/
 | `theme` | Variabel styling | `colors.ts`, `spacing.ts` |
 
 ## Contoh `colors.ts`
+
 ```typescript
 export const Colors = {
   primary: '#95AE45', // Overt Green
@@ -64,6 +68,7 @@ export const Colors = {
 ```
 
 ## Contoh `App.tsx` Skeleton
+
 ```typescript
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -84,6 +89,7 @@ export default App;
 ```
 
 ## Contoh `navigation/RootNavigator.tsx`
+
 ```typescript
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -117,6 +123,7 @@ export default RootNavigator;
 ```
 
 ## Contoh Service `services/menuService.ts`
+
 ```typescript
 import { MenuItem } from '@types/menu';
 
@@ -131,11 +138,13 @@ export async function fetchMenu(category?: string): Promise<MenuItem[]> {
 ```
 
 ## Naming Convention Komponen
+
 - PascalCase untuk komponen: `MenuCard`.
 - hook: `useNamaHook` -> `useFetchMenu`.
 - file type: `menu.ts`, `reservation.ts`.
 
 ## File Yang Tidak Disimpan di Repo
+
 | Tipe | Alasan |
 |------|--------|
 | `.env.local` | Data sensitif (API keys) |
@@ -143,9 +152,23 @@ export async function fetchMenu(category?: string): Promise<MenuItem[]> {
 | user data | Privasi |
 
 ## Cara Mengganti Placeholder
+ 
 Ganti `<<API_BASE_URL>>` dengan endpoint aktual. Jika belum tersedia gunakan `<<PLACEHOLDER - fill from project brief>>`.
 
+## Alignment dengan Rubrik Penilaian
+
+| Kategori | Dukungan Struktur | Dampak |
+|----------|-------------------|--------|
+| Project Setup & Structure | Struktur `src/` jelas | Memudahkan penilai menelusuri kode |
+| UI & Design Implementation | Folder `components/`, `theme/` | UI konsisten & reusable |
+| Functionality & Interactivity | `services/`, `hooks/` | Logika terpisah mudah diuji |
+| State Management & Hooks | `store/` & `hooks/` | Arsitektur state rapi |
+| Navigation & Data Flow | `navigation/` + types | Alur data tertib |
+| API Integration | `services/` | Penanganan data terpusat |
+| Code Quality & Documentation | `types/`, `utils/` | Kode mudah dibaca & di-dokumentasi |
+
 ## Related Docs
+
 - `PATH_ALIASES_SETUP.md`
 - `DEVELOPMENT_CHECKLIST.md`
 - `QUICK_REFERENCE.md`

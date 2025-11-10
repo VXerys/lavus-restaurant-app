@@ -5,6 +5,7 @@ Ringkasan: Checklist onboarding, alur kerja harian, dan pra-Pull Request untuk L
 Last Updated: 2025-11-10
 
 ## 1. Onboarding (Hari Pertama)
+
 ### Sistem & Tools
 - [ ] Install Node LTS `<<NODE_LTS_VERSION>>` (rekomendasi Node 20 LTS) -> verifikasi `node -v`.
 - [ ] Install Yarn (`npm install -g yarn`) -> verifikasi `yarn -v`.
@@ -25,6 +26,7 @@ Last Updated: 2025-11-10
 - [ ] Pastikan path alias di-resolve (lihat `PATH_ALIASES_SETUP.md`).
 
 ## 2. Struktur Kerja Harian
+
 1. Pull perubahan terbaru: `git pull origin main` (atau `develop`).
 2. Cek issue board (Sprint board): pilih story Ready.
 3. Buat branch fitur: `git checkout -b feature/<nama-fitur>`.
@@ -36,6 +38,7 @@ Last Updated: 2025-11-10
 9. Setelah merge, hapus branch lokal & remote.
 
 ## 3. Pra-Pull Request Checklist
+
 - [ ] Branch benar dari target (`main`/`develop`).
 - [ ] Nama branch mengikuti konvensi (`feature/reserve-flow`).
 - [ ] Lint: `yarn lint` (0 error, warning wajar).
@@ -51,6 +54,7 @@ Last Updated: 2025-11-10
 - [ ] Screenshots PR (sebelum/sesudah) ditambahkan.
 
 ## Perintah Penting
+
 ```powershell
 # Jalankan app Android
 npx react-native run-android
@@ -75,6 +79,7 @@ yarn test
 ```
 
 ## Masalah Umum & Solusi Cepat
+
 | Gejala | Penyebab | Solusi |
 |--------|----------|--------|
 | `Could not find Java` | JAVA_HOME belum set | Set env JAVA_HOME & restart terminal |
@@ -82,10 +87,26 @@ yarn test
 | Metro stuck / hang | Cache korup | Jalankan reset cache perintah di atas |
 | `adb devices` kosong | USB debugging belum aktif | Aktifkan di perangkat / restart adb server |
 
+## Alignment dengan Rubrik Penilaian
+
+| Kategori | Checklist/Bagian Terkait | Hasil yang Dinilai |
+|----------|--------------------------|--------------------|
+| Project Setup & Structure | Onboarding (tools, env), Perintah Penting | App berjalan tanpa error di emulator |
+| UI & Design Implementation | Pra-PR (screenshot UI, layout test) | Konsistensi dan kerapihan tampilan |
+| Functionality & Interactivity | Pra-PR (error state, test unit) | Fitur inti bekerja & tidak crash |
+| State Management & Hooks | Pra-PR (state error ditangani) | UI reaktif sesuai perubahan state |
+| Navigation & Data Flow | Uji manual flow utama | Navigasi tidak membingungkan / crash |
+| API Integration & Data Handling | Error state & test memeriksa fetch | Loading/error/empty ditangani |
+| Code Quality & Documentation | Lint, typecheck, docs update | Kode bersih & terdokumentasi |
+| Creativity & Innovation | Tambahan screenshot / optimasi opsional | Fitur ekstra terlihat jelas |
+| Presentation & Demonstration | Screenshot sebelum/sesudah di PR | Demo lancar & jelas |
+
 ## Cara Mengganti Placeholder
+
 Ganti `<<NODE_LTS_VERSION>>`, `<<JAVA_HOME_PATH>>`, `<<ANDROID_SDK_ROOT>>`, `<<REPO_URL>>` dengan nilai aktual lingkungan Anda. Jika ada yang belum pasti gunakan `<<PLACEHOLDER - fill from project brief>>` sementara.
 
 ## Related Docs
+
 - `PROJECT_STRUCTURE.md`
 - `PATH_ALIASES_SETUP.md`
 - `SETUP_COMPLETE.md`

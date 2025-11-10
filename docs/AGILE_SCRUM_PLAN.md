@@ -152,3 +152,18 @@ Cari teks dengan format `<<LIKE_THIS>>` lalu ganti sesuai konteks projek (contoh
 - `SPRINT_CEREMONIES.md`
 - `SPRINT_TRACKING.md`
 - `BRANCH_STRATEGY.md`
+ 
+## Alignment dengan Rubrik Penilaian
+
+| Kategori Rubrik | Kontribusi Dokumen | Dampak Penilaian |
+|-----------------|--------------------|------------------|
+| Project Setup & Structure | Menetapkan cadence & board kolom | Struktur proses jelas mendukung setup efisien |
+| UI & Design Implementation | Sprint Goal & DoR memastikan desain siap sebelum coding | UI konsisten karena persiapan story |
+| Functionality & Interactivity | Estimasi & acceptance criteria | Fitur terukur & lengkap |
+| State Management & Hooks | Grooming memunculkan risiko arsitektur state | Mengurangi rework state |
+| Navigation & Data Flow | Story memaksa definisi flow navigasi | Navigasi diuji selama sprint |
+| API Integration & Data Handling | DoR memerlukan mock/data contoh | Data handling siap diuji |
+| Code Quality & Documentation | Retrospective + metrics | Peningkatan kualitas berulang |
+| Creativity & Innovation | Retro mendorong eksperimen bertahap | Fitur inovatif terkontrol |
+| Presentation & Demonstration | Sprint Review skrip demo | Presentasi fitur lebih terstruktur |
+

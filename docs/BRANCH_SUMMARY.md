@@ -5,6 +5,7 @@ Ringkasan: Ringkasan cepat tipe branch Git dan contoh perintah.
 Last Updated: 2025-11-10
 
 ## Tabel Ringkas
+
 | Tipe | Prefix | Sumber Awal | Target Merge | Contoh Nama | Tujuan |
 |------|--------|------------|--------------|-------------|--------|
 | Main | `main` | - | - | main | Produksi stabil |
@@ -17,6 +18,7 @@ Last Updated: 2025-11-10
 | Docs | `docs/` | develop atau main | develop atau main | docs/testing-strategy | Dokumentasi |
 
 ## Contoh Perintah
+
 ```bash
 # Buat feature branch
 git checkout -b feature/menu-ui develop
@@ -44,7 +46,8 @@ git checkout -b release/1.2.0 develop
 > Gunakan PowerShell sama; perintah Bash berlaku karena Git tetap menerima.
 
 ## Alias Git (Opsional Tambahkan di `.gitconfig`)
-```
+
+```ini
 [alias]
   co = checkout
   br = branch
@@ -53,9 +56,18 @@ git checkout -b release/1.2.0 develop
 ```
 
 ## Cara Mengganti Placeholder
+
 Jika ada versi `<<VERSI>>` ganti dengan nomor versi sesuai semver (mis: 1.2.0). Jika issue gunakan `<<ISSUE_NUMBER>>`.
 
+## Alignment dengan Rubrik Penilaian
+
+- Project Setup & Structure (10%): Ringkas tipe branch membantu struktur jelas saat penilaian.
+- Code Quality & Documentation (5%): Konsistensi penamaan mengurangi kompleksitas review.
+- Functionality & Interactivity / API / State: Branch feature terpisah memudahkan pengujian fokus sebelum digabung.
+- Presentation & Demonstration (Bonus): Perintah siap salin memudahkan demo proses Git.
+
 ## Related Docs
+
 - `BRANCH_STRATEGY.md`
 - `AGILE_SCRUM_PLAN.md`
 - `DEFINITION_OF_DONE.md`

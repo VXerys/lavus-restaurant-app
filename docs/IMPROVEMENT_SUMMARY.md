@@ -56,7 +56,22 @@ Rasio Selesai per Sprint: 1/sprint
 ## Cara Mengganti Placeholder
 Jika muncul placeholder seperti `<<METRIC_TOOL>>` ganti dengan nama tool (mis: SonarQube). Jika belum ada isi `<<PLACEHOLDER - fill from project brief>>`.
 
+## Alignment dengan Rubrik Penilaian
+
+| Kategori | Contoh Aksi Improvement | Efek Terukur |
+|----------|-------------------------|-------------|
+| Project Setup & Structure | Optimasi build Gradle | Waktu build turun -> setup efisien |
+| UI & Design Implementation | Konsolidasi style components | UI konsisten & mudah dinilai |
+| Functionality & Interactivity | Tambah test reservasi edge case | Crash berkurang |
+| State Management & Hooks | Refactor state menu ke hook terpisah | Reactivity & keterbacaan naik |
+| Navigation & Data Flow | Audit rute & param type | Navigasi lebih intuitif |
+| API Integration & Data Handling | Implement retry & loading skeleton | Pengalaman data lebih halus |
+| Code Quality & Documentation | Tambah ESLint rule import/order | Struktur impor bersih |
+| Creativity & Innovation | Eksperimen animasi Reanimated ringan | Nilai inovasi meningkat |
+| Presentation & Demonstration | Siapkan script demo standar | Presentasi lebih meyakinkan |
+
 ## Related Docs
+
 - `SPRINT_CEREMONIES.md`
 - `SPRINT_TRACKING.md`
 - `AGILE_SCRUM_PLAN.md`
