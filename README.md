@@ -1,6 +1,8 @@
 <div align="center">
 
-# Lavus Restaurant App
+# Lavu's Restaurant App
+
+<img width="113" height="197" alt="logo-lavus" src="https://github.com/user-attachments/assets/ecb0b5d0-86c5-4d76-96dd-45486858312d" />
 
 <strong>Reserve • Order • Earn • Experience</strong><br/>
 Satu aplikasi mobile untuk pemesanan meja, pre-order makanan, tracking promosi, & program loyalitas restoran.
