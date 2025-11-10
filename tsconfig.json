@@ -10,6 +10,7 @@
       "@services/*": ["src/services/*"],
       "@store/*": ["src/store/*"],
       "@assets/*": ["src/assets/*"],
+      "@assets": ["src/assets/index.ts"],
       "@utils/*": ["src/utils/*"],
       "@types": ["src/types/index.ts"],
       "@types/*": ["src/types/*"]

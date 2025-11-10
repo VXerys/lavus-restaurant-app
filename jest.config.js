@@ -7,6 +7,7 @@ module.exports = {
     '^@hooks/(.*)$': '<rootDir>/src/hooks/$1',
     '^@services/(.*)$': '<rootDir>/src/services/$1',
     '^@store/(.*)$': '<rootDir>/src/store/$1',
+    '^@assets$': '<rootDir>/src/assets/index.ts',
     '^@assets/(.*)$': '<rootDir>/src/assets/$1',
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     '^@types$': '<rootDir>/src/types/index.ts',
