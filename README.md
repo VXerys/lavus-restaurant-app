@@ -1,6 +1,6 @@
 <div align="center">
 
-# Lavus Restaurant App
+# Lavu's Restaurant App
 
 <img width="274" height="343" alt="image" src="https://github.com/user-attachments/assets/74eef29c-aa01-46de-bd0e-1f2cd3bfd888" />
 
