@@ -14,7 +14,9 @@
       "@types/*": ["src/types/*"],
       "@store/*": ["src/store/*"],
       "@theme/*": ["src/theme/*"],
-      "@assets/*": ["src/assets/*"]
+      "@theme": ["src/theme/index.ts"],
+      "@assets/*": ["src/assets/*"],
+      "@assets": ["src/assets/index.ts"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

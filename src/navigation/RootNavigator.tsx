@@ -3,17 +3,21 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from '@screens/SplashScreen';
 import OnboardingScreen from '@screens/OnboardingScreen';
-import { View } from 'react-native';
+import LoginOptionsScreen from '@screens/LoginOptionsScreen';
+import LoginScreen from '@screens/LoginScreen';
+import SignUpScreen from '@screens/SignUpScreen';
+import HomeScreen from '@screens/HomeScreen';
 
 export type RootStackParamList = {
   Splash: undefined;
   Onboarding: undefined;
-  HomePlaceholder: undefined;
+  LoginOptions: undefined;
+  Login: undefined;
+  SignUp: undefined;
+  Home: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
-const HomePlaceholder = () => <View />; // will be replaced later
 
 export const RootNavigator = () => {
   const [showSplash, setShowSplash] = useState(true);
@@ -29,10 +33,45 @@ export const RootNavigator = () => {
           <>
             <Stack.Screen name="Onboarding">
               {({ navigation }) => (
-                <OnboardingScreen onDone={() => navigation.replace('HomePlaceholder')} />
+                <OnboardingScreen onDone={() => navigation.replace('LoginOptions')} />
               )}
             </Stack.Screen>
-            <Stack.Screen name="HomePlaceholder" component={HomePlaceholder} />
+            <Stack.Screen name="LoginOptions">
+              {({ navigation }) => (
+                <LoginOptionsScreen
+                  onBack={() => navigation.navigate('Onboarding')}
+                  onLoginNow={() => navigation.replace('Login')}
+                  onLoginLater={() => navigation.replace('Home')}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="Login">
+              {({ navigation }) => (
+                <LoginScreen
+                  onBack={() => navigation.navigate('LoginOptions')}
+                  onGoogleLogin={() => {
+                    // TODO: Implement Google Login
+                    console.log('Google Login pressed');
+                  }}
+                  onLogin={() => navigation.replace('Home')}
+                  onSignUp={() => navigation.navigate('SignUp')}
+                  onForgotPassword={() => {
+                    // TODO: Navigate to Forgot Password screen
+                    console.log('Forgot password pressed');
+                  }}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="SignUp">
+              {({ navigation }) => (
+                <SignUpScreen
+                  onBack={() => navigation.navigate('Login')}
+                  onSignUp={() => navigation.replace('Home')}
+                  onSignIn={() => navigation.navigate('Login')}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="Home" component={HomeScreen} />
           </>
         )}
       </Stack.Navigator>

@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import { View, Image, StyleSheet, Dimensions, FlatList, ListRenderItemInfo, Pressable } from 'react-native';
+import { View, Image, StyleSheet, Dimensions, FlatList, ListRenderItemInfo } from 'react-native';
 import AppText from '@components/AppText';
 import PagerDots from '@components/PagerDots';
+import Button from '@components/Button';
 import { Colors, Spacing } from '@theme/tokens';
 
 const { width } = Dimensions.get('window');
@@ -67,9 +68,12 @@ const OnboardingScreen: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
       <View style={styles.dotsContainer}>
         <PagerDots total={slides.length} index={index} />
       </View>
-      <Pressable style={styles.button} onPress={onDone}>        
-        <AppText weight="medium" style={styles.buttonText}>Getting Started</AppText>
-      </Pressable>
+      <Button
+        title="Getting Started"
+        variant="primary"
+        width={width * 0.6}
+        onPress={onDone}
+      />
     </View>
   );
 };
@@ -111,23 +115,6 @@ const styles = StyleSheet.create({
   dotsContainer: {
     marginTop: Spacing.lg,
     marginBottom: Spacing.lg,
-  },
-  button: {
-    backgroundColor: Colors.black,
-    paddingVertical: Spacing.lg + 2,
-    paddingHorizontal: Spacing.xxl * 2,
-    borderRadius: 8,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOpacity: 0.15,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    minWidth: width * 0.6,
-  },
-  buttonText: {
-    color: Colors.primary,
-    fontSize: 16,
-    textAlign: 'center',
   },
 });
 
