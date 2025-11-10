@@ -127,7 +127,7 @@ README ini disusun sebagai dokumen komprehensif tugas UTS Mata Kuliah: <strong>P
 
 ## Struktur Proyek
 
-Lihat rincian lengkap di `docs/PROJECT_STRUCTURE.md`.
+Lihat rincian lengkap di [`docs/PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md).
 
 ```
 src/
@@ -142,7 +142,7 @@ src/
 	assets/
 ```
 
-Alias contoh: `@components/Button`, `@screens/HomeScreen` (detail di `docs/PATH_ALIASES_SETUP.md`).
+Alias contoh: `@components/Button`, `@screens/HomeScreen` (detail di [`docs/PATH_ALIASES_SETUP.md`](docs/PATH_ALIASES_SETUP.md)).
 
 ---
 
@@ -162,7 +162,7 @@ java -version
 adb devices
 npx react-native info
 ```
-Checklist lengkap: `docs/SETUP_COMPLETE.md`.
+Checklist lengkap: [`docs/SETUP_COMPLETE.md`](docs/SETUP_COMPLETE.md).
 
 ---
 
@@ -191,22 +191,22 @@ cd android; ./gradlew clean; cd ..; yarn android
 ```
 
 ### Quick Reference
-Lihat ringkas perintah di `docs/QUICK_REFERENCE.md`.
+Lihat ringkas perintah di [`docs/QUICK_REFERENCE.md`](docs/QUICK_REFERENCE.md).
 
 ---
 
 ## Quality & Engineering Practices
 
-- Branch model: `main` + feature/hotfix/release (detail: `docs/BRANCH_STRATEGY.md`).
-- Definition of Done: fungsional, UI konsisten, lint & typecheck lulus (`docs/DEFINITION_OF_DONE.md`).
-- Development checklist: onboarding & pre-PR gates (`docs/DEVELOPMENT_CHECKLIST.md`).
-- Continuous Improvement log: `docs/IMPROVEMENT_SUMMARY.md`.
+- Branch model: `main` + feature/hotfix/release (detail: [`docs/BRANCH_STRATEGY.md`](docs/BRANCH_STRATEGY.md)).
+- Definition of Done: fungsional, UI konsisten, lint & typecheck lulus ([`docs/DEFINITION_OF_DONE.md`](docs/DEFINITION_OF_DONE.md)).
+- Development checklist: onboarding & pre-PR gates ([`docs/DEVELOPMENT_CHECKLIST.md`](docs/DEVELOPMENT_CHECKLIST.md)).
+- Continuous Improvement log: [`docs/IMPROVEMENT_SUMMARY.md`](docs/IMPROVEMENT_SUMMARY.md).
 
 ---
 
 ## Strategi Testing
 
-Referensi lengkap di `docs/TESTING_STRATEGY.md`.
+Referensi lengkap di [`docs/TESTING_STRATEGY.md`](docs/TESTING_STRATEGY.md).
 
 | Layer | Tujuan | Contoh (Placeholder) |
 |-------|--------|----------------------|
@@ -225,7 +225,7 @@ yarn typecheck
 
 ## Agile & Sprint Ceremonies
 
-Sprint 1–2 fokus MVP reservasi & loyalty dasar. Lihat `docs/AGILE_SCRUM_PLAN.md` dan `docs/SPRINT_CEREMONIES.md` untuk format daily, planning, review, retrospective. Tracking metrik di `docs/SPRINT_TRACKING.md`.
+Sprint 1–2 fokus MVP reservasi & loyalty dasar. Lihat [`docs/AGILE_SCRUM_PLAN.md`](docs/AGILE_SCRUM_PLAN.md) dan [`docs/SPRINT_CEREMONIES.md`](docs/SPRINT_CEREMONIES.md) untuk format daily, planning, review, retrospective. Tracking metrik di [`docs/SPRINT_TRACKING.md`](docs/SPRINT_TRACKING.md).
 
 ---
 
@@ -236,7 +236,7 @@ Ringkas hubungan kategori penilaian dengan dokumen & artefak.
 | Kategori | Bukti / Dokumen | Highlight |
 |----------|-----------------|----------|
 | Project Setup | `SETUP_COMPLETE.md`, alias config | Lingkungan siap tanpa error |
-| UI & Design | Desain di `Lavus-Project-Overview.md`, komponen modular | Konsistensi brand & struktur UI |
+| UI & Design | Desain di [`Lavus-Project-Overview.md`](docs/Lavus-Project-Overview.md), komponen modular | Konsistensi brand & struktur UI |
 | Functionality | Fitur reservasi, loyalty (placeholder) | Alur inti aplikasi berjalan |
 | State Management | Hooks & rencana store modular | Skalabilitas future state global |
 | Navigation | Rencana stack/tab (placeholder) | Alur antar screen jelas |
@@ -251,7 +251,7 @@ Detail mapping per dokumen ada di masing-masing section "Alignment" dalam folder
 
 ## Desain & Branding
 
-Ringkasan visual & sistem desain lengkap: `docs/Lavus-Project-Overview.md`.
+Ringkasan visual & sistem desain lengkap: [`docs/Lavus-Project-Overview.md`](docs/Lavus-Project-Overview.md).
 
 - Warna utama: Overt Green `#95AE45` → kesehatan & segar.
 - Typeface: Butler (serif elegan) + Poppins (sans untuk readability).
@@ -292,7 +292,7 @@ Draft kebijakan awal:
 
 ## Roadmap & Improvement Tracking
 
-Perubahan & ide iteratif dicatat di `docs/IMPROVEMENT_SUMMARY.md`.
+Perubahan & ide iteratif dicatat di [`docs/IMPROVEMENT_SUMMARY.md`](docs/IMPROVEMENT_SUMMARY.md).
 Contoh metrik target:
 - Time-to-reserve < 30 detik.
 - Retention pengguna > 40% setelah 3 bulan.
@@ -308,7 +308,7 @@ feature/<deskripsi-singkat>
 hotfix/<issue-kritis>
 release/<versi>
 ```
-Pull Request wajib checklist DoD & lint/typecheck lulus (lihat `docs/BRANCH_STRATEGY.md`).
+Pull Request wajib checklist DoD & lint/typecheck lulus (lihat [`docs/BRANCH_STRATEGY.md`](docs/BRANCH_STRATEGY.md)).
 
 ---
 
