@@ -1,11 +1,15 @@
 import React, { useCallback, useState } from 'react';
-import { View, Image, StyleSheet, Dimensions, FlatList, ListRenderItemInfo } from 'react-native';
+import { View, Image, StyleSheet, FlatList, ListRenderItemInfo } from 'react-native';
 import AppText from '@components/AppText';
 import PagerDots from '@components/PagerDots';
 import Button from '@components/Button';
 import { Colors, Spacing } from '@theme/tokens';
-
-const { width } = Dimensions.get('window');
+import { 
+  screenWidth, 
+  scaleFontSize, 
+  moderateScale, 
+  getButtonWidth
+} from '@utils/responsive';
 
 interface Slide {
   key: string;
@@ -46,7 +50,7 @@ const OnboardingScreen: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
   const viewConfigRef = { viewAreaCoveragePercentThreshold: 50 };
 
   const renderItem = ({ item }: ListRenderItemInfo<Slide>) => (
-    <View style={[styles.slide, { width }]}>      
+    <View style={[styles.slide, { width: screenWidth }]}>      
       <Image source={item.image} style={styles.image} />
       <AppText weight="serifTitle" style={styles.title}>{item.title}</AppText>
       <AppText weight="regular" style={styles.subtitle}>{item.subtitle}</AppText>
@@ -71,7 +75,7 @@ const OnboardingScreen: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
       <Button
         title="Getting Started"
         variant="primary"
-        width={width * 0.6}
+        width={getButtonWidth(0.7)}
         onPress={onDone}
       />
     </View>
@@ -83,38 +87,40 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.white,
     alignItems: 'center',
-    paddingBottom: Spacing.xxl + Spacing.lg,
+    paddingBottom: moderateScale(Spacing.xxl + Spacing.lg),
   },
   slide: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: Spacing.xl + Spacing.sm,
-    paddingBottom: Spacing.xxl,
+    paddingHorizontal: moderateScale(Spacing.xl + Spacing.sm),
+    paddingBottom: moderateScale(Spacing.xxl),
   },
   image: {
-    width: width * 0.75,
-    height: width * 0.75,
+    width: screenWidth * 0.7,
+    height: screenWidth * 0.7,
+    maxWidth: 350,
+    maxHeight: 350,
     resizeMode: 'contain',
-    marginBottom: Spacing.lg,
+    marginBottom: moderateScale(Spacing.lg),
   },
   title: {
-    fontSize: 32,
+    fontSize: scaleFontSize(32),
     color: Colors.black,
     textAlign: 'center',
-    marginBottom: Spacing.sm,
+    marginBottom: moderateScale(Spacing.sm),
   },
   subtitle: {
-    fontSize: 15,
-    lineHeight: 22,
+    fontSize: scaleFontSize(15),
+    lineHeight: scaleFontSize(22),
     color: Colors.muted,
     textAlign: 'center',
-    maxWidth: width * 0.8,
-    paddingHorizontal: Spacing.lg,
+    maxWidth: screenWidth * 0.85,
+    paddingHorizontal: moderateScale(Spacing.lg),
   },
   dotsContainer: {
-    marginTop: Spacing.lg,
-    marginBottom: Spacing.lg,
+    marginTop: moderateScale(Spacing.lg),
+    marginBottom: moderateScale(Spacing.lg),
   },
 });
 

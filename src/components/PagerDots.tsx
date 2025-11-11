@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Colors } from '@theme/tokens';
+import { moderateScale } from '@utils/responsive';
 
 interface Props {
   total: number;
@@ -21,8 +22,17 @@ export const PagerDots: React.FC<Props> = ({ total, index }) => {
 };
 
 const styles = StyleSheet.create({
-  row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
-  dot: { width: 8, height: 8, borderRadius: 4 },
+  row: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    gap: moderateScale(12) 
+  },
+  dot: { 
+    width: moderateScale(8), 
+    height: moderateScale(8), 
+    borderRadius: moderateScale(4) 
+  },
   dotInactive: { backgroundColor: Colors.dotInactive },
   dotActive: { backgroundColor: Colors.black },
 });

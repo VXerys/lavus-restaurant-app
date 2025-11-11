@@ -1,11 +1,17 @@
 import React from 'react';
-import { View, Image, StyleSheet, Dimensions, Pressable, Animated } from 'react-native';
+import { View, Image, StyleSheet, Pressable, Animated } from 'react-native';
 import { Images } from '@assets';
 import Button from '@components/Button';
 import AppText from '@components/AppText';
 import { Colors, Spacing } from '@theme/tokens';
-
-const { width } = Dimensions.get('window');
+import { 
+  screenWidth, 
+  scaleFontSize, 
+  moderateScale, 
+  getButtonWidth,
+  scaleHeight,
+  isSmallDevice 
+} from '@utils/responsive';
 
 interface Props {
   onLoginNow?: () => void;
@@ -56,13 +62,13 @@ const LoginOptionsScreen: React.FC<Props> = ({ onLoginNow, onLoginLater, onBack 
         <Button
           title="Login Now"
           variant="primary"
-          width={width * 0.8}
+          width={getButtonWidth(0.85)}
           onPress={onLoginNow}
         />
         <Button
           title="Login Later"
           variant="outline"
-          width={width * 0.8}
+          width={getButtonWidth(0.85)}
           onPress={onLoginLater}
           style={styles.buttonSpacing}
         />
@@ -75,35 +81,38 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.white,
-    paddingHorizontal: Spacing.xl,
+    paddingHorizontal: moderateScale(Spacing.xl),
   },
   backButton: {
-    width: 44,
-    height: 44,
+    width: moderateScale(44),
+    height: moderateScale(44),
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: Spacing.xl,
-    marginLeft: Spacing.sm,
+    marginTop: moderateScale(Spacing.xl),
+    marginLeft: moderateScale(Spacing.sm),
   },
   backText: {
-    fontSize: 48,
+    fontSize: scaleFontSize(48),
     color: Colors.black,
-    lineHeight: 48,
+    lineHeight: scaleFontSize(48),
   },
   logoContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    marginVertical: moderateScale(Spacing.xl),
   },
   logo: {
-    width: 200,
-    height: 250,
+    width: isSmallDevice ? screenWidth * 0.5 : screenWidth * 0.55,
+    height: isSmallDevice ? scaleHeight(200) : scaleHeight(250),
+    maxWidth: 250,
+    maxHeight: 300,
     resizeMode: 'contain',
   },
   buttonContainer: {
     alignItems: 'center',
-    paddingBottom: Spacing.xxl * 2,
-    gap: Spacing.lg,
+    paddingBottom: moderateScale(Spacing.xxl * 2),
+    gap: moderateScale(Spacing.lg),
   },
   buttonSpacing: {
     marginTop: 0,

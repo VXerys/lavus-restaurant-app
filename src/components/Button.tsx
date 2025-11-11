@@ -2,6 +2,7 @@ import React from 'react';
 import { Pressable, StyleSheet, ViewStyle, TextStyle, PressableProps } from 'react-native';
 import AppText from './AppText';
 import { Colors, Spacing, Radius } from '@theme/tokens';
+import { scaleFontSize, moderateScale } from '@utils/responsive';
 
 export interface ButtonProps extends PressableProps {
   title: string;
@@ -63,17 +64,17 @@ const styles = StyleSheet.create({
     borderColor: Colors.black,
   },
   large: {
-    paddingVertical: Spacing.lg + 2,
-    paddingHorizontal: Spacing.xxl * 2,
-    minWidth: 200,
+    paddingVertical: moderateScale(Spacing.lg + 2),
+    paddingHorizontal: moderateScale(Spacing.xxl * 2),
+    minWidth: moderateScale(200),
   },
   medium: {
-    paddingVertical: Spacing.md + 2,
-    paddingHorizontal: Spacing.xl,
-    minWidth: 150,
+    paddingVertical: moderateScale(Spacing.md + 2),
+    paddingHorizontal: moderateScale(Spacing.xl),
+    minWidth: moderateScale(150),
   },
   text: {
-    fontSize: 16,
+    fontSize: scaleFontSize(16),
     textAlign: 'center',
   },
   textPrimary: {
