@@ -7,6 +7,8 @@ import LoginOptionsScreen from '@screens/LoginOptionsScreen';
 import LoginScreen from '@screens/LoginScreen';
 import SignUpScreen from '@screens/SignUpScreen';
 import MainTabs from '@navigation/MainTabs';
+import MenuDetailScreen from '@screens/MenuDetailScreen';
+import HotDealDetailScreen from '@screens/HotDealDetailScreen';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -15,6 +17,8 @@ export type RootStackParamList = {
   Login: undefined;
   SignUp: undefined;
   Home: undefined;
+  MenuDetail: { menuId: string };
+  HotDealDetail: { dealId: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -75,6 +79,27 @@ export const RootNavigator = () => {
               {({ navigation }) => (
                 <MainTabs
                   onLoginPress={() => navigation.navigate('LoginOptions')}
+                  navigation={navigation}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="MenuDetail">
+              {({ navigation, route }) => (
+                <MenuDetailScreen
+                  onBack={() => navigation.goBack()}
+                  onReserve={() => {
+                    // TODO: Navigate to reservation screen
+                    console.log('Reserve pressed');
+                  }}
+                  menuId={route.params.menuId}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="HotDealDetail">
+              {({ navigation, route }) => (
+                <HotDealDetailScreen
+                  onBack={() => navigation.goBack()}
+                  dealId={route.params.dealId}
                 />
               )}
             </Stack.Screen>

@@ -8,26 +8,27 @@ import BottomTabBar, { TabRoute } from '@components/BottomTabBar';
 
 interface MainTabsProps {
   onLoginPress: () => void;
+  navigation?: any;
 }
 
-const MainTabs: React.FC<MainTabsProps> = ({ onLoginPress }) => {
+const MainTabs: React.FC<MainTabsProps> = ({ onLoginPress, navigation }) => {
   const [activeTab, setActiveTab] = useState<TabRoute>('home');
 
   const renderScreen = () => {
     switch (activeTab) {
       case 'home':
-        return <HomeScreen onLoginPress={onLoginPress} />;
+        return <HomeScreen onLoginPress={onLoginPress} navigation={navigation} />;
       case 'hotDeal':
-        return <HotDealScreen />;
+        return <HotDealScreen navigation={navigation} />;
       case 'scan':
         // TODO: Implement scan functionality
-        return <HomeScreen onLoginPress={onLoginPress} />;
+        return <HomeScreen onLoginPress={onLoginPress} navigation={navigation} />;
       case 'rewards':
         return <RewardsScreen />;
       case 'reserve':
         return <ReserveScreen />;
       default:
-        return <HomeScreen onLoginPress={onLoginPress} />;
+        return <HomeScreen onLoginPress={onLoginPress} navigation={navigation} />;
     }
   };
 

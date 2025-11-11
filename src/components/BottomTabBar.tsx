@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     paddingTop: Spacing.md,
     paddingBottom: Spacing.md,
     backgroundColor: Colors.white,
+    
   },
   tabItem: {
     flex: 1,

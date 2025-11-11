@@ -19,7 +19,7 @@ export interface PopularMenuItem {
 // Salad Menu Items
 export const saladMenuItems: PopularMenuItem[] = [
   {
-    id: 'pm-salad-001',
+    id: 'salad-1',
     name: 'Salmon Salad',
     description: 'Introduction about dishes',
     price: 39,
@@ -29,7 +29,7 @@ export const saladMenuItems: PopularMenuItem[] = [
     category: 'salad',
   },
   {
-    id: 'pm-salad-002',
+    id: 'salad-2',
     name: 'Shrimp Salad',
     description: 'Introduction about dishes',
     price: 29,
@@ -39,7 +39,7 @@ export const saladMenuItems: PopularMenuItem[] = [
     category: 'salad',
   },
   {
-    id: 'pm-salad-003',
+    id: 'salad-3',
     name: "Lavu's Salad",
     description: 'Introduction about dishes',
     price: 29,
@@ -49,7 +49,7 @@ export const saladMenuItems: PopularMenuItem[] = [
     category: 'salad',
   },
   {
-    id: 'pm-salad-004',
+    id: 'salad-4',
     name: 'Fruit Salad',
     description: 'Introduction about dishes',
     price: 29,
@@ -59,7 +59,7 @@ export const saladMenuItems: PopularMenuItem[] = [
     category: 'salad',
   },
   {
-    id: 'pm-salad-005',
+    id: 'salad-5',
     name: 'Tofu Salad',
     description: 'Introduction about dishes',
     price: 29,
@@ -73,7 +73,7 @@ export const saladMenuItems: PopularMenuItem[] = [
 // Drink Menu Items
 export const drinkMenuItems: PopularMenuItem[] = [
   {
-    id: 'pm-drink-001',
+    id: 'drink-1',
     name: 'Fresh Orange Juice',
     description: 'Introduction about dishes',
     price: 15,
@@ -83,7 +83,7 @@ export const drinkMenuItems: PopularMenuItem[] = [
     category: 'drink',
   },
   {
-    id: 'pm-drink-002',
+    id: 'drink-2',
     name: 'Tropical Smoothie',
     description: 'Introduction about dishes',
     price: 18,
@@ -93,7 +93,7 @@ export const drinkMenuItems: PopularMenuItem[] = [
     category: 'drink',
   },
   {
-    id: 'pm-drink-003',
+    id: 'drink-3',
     name: 'Iced Coffee',
     description: 'Introduction about dishes',
     price: 12,
@@ -103,7 +103,7 @@ export const drinkMenuItems: PopularMenuItem[] = [
     category: 'drink',
   },
   {
-    id: 'pm-drink-004',
+    id: 'drink-4',
     name: 'Green Tea Latte',
     description: 'Introduction about dishes',
     price: 14,
@@ -112,22 +112,12 @@ export const drinkMenuItems: PopularMenuItem[] = [
     image: MenuImages.drink.drink4,
     category: 'drink',
   },
-  {
-    id: 'pm-drink-005',
-    name: 'Berry Blast',
-    description: 'Introduction about dishes',
-    price: 16,
-    rating: 4.8,
-    reviewCount: 1600,
-    image: MenuImages.drink.drink5,
-    category: 'drink',
-  },
 ];
 
 // Pizza Menu Items
 export const pizzaMenuItems: PopularMenuItem[] = [
   {
-    id: 'pm-pizza-001',
+    id: 'pizza-1',
     name: 'Margherita Pizza',
     description: 'Introduction about dishes',
     price: 45,
@@ -137,7 +127,7 @@ export const pizzaMenuItems: PopularMenuItem[] = [
     category: 'pizza',
   },
   {
-    id: 'pm-pizza-002',
+    id: 'pizza-2',
     name: 'Pepperoni Delight',
     description: 'Introduction about dishes',
     price: 49,
@@ -147,7 +137,7 @@ export const pizzaMenuItems: PopularMenuItem[] = [
     category: 'pizza',
   },
   {
-    id: 'pm-pizza-003',
+    id: 'pizza-3',
     name: 'Veggie Supreme',
     description: 'Introduction about dishes',
     price: 42,
@@ -157,7 +147,7 @@ export const pizzaMenuItems: PopularMenuItem[] = [
     category: 'pizza',
   },
   {
-    id: 'pm-pizza-004',
+    id: 'pizza-4',
     name: 'Hawaiian Pizza',
     description: 'Introduction about dishes',
     price: 46,
@@ -171,7 +161,7 @@ export const pizzaMenuItems: PopularMenuItem[] = [
 // Dessert Menu Items
 export const dessertMenuItems: PopularMenuItem[] = [
   {
-    id: 'pm-dessert-001',
+    id: 'dessert-1',
     name: 'Chocolate Cake',
     description: 'Introduction about dishes',
     price: 25,
@@ -181,7 +171,7 @@ export const dessertMenuItems: PopularMenuItem[] = [
     category: 'dessert',
   },
   {
-    id: 'pm-dessert-002',
+    id: 'dessert-2',
     name: 'Tiramisu',
     description: 'Introduction about dishes',
     price: 28,
@@ -191,7 +181,7 @@ export const dessertMenuItems: PopularMenuItem[] = [
     category: 'dessert',
   },
   {
-    id: 'pm-dessert-003',
+    id: 'dessert-3',
     name: 'Ice Cream Sundae',
     description: 'Introduction about dishes',
     price: 20,
@@ -201,7 +191,7 @@ export const dessertMenuItems: PopularMenuItem[] = [
     category: 'dessert',
   },
   {
-    id: 'pm-dessert-004',
+    id: 'dessert-4',
     name: 'Fruit Tart',
     description: 'Introduction about dishes',
     price: 24,
@@ -210,22 +200,12 @@ export const dessertMenuItems: PopularMenuItem[] = [
     image: MenuImages.dessert.dessert4,
     category: 'dessert',
   },
-  {
-    id: 'pm-dessert-005',
-    name: 'Cheesecake',
-    description: 'Introduction about dishes',
-    price: 26,
-    rating: 4.9,
-    reviewCount: 2600,
-    image: MenuImages.dessert.dessert5,
-    category: 'dessert',
-  },
 ];
 
 // Pasta Menu Items
 export const pastaMenuItems: PopularMenuItem[] = [
   {
-    id: 'pm-pasta-001',
+    id: 'pasta-1',
     name: 'Carbonara',
     description: 'Introduction about dishes',
     price: 38,
@@ -235,7 +215,7 @@ export const pastaMenuItems: PopularMenuItem[] = [
     category: 'pasta',
   },
   {
-    id: 'pm-pasta-002',
+    id: 'pasta-2',
     name: 'Bolognese',
     description: 'Introduction about dishes',
     price: 36,
@@ -245,7 +225,7 @@ export const pastaMenuItems: PopularMenuItem[] = [
     category: 'pasta',
   },
   {
-    id: 'pm-pasta-003',
+    id: 'pasta-3',
     name: 'Aglio Olio',
     description: 'Introduction about dishes',
     price: 32,
@@ -255,7 +235,7 @@ export const pastaMenuItems: PopularMenuItem[] = [
     category: 'pasta',
   },
   {
-    id: 'pm-pasta-004',
+    id: 'pasta-4',
     name: 'Pesto Pasta',
     description: 'Introduction about dishes',
     price: 35,
@@ -265,7 +245,7 @@ export const pastaMenuItems: PopularMenuItem[] = [
     category: 'pasta',
   },
   {
-    id: 'pm-pasta-005',
+    id: 'pasta-5',
     name: 'Seafood Linguine',
     description: 'Introduction about dishes',
     price: 42,

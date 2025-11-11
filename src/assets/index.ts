@@ -99,6 +99,13 @@ export const NavigationIcons = {
   back: require('./icons/Backbutton4x.png'),
 };
 
+// Hot Deal Images
+export const HotDealImages = {
+  lavuReward: require('./images/hot-deal/Lavu-reward.png'),
+  deal01: require('./images/hot-deal/Deal-01.png'),
+  happyHours: require('./images/hot-deal/Happy-ours.png'),
+};
+
 // Bottom Navigation Icons
 export const NavBarIcons = {
   home: {

@@ -9,6 +9,7 @@ import { getMenuItemsByCategory } from '../mocks/data/popularMenus';
 
 interface Props {
   onLoginPress?: () => void;
+  navigation?: any;
 }
 
 const FOOD_CATEGORIES = [
@@ -19,7 +20,7 @@ const FOOD_CATEGORIES = [
   { key: 'pasta' as CategoryKey, label: 'Pasta' },
 ] as const;
 
-const HomeScreen: React.FC<Props> = ({ onLoginPress }) => {
+const HomeScreen: React.FC<Props> = ({ onLoginPress, navigation }) => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryKey>('salad');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -131,8 +132,11 @@ const HomeScreen: React.FC<Props> = ({ onLoginPress }) => {
                 rating={item.rating}
                 reviewCount={item.reviewCount}
                 onPress={() => {
-                  // TODO: Navigate to menu detail screen
-                  console.log('Menu item pressed:', item.name);
+                  if (navigation) {
+                    navigation.navigate('MenuDetail', { menuId: item.id });
+                  } else {
+                    console.log('Menu item pressed:', item.name);
+                  }
                 }}
               />
             ))}
@@ -229,6 +233,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   foodTypeSection: {
+    marginTop: Spacing.md,
     marginBottom: Spacing.sm, // Increase spacing untuk ruang shadow
   },
   categoriesScrollWrapper: {
