@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Pressable, Image } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import AppText from './AppText';
 import { NavBarIcons } from '@assets';
 import { Colors, Spacing } from '@theme/tokens';
@@ -12,6 +13,8 @@ interface BottomTabBarProps {
 }
 
 const BottomTabBar: React.FC<BottomTabBarProps> = ({ activeTab, onTabPress }) => {
+  const insets = useSafeAreaInsets();
+  
   const tabs = [
     { key: 'home' as TabRoute, label: 'Home', icon: NavBarIcons.home },
     { key: 'hotDeal' as TabRoute, label: 'Hot Deal', icon: NavBarIcons.hotDeal },
@@ -22,7 +25,7 @@ const BottomTabBar: React.FC<BottomTabBarProps> = ({ activeTab, onTabPress }) =>
 
   return (
     <View style={styles.container}>
-      <View style={styles.tabBar}>
+      <View style={[styles.tabBar, { paddingBottom: Math.max(insets.bottom, Spacing.md) }]}>
         {tabs.map((tab) => {
           const isActive = activeTab === tab.key;
           const isScanButton = tab.key === 'scan';
@@ -71,33 +74,36 @@ const BottomTabBar: React.FC<BottomTabBarProps> = ({ activeTab, onTabPress }) =>
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.white,
-    // iOS Shadow
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: -2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    // Android Shadow
-    elevation: 8,
+    backgroundColor: Colors.bg,
   },
   tabBar: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
     paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.md,
-    paddingBottom: Spacing.md,
+    paddingTop: Spacing.md + 4,
+    // paddingBottom will be set dynamically with safe area insets
     backgroundColor: Colors.white,
-    
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    // iOS Shadow
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: -4,
+    },
+    shadowOpacity: 0.12,
+    shadowRadius: 12,
+    // Android Shadow
+    elevation: 12,
+    overflow: 'visible',
+    zIndex: 10, // Above notch container
   },
   tabItem: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: Spacing.xs,
+    paddingVertical: Spacing.sm,
   },
   tabIcon: {
     width: 24,
@@ -117,7 +123,17 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -24, // Elevate the scan button above the tab bar
+    marginTop: -52, // Elevate the scan button above the tab bar (increased from -24)
+    // iOS Shadow for wrapper - creates outer glow
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 16,
+    // Android Shadow
+    elevation: 24,
   },
   scanButton: {
     width: 64,
@@ -130,12 +146,12 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 6,
     },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
+    shadowOpacity: 0.35,
+    shadowRadius: 12,
     // Android Shadow
-    elevation: 8,
+    elevation: 20,
   },
   scanIcon: {
     width: 32,

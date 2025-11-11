@@ -333,7 +333,7 @@ const styles = StyleSheet.create({
   popularHeader: {
     backgroundColor: Colors.bg,
     paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.md,
+    paddingTop: Spacing.sm,
     paddingBottom: Spacing.sm,
   },
   popularTitle: {
