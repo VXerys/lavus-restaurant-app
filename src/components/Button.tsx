@@ -6,7 +6,7 @@ import { scaleFontSize, moderateScale } from '@utils/responsive';
 
 export interface ButtonProps extends PressableProps {
   title: string;
-  variant?: 'primary' | 'outline';
+  variant?: 'primary' | 'outline' | 'reward';
   size?: 'medium' | 'large';
   width?: number | string;
   textStyle?: TextStyle;
@@ -21,17 +21,43 @@ const Button: React.FC<ButtonProps> = ({
   textStyle,
   ...pressableProps
 }) => {
+  const getVariantStyle = () => {
+    switch (variant) {
+      case 'primary':
+        return styles.primary;
+      case 'outline':
+        return styles.outline;
+      case 'reward':
+        return styles.reward;
+      default:
+        return styles.primary;
+    }
+  };
+
+  const getTextStyle = () => {
+    switch (variant) {
+      case 'primary':
+        return styles.textPrimary;
+      case 'outline':
+        return styles.textOutline;
+      case 'reward':
+        return styles.textReward;
+      default:
+        return styles.textPrimary;
+    }
+  };
+
   const buttonStyles: ViewStyle[] = [
     styles.base,
-    variant === 'primary' ? styles.primary : styles.outline,
     size === 'large' ? styles.large : styles.medium,
+    getVariantStyle(),
     width ? { width: width as any } : {},
     style as ViewStyle,
   ];
 
   const textStyles: TextStyle[] = [
     styles.text,
-    variant === 'primary' ? styles.textPrimary : styles.textOutline,
+    getTextStyle(),
     ...(textStyle ? [textStyle] : []),
   ];
 
@@ -63,8 +89,14 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.black,
   },
+  reward: {
+    backgroundColor: Colors.primary,
+    borderRadius: moderateScale(12),
+    paddingVertical: moderateScale(14),
+    paddingHorizontal: moderateScale(32),
+  },
   large: {
-    paddingVertical: moderateScale(Spacing.lg + 2),
+    paddingVertical: moderateScale(16),
     paddingHorizontal: moderateScale(Spacing.xxl * 2),
     minWidth: moderateScale(200),
   },
@@ -74,13 +106,17 @@ const styles = StyleSheet.create({
     minWidth: moderateScale(150),
   },
   text: {
-    fontSize: scaleFontSize(16),
+    fontSize: scaleFontSize(18),
     textAlign: 'center',
+    fontWeight: '500',
   },
   textPrimary: {
     color: Colors.primary,
   },
   textOutline: {
+    color: Colors.black,
+  },
+  textReward: {
     color: Colors.black,
   },
 });

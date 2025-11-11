@@ -9,6 +9,8 @@ import SignUpScreen from '@screens/SignUpScreen';
 import MainTabs from '@navigation/MainTabs';
 import MenuDetailScreen from '@screens/MenuDetailScreen';
 import HotDealDetailScreen from '@screens/HotDealDetailScreen';
+import RewardsDetailScreen from '@screens/RewardsDetailScreen';
+import RewardConfirmationScreen from '@screens/RewardConfirmationScreen';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -19,6 +21,8 @@ export type RootStackParamList = {
   Home: undefined;
   MenuDetail: { menuId: string };
   HotDealDetail: { dealId: string };
+  RewardsDetail: undefined;
+  RewardConfirmation: { rewardId: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -100,6 +104,19 @@ export const RootNavigator = () => {
                 <HotDealDetailScreen
                   onBack={() => navigation.goBack()}
                   dealId={route.params.dealId}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="RewardsDetail">
+              {({ navigation }) => (
+                <RewardsDetailScreen navigation={navigation} route={{ params: {} } as any} />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="RewardConfirmation">
+              {({ navigation, route }) => (
+                <RewardConfirmationScreen 
+                  navigation={navigation} 
+                  route={route as any} 
                 />
               )}
             </Stack.Screen>

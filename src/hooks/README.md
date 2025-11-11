@@ -13,6 +13,10 @@ Best practices:
 - Cleanup efek dengan benar; hindari memory leak pada event/listener.
 - Uji hook kritikal dengan RTL + `renderHook` (jika memakai util tersebut).
 
+## Custom Hooks
+
+- **`useClaimDealAnimation`** - Hook untuk menangani animasi claim deal dengan overlay sukses
+
 Contoh:
 
 ```ts

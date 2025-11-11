@@ -106,6 +106,17 @@ export const HotDealImages = {
   happyHours: require('./images/hot-deal/Happy-ours.png'),
 };
 
+// Reward Images
+export const RewardImages = {
+  logo: require('./images/rewards/logo-reward.png'),
+  star1: require('./images/rewards/logo-reward-bintang1.png'),
+  star2: require('./images/rewards/logo-reward-bintang2.png'),
+  star3: require('./images/rewards/logo-reward-bintang3.png'),
+  barPercent0: require('./images/rewards/bar-percent0.png'),
+  barPercent50: require('./images/rewards/bar-percent50.png'),
+  barPercent100: require('./images/rewards/bar-percent100.png'),
+};
+
 // Bottom Navigation Icons
 export const NavBarIcons = {
   home: {

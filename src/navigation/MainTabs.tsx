@@ -24,7 +24,7 @@ const MainTabs: React.FC<MainTabsProps> = ({ onLoginPress, navigation }) => {
         // TODO: Implement scan functionality
         return <HomeScreen onLoginPress={onLoginPress} navigation={navigation} />;
       case 'rewards':
-        return <RewardsScreen />;
+        return <RewardsScreen navigation={navigation} />;
       case 'reserve':
         return <ReserveScreen />;
       default:

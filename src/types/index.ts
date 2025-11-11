@@ -60,6 +60,16 @@ export interface UserProfile {
   updatedAt: string;
 }
 
+export interface RewardItem {
+  id: string;
+  name: string;
+  description: string;
+  points: number;
+  category: '100-300' | '300-400';
+  image: any; // require() image
+  isAvailable: boolean;
+}
+
 // Generic API response wrappers (future real API alignment)
 export interface ApiListResponse<T> {
   data: T[];
