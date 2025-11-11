@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, Pressable, TextInput, Image, SafeAreaView } from 'react-native';
+import React, { useState, useMemo } from 'react';
+import { View, StyleSheet, ScrollView, Pressable, TextInput, Image } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import AppText from '@components/AppText';
+import MenuCard from '@components/MenuCard';
 import { CategoryIcons, CategoryKey, SearchIcons } from '@assets';
 import { Colors, Spacing, Radius } from '@theme/tokens';
+import { getMenuItemsByCategory } from '../mocks/data/popularMenus';
 
 interface Props {
   onLoginPress?: () => void;
@@ -14,14 +17,25 @@ const FOOD_CATEGORIES = [
   { key: 'pizza' as CategoryKey, label: 'Pizza' },
   { key: 'dessert' as CategoryKey, label: 'Dessert' },
   { key: 'pasta' as CategoryKey, label: 'Pasta' },
-];
+] as const;
 
 const HomeScreen: React.FC<Props> = ({ onLoginPress }) => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryKey>('salad');
   const [searchQuery, setSearchQuery] = useState('');
 
+  // Get menu items based on selected category
+  const displayedMenuItems = useMemo(() => {
+    // Type guard to ensure we only pass valid categories to getMenuItemsByCategory
+    const validCategories: Array<'salad' | 'drink' | 'pizza' | 'dessert' | 'pasta'> = ['salad', 'drink', 'pizza', 'dessert', 'pasta'];
+    if (validCategories.includes(selectedCategory as any)) {
+      return getMenuItemsByCategory(selectedCategory as 'salad' | 'drink' | 'pizza' | 'dessert' | 'pasta');
+    }
+    // Default fallback to salad if category not found
+    return getMenuItemsByCategory('salad');
+  }, [selectedCategory]);
+
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.container}>
         {/* AppBar with Greeting and Login Button */}
         <View style={styles.appBar}>
@@ -56,52 +70,73 @@ const HomeScreen: React.FC<Props> = ({ onLoginPress }) => {
         <View style={styles.foodTypeSection}>
           <AppText weight="serifTitle" style={styles.sectionTitle}>Food type</AppText>
           
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.categoriesContainer}
-          >
-            {FOOD_CATEGORIES.map((category) => {
-              const isSelected = selectedCategory === category.key;
-              return (
-                <Pressable
-                  key={category.key}
-                  style={styles.categoryItem}
-                  onPress={() => setSelectedCategory(category.key)}
-                >
-                  <View style={[
-                    styles.categoryIconContainer,
-                    isSelected && styles.categoryIconContainerActive,
-                  ]}>
-                    <View style={styles.categoryIconCircle}>
-                      <Image
-                        source={isSelected ? CategoryIcons[category.key].active : CategoryIcons[category.key].inactive}
-                        style={styles.categoryIcon}
-                      />
+          <View style={styles.categoriesScrollWrapper}>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.categoriesContainer}
+            >
+              {FOOD_CATEGORIES.map((category) => {
+                const isSelected = selectedCategory === category.key;
+                return (
+                  <Pressable
+                    key={category.key}
+                    style={styles.categoryItem}
+                    onPress={() => setSelectedCategory(category.key)}
+                  >
+                    <View style={[
+                      styles.categoryIconContainer,
+                      isSelected && styles.categoryIconContainerActive,
+                    ]}>
+                      <View style={styles.categoryIconCircle}>
+                        <Image
+                          source={isSelected ? CategoryIcons[category.key].active : CategoryIcons[category.key].inactive}
+                          style={styles.categoryIcon}
+                        />
+                      </View>
+                      <AppText
+                        weight={isSelected ? 'semiBold' : 'regular'}
+                        style={[
+                          styles.categoryLabel,
+                          isSelected && styles.categoryLabelActive,
+                        ]}
+                      >
+                        {category.label}
+                      </AppText>
                     </View>
-                    <AppText
-                      weight={isSelected ? 'semiBold' : 'regular'}
-                      style={[
-                        styles.categoryLabel,
-                        isSelected && styles.categoryLabelActive,
-                      ]}
-                    >
-                      {category.label}
-                    </AppText>
-                  </View>
-                </Pressable>
-              );
-            })}
-          </ScrollView>
+                  </Pressable>
+                );
+              })}
+            </ScrollView>
+          </View>
         </View>
 
-        {/* Content Area - Placeholder for Popular Items */}
+        {/* Content Area - Popular Items */}
         <ScrollView
           style={styles.contentArea}
+          contentContainerStyle={styles.contentAreaContainer}
           showsVerticalScrollIndicator={false}
         >
-          <AppText weight="serifTitle" style={styles.sectionTitle}>Popular</AppText>
-          {/* Popular items will be added here */}
+          <AppText weight="serifTitle" style={styles.popularTitle}>Popular</AppText>
+          
+          {/* Popular Menu Items */}
+          <View style={styles.popularContainer}>
+            {displayedMenuItems.map((item) => (
+              <MenuCard
+                key={item.id}
+                image={item.image}
+                name={item.name}
+                description={item.description}
+                price={item.price}
+                rating={item.rating}
+                reviewCount={item.reviewCount}
+                onPress={() => {
+                  // TODO: Navigate to menu detail screen
+                  console.log('Menu item pressed:', item.name);
+                }}
+              />
+            ))}
+          </View>
         </ScrollView>
       </View>
     </SafeAreaView>
@@ -122,8 +157,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.sm,
+    paddingTop: Spacing.md,
     paddingBottom: Spacing.sm,
+    backgroundColor: Colors.bg,
   },
   greetingContainer: {
     position: 'relative',
@@ -176,6 +212,7 @@ const styles = StyleSheet.create({
     height: 20,
     marginRight: Spacing.sm,
     tintColor: Colors.muted,
+    resizeMode: 'contain',
   },
   searchInput: {
     flex: 1,
@@ -189,9 +226,13 @@ const styles = StyleSheet.create({
     height: 20,
     marginLeft: Spacing.sm,
     tintColor: Colors.muted,
+    resizeMode: 'contain',
   },
   foodTypeSection: {
-    marginBottom: Spacing.md,
+    marginBottom: Spacing.sm, // Increase spacing untuk ruang shadow
+  },
+  categoriesScrollWrapper: {
+    overflow: 'visible', // Allow shadows to be visible outside bounds
   },
   sectionTitle: {
     fontSize: 20,
@@ -202,6 +243,7 @@ const styles = StyleSheet.create({
   categoriesContainer: {
     paddingLeft: Spacing.lg,
     paddingRight: Spacing.lg,
+    paddingBottom: Spacing.lg, // Extra padding untuk shadow category icons yang lebih besar
   },
   categoryItem: {
     alignItems: 'center',
@@ -260,9 +302,17 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   categoryIcon: {
-    width: 42,
-    height: 42,
+    width: 32,
+    height: 32,
     resizeMode: 'contain',
+    shadowColor: '#000',
+    shadowOffset: { 
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
   },
   categoryLabel: {
     fontSize: 15,
@@ -274,7 +324,20 @@ const styles = StyleSheet.create({
   },
   contentArea: {
     flex: 1,
+  },
+  contentAreaContainer: {
+    paddingBottom: Spacing.xl + Spacing.lg, // Extra padding for bottom tab bar
+  },
+  popularTitle: {
+    fontSize: 20,
+    color: Colors.black,
+    marginLeft: Spacing.lg,
+    marginBottom: Spacing.md,
+    marginTop: 0, // No extra top margin
+  },
+  popularContainer: {
     paddingHorizontal: Spacing.lg,
+    paddingBottom: Spacing.xl,
   },
 });
 

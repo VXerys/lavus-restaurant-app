@@ -18,6 +18,7 @@ src/
   mocks/
     data/
       menus.ts
+      popularMenus.ts    # Home screen popular items
       promotions.ts
       reservations.ts
       reviews.ts

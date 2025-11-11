@@ -16,7 +16,8 @@
       "@theme/*": ["src/theme/*"],
       "@theme": ["src/theme/index.ts"],
       "@assets/*": ["src/assets/*"],
-      "@assets": ["src/assets/index.ts"]
+      "@assets": ["src/assets/index.ts"],
+      "@mocks/*": ["src/mocks/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

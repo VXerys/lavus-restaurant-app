@@ -6,7 +6,7 @@ import OnboardingScreen from '@screens/OnboardingScreen';
 import LoginOptionsScreen from '@screens/LoginOptionsScreen';
 import LoginScreen from '@screens/LoginScreen';
 import SignUpScreen from '@screens/SignUpScreen';
-import HomeScreen from '@screens/HomeScreen';
+import MainTabs from '@navigation/MainTabs';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -73,7 +73,7 @@ export const RootNavigator = () => {
             </Stack.Screen>
             <Stack.Screen name="Home">
               {({ navigation }) => (
-                <HomeScreen
+                <MainTabs
                   onLoginPress={() => navigation.navigate('LoginOptions')}
                 />
               )}
