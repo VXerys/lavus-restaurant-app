@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Image, TextInput, Pressable, Animated, ScrollView } from 'react-native';
 import AppText from '@components/AppText';
 import Button from '@components/Button';
-import { Images } from '@assets';
+import { Images, NavigationIcons } from '@assets';
 import { Colors, Spacing, Radius } from '@theme/tokens';
 import { 
   screenWidth, 
@@ -54,7 +54,7 @@ const LoginScreen: React.FC<Props> = ({ onBack, onGoogleLogin, onLogin, onSignUp
           onPressOut={handleBackPressOut}
         >
           <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
-            <AppText weight="semiBold" style={styles.backText}>‹</AppText>
+            <Image source={NavigationIcons.back} style={styles.backIcon} />
           </Animated.View>
         </Pressable>
 
@@ -161,10 +161,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 10,
   },
-  backText: {
-    fontSize: scaleFontSize(48),
-    color: Colors.white,
-    lineHeight: scaleFontSize(48),
+  backIcon: {
+    width: moderateScale(24),
+    height: moderateScale(24),
+    tintColor: Colors.white,
+    resizeMode: 'contain',
   },
   logo: {
     width: isSmallDevice ? screenWidth * 0.35 : screenWidth * 0.4,
@@ -172,6 +173,7 @@ const styles = StyleSheet.create({
     maxWidth: 180,
     maxHeight: 220,
     resizeMode: 'contain',
+    marginBottom: moderateScale(Spacing.xl),
   },
   contentContainer: {
     flex: 1,

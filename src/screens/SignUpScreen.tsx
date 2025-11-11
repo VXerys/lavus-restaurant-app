@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Pressable, Animated, ScrollView } from 'react-native';
+import { View, StyleSheet, TextInput, Pressable, Animated, ScrollView, Image } from 'react-native';
 import AppText from '@components/AppText';
 import Button from '@components/Button';
+import { NavigationIcons } from '@assets';
 import { Colors, Spacing, Radius } from '@theme/tokens';
 import { 
   scaleFontSize, 
@@ -52,7 +53,7 @@ const SignUpScreen: React.FC<Props> = ({ onBack, onSignUp, onSignIn }) => {
           onPressOut={handleBackPressOut}
         >
           <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
-            <AppText style={styles.backButtonText}>‹</AppText>
+            <Image source={NavigationIcons.back} style={styles.backIcon} />
           </Animated.View>
         </Pressable>
 
@@ -163,14 +164,17 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: moderateScale(Spacing.xl),
     left: moderateScale(Spacing.lg),
+    width: moderateScale(44),
+    height: moderateScale(44),
+    alignItems: 'center',
+    justifyContent: 'center',
     zIndex: 10,
-    padding: moderateScale(Spacing.xs),
   },
-  backButtonText: {
-    fontSize: scaleFontSize(48),
-    color: Colors.white,
-    fontWeight: 'bold',
-    lineHeight: scaleFontSize(48),
+  backIcon: {
+    width: moderateScale(24),
+    height: moderateScale(24),
+    tintColor: Colors.white,
+    resizeMode: 'contain',
   },
   title: {
     fontSize: scaleFontSize(40),

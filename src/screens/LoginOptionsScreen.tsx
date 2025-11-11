@@ -1,12 +1,10 @@
 import React from 'react';
 import { View, Image, StyleSheet, Pressable, Animated } from 'react-native';
-import { Images } from '@assets';
+import { Images, NavigationIcons } from '@assets';
 import Button from '@components/Button';
-import AppText from '@components/AppText';
 import { Colors, Spacing } from '@theme/tokens';
 import { 
   screenWidth, 
-  scaleFontSize, 
   moderateScale, 
   getButtonWidth,
   scaleHeight,
@@ -48,7 +46,7 @@ const LoginOptionsScreen: React.FC<Props> = ({ onLoginNow, onLoginLater, onBack 
         onPressOut={handlePressOut}
       >
         <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
-          <AppText weight="semiBold" style={styles.backText}>‹</AppText>
+          <Image source={NavigationIcons.back} style={styles.backIcon} />
         </Animated.View>
       </Pressable>
 
@@ -84,17 +82,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(Spacing.xl),
   },
   backButton: {
-    width: moderateScale(44),
-    height: moderateScale(44),
+    width: moderateScale(15),
+    height: moderateScale(50),
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: moderateScale(Spacing.xl),
     marginLeft: moderateScale(Spacing.sm),
   },
-  backText: {
-    fontSize: scaleFontSize(48),
-    color: Colors.black,
-    lineHeight: scaleFontSize(48),
+  backIcon: {
+    width: moderateScale(24),
+    height: moderateScale(24),
+    tintColor: Colors.black,
+    resizeMode: 'contain',
   },
   logoContainer: {
     flex: 1,

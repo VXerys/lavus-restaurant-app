@@ -95,6 +95,10 @@ export const RatingIcons = {
   star: require('./icons/Stars4x.png'),
 };
 
+export const NavigationIcons = {
+  back: require('./icons/Backbutton4x.png'),
+};
+
 // Bottom Navigation Icons
 export const NavBarIcons = {
   home: {
