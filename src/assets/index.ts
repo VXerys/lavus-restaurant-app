@@ -37,7 +37,7 @@ export const CategoryIcons = {
 };
 
 export const Images = {
-  logo: require('./images/logo-restaurant.png'),
+  logo: require('./images/logo-restaurant4x.png'),
 };
 
 // Menu Images - Organized by category for easy access

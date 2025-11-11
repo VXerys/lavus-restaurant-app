@@ -23,19 +23,19 @@ const slides: Slide[] = [
     key: 'joy',
     title: 'Joyfulness',
     subtitle: 'Enjoy happy moments with family',
-    image: require('@assets/images/onboarding/splash-1.png'),
+    image: require('@assets/images/onboarding/splash1-4x.png'),
   },
   {
     key: 'conv',
     title: 'Convenience',
     subtitle: 'All your favorite foods in one place with online reservation feature',
-    image: require('@assets/images/onboarding/splash-2.png'),
+    image: require('@assets/images/onboarding/splash2-4x.png'),
   },
   {
     key: 'reviews',
     title: 'Enjoy & Reviews',
     subtitle: 'Enjoy all your great food, review and share your experience.',
-    image: require('@assets/images/onboarding/splash-3.png'),
+    image: require('@assets/images/onboarding/splash3-4x.png'),
   },
 ];
 
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   },
   dotsContainer: {
     marginTop: moderateScale(Spacing.lg),
-    marginBottom: moderateScale(Spacing.lg),
+    marginBottom: moderateScale(Spacing.xl),
   },
 });
 

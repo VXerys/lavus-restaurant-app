@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Pressable, Dimensions, Animated, ScrollView } from 'react-native';
+import { View, StyleSheet, TextInput, Pressable, Animated, ScrollView } from 'react-native';
 import AppText from '@components/AppText';
 import Button from '@components/Button';
 import { Colors, Spacing, Radius } from '@theme/tokens';
-
-const { height } = Dimensions.get('window');
+import { 
+  scaleFontSize, 
+  moderateScale, 
+  getButtonWidth,
+  scaleHeight,
+  isSmallDevice 
+} from '@utils/responsive';
 
 interface Props {
   onBack?: () => void;
@@ -122,7 +127,7 @@ const SignUpScreen: React.FC<Props> = ({ onBack, onSignUp, onSignIn }) => {
             variant="primary"
             size="large"
             onPress={onSignUp}
-            width="100%"
+            width={getButtonWidth(0.9)}
           />
         </View>
 
@@ -144,78 +149,82 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black,
   },
   header: {
-    height: height * 0.24,
+    height: isSmallDevice ? scaleHeight(170) : scaleHeight(195),
+    minHeight: 160,
+    maxHeight: 220,
     backgroundColor: Colors.black,
-    paddingTop: Spacing.xl,
-    paddingHorizontal: Spacing.lg,
+    paddingTop: moderateScale(Spacing.xl),
+    paddingHorizontal: moderateScale(Spacing.lg),
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
   },
   backButton: {
     position: 'absolute',
-    top: Spacing.xl,
-    left: Spacing.lg,
+    top: moderateScale(Spacing.xl),
+    left: moderateScale(Spacing.lg),
     zIndex: 10,
-    padding: Spacing.xs,
+    padding: moderateScale(Spacing.xs),
   },
   backButtonText: {
-    fontSize: 48,
+    fontSize: scaleFontSize(48),
     color: Colors.white,
     fontWeight: 'bold',
-    lineHeight: 48,
+    lineHeight: scaleFontSize(48),
   },
   title: {
-    fontSize: 40,
+    fontSize: scaleFontSize(40),
     color: Colors.primary,
-    marginTop: Spacing.md,
+    marginTop: moderateScale(Spacing.md),
   },
   content: {
     flex: 1,
     backgroundColor: Colors.white,
-    borderTopLeftRadius: 70,
+    borderTopLeftRadius: moderateScale(70),
     borderTopRightRadius: 0,
   },
   contentContainer: {
-    paddingHorizontal: Spacing.xl,
-    paddingTop: Spacing.xxl,
-    paddingBottom: Spacing.xxl * 2,
+    paddingHorizontal: moderateScale(Spacing.xl),
+    paddingTop: moderateScale(Spacing.xxl),
+    paddingBottom: moderateScale(Spacing.xxl * 2),
   },
   inputContainer: {
-    marginBottom: Spacing.lg,
+    marginBottom: moderateScale(Spacing.lg),
   },
   label: {
-    fontSize: 16,
+    fontSize: scaleFontSize(16),
     color: Colors.black,
-    marginBottom: Spacing.xs,
+    marginBottom: moderateScale(Spacing.xs),
     fontWeight: '500',
   },
   input: {
-    height: 56,
+    height: moderateScale(56),
+    minHeight: 50,
     borderWidth: 1,
     borderColor: '#E5E5E5',
     borderRadius: Radius.md,
-    paddingHorizontal: Spacing.md,
-    fontSize: 16,
+    paddingHorizontal: moderateScale(Spacing.md),
+    fontSize: scaleFontSize(16),
     color: Colors.black,
     backgroundColor: Colors.white,
   },
   buttonContainer: {
-    marginTop: Spacing.lg,
-    marginBottom: Spacing.lg,
+    marginTop: moderateScale(Spacing.lg),
+    marginBottom: moderateScale(Spacing.lg),
+    alignItems: 'center',
   },
   signInContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: Spacing.sm,
+    marginTop: moderateScale(Spacing.sm),
   },
   signInText: {
-    fontSize: 14,
+    fontSize: scaleFontSize(14),
     color: Colors.black,
   },
   signInLink: {
-    fontSize: 14,
+    fontSize: scaleFontSize(14),
     color: Colors.black,
     fontWeight: 'bold',
     textDecorationLine: 'underline',

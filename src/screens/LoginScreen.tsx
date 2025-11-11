@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Image, TextInput, Pressable, Dimensions, Animated, ScrollView } from 'react-native';
+import { View, StyleSheet, Image, TextInput, Pressable, Animated, ScrollView } from 'react-native';
 import AppText from '@components/AppText';
 import Button from '@components/Button';
 import { Images } from '@assets';
 import { Colors, Spacing, Radius } from '@theme/tokens';
-
-const { width, height } = Dimensions.get('window');
+import { 
+  screenWidth, 
+  scaleFontSize, 
+  moderateScale, 
+  getButtonWidth,
+  scaleHeight,
+  isSmallDevice 
+} from '@utils/responsive';
 
 interface Props {
   onBack?: () => void;
@@ -111,7 +117,7 @@ const LoginScreen: React.FC<Props> = ({ onBack, onGoogleLogin, onLogin, onSignUp
           <Button
             title="Login Now"
             variant="primary"
-            width={width * 0.85}
+            width={getButtonWidth(0.85)}
             onPress={onLogin}
             style={styles.loginButton}
           />
@@ -137,75 +143,80 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black,
   },
   header: {
-    height: height * 0.32,
+    height: isSmallDevice ? scaleHeight(220) : scaleHeight(260),
+    minHeight: 220,
+    maxHeight: 300,
     backgroundColor: Colors.black,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: Spacing.xl,
+    paddingTop: moderateScale(Spacing.xl),
   },
   backButton: {
     position: 'absolute',
-    top: Spacing.xl,
-    left: Spacing.lg,
-    width: 44,
-    height: 44,
+    top: moderateScale(Spacing.xl),
+    left: moderateScale(Spacing.lg),
+    width: moderateScale(44),
+    height: moderateScale(44),
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 10,
   },
   backText: {
-    fontSize: 48,
+    fontSize: scaleFontSize(48),
     color: Colors.white,
-    lineHeight: 48,
+    lineHeight: scaleFontSize(48),
   },
   logo: {
-    width: 150,
-    height: 180,
+    width: isSmallDevice ? screenWidth * 0.35 : screenWidth * 0.4,
+    height: isSmallDevice ? scaleHeight(150) : scaleHeight(180),
+    maxWidth: 180,
+    maxHeight: 220,
     resizeMode: 'contain',
   },
   contentContainer: {
     flex: 1,
     backgroundColor: Colors.white,
-    borderTopLeftRadius: 70,
+    borderTopLeftRadius: moderateScale(70),
     borderTopRightRadius: 0,
-    marginTop: -20,
+    marginTop: moderateScale(-20),
   },
   formContainer: {
-    paddingHorizontal: Spacing.xl + Spacing.sm,
-    paddingTop: Spacing.xxl,
-    paddingBottom: Spacing.xxl * 2,
+    paddingHorizontal: moderateScale(Spacing.xl + Spacing.sm),
+    paddingTop: moderateScale(Spacing.xxl),
+    paddingBottom: moderateScale(Spacing.xxl * 2),
   },
   title: {
-    fontSize: 36,
+    fontSize: scaleFontSize(36),
     color: Colors.black,
     textAlign: 'center',
-    marginBottom: Spacing.xxl,
+    marginBottom: moderateScale(Spacing.xxl),
   },
   inputContainer: {
-    marginBottom: Spacing.lg,
+    marginBottom: moderateScale(Spacing.lg),
   },
   inputLabel: {
-    fontSize: 16,
+    fontSize: scaleFontSize(16),
     color: Colors.black,
-    marginBottom: Spacing.sm,
+    marginBottom: moderateScale(Spacing.sm),
   },
   input: {
     backgroundColor: Colors.white,
     borderWidth: 1,
     borderColor: '#E5E5E5',
     borderRadius: Radius.md,
-    paddingVertical: Spacing.lg,
-    paddingHorizontal: Spacing.lg,
-    fontSize: 16,
+    paddingVertical: moderateScale(Spacing.lg),
+    paddingHorizontal: moderateScale(Spacing.lg),
+    fontSize: scaleFontSize(16),
     color: Colors.text,
     fontFamily: 'OpenSans-Regular',
+    minHeight: moderateScale(54),
   },
   forgotContainer: {
     alignItems: 'flex-end',
-    marginBottom: Spacing.xl,
+    marginBottom: moderateScale(Spacing.xl),
   },
   forgotText: {
-    fontSize: 14,
+    fontSize: scaleFontSize(14),
     color: Colors.black,
   },
   googleButton: {
@@ -216,27 +227,28 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: '#E5E5E5',
     borderRadius: Radius.md,
-    paddingVertical: Spacing.lg,
-    marginBottom: Spacing.lg,
+    paddingVertical: moderateScale(Spacing.lg),
+    marginBottom: moderateScale(Spacing.lg),
     shadowColor: '#000',
     shadowOpacity: 0.05,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
     elevation: 1,
+    minHeight: moderateScale(54),
   },
   googleIcon: {
-    width: 24,
-    height: 24,
-    marginRight: Spacing.md,
+    width: moderateScale(24),
+    height: moderateScale(24),
+    marginRight: moderateScale(Spacing.md),
   },
   googleText: {
-    fontSize: 16,
+    fontSize: scaleFontSize(16),
     color: Colors.text,
   },
   loginButton: {
     alignSelf: 'center',
-    marginTop: Spacing.sm,
-    marginBottom: Spacing.xl,
+    marginTop: moderateScale(Spacing.sm),
+    marginBottom: moderateScale(Spacing.xl),
   },
   signupContainer: {
     flexDirection: 'row',
@@ -244,11 +256,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   signupText: {
-    fontSize: 15,
+    fontSize: scaleFontSize(15),
     color: Colors.text,
   },
   signupLink: {
-    fontSize: 15,
+    fontSize: scaleFontSize(15),
     color: Colors.black,
     textDecorationLine: 'underline',
   },
