@@ -112,14 +112,17 @@ const HomeScreen: React.FC<Props> = ({ onLoginPress, navigation }) => {
           </View>
         </View>
 
-        {/* Content Area - Popular Items */}
+        {/* Popular Section Header - Fixed */}
+        <View style={styles.popularHeader}>
+          <AppText weight="serifTitle" style={styles.popularTitle}>Popular</AppText>
+        </View>
+
+        {/* Content Area - Scrollable Popular Items */}
         <ScrollView
           style={styles.contentArea}
           contentContainerStyle={styles.contentAreaContainer}
           showsVerticalScrollIndicator={false}
         >
-          <AppText weight="serifTitle" style={styles.popularTitle}>Popular</AppText>
-          
           {/* Popular Menu Items */}
           <View style={styles.popularContainer}>
             {displayedMenuItems.map((item) => (
@@ -234,7 +237,7 @@ const styles = StyleSheet.create({
   },
   foodTypeSection: {
     marginTop: Spacing.md,
-    marginBottom: Spacing.sm, // Increase spacing untuk ruang shadow
+    marginBottom: Spacing.xs, // Increase spacing untuk ruang shadow
   },
   categoriesScrollWrapper: {
     overflow: 'visible', // Allow shadows to be visible outside bounds
@@ -327,21 +330,25 @@ const styles = StyleSheet.create({
   categoryLabelActive: {
     color: Colors.white,
   },
+  popularHeader: {
+    backgroundColor: Colors.bg,
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.md,
+    paddingBottom: Spacing.sm,
+  },
+  popularTitle: {
+    fontSize: 20,
+    color: Colors.black,
+  },
   contentArea: {
     flex: 1,
   },
   contentAreaContainer: {
     paddingBottom: Spacing.xl + Spacing.lg, // Extra padding for bottom tab bar
   },
-  popularTitle: {
-    fontSize: 20,
-    color: Colors.black,
-    marginLeft: Spacing.lg,
-    marginBottom: Spacing.md,
-    marginTop: 0, // No extra top margin
-  },
   popularContainer: {
     paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.sm,
     paddingBottom: Spacing.xl,
   },
 });
