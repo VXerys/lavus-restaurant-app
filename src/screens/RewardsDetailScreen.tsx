@@ -3,10 +3,10 @@ import {
   View,
   StyleSheet,
   ScrollView,
-  SafeAreaView,
   Image,
   Pressable,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import AppText from '@components/AppText';
 import { NavigationIcons } from '@assets';
@@ -64,11 +64,8 @@ const RewardsDetailScreen: React.FC<Props> = ({ navigation }) => {
   const rewards300to400 = rewards.filter(r => r.category === '300-400');
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView 
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <View style={styles.innerContainer}>
         {/* Header */}
         <View style={styles.headerSection}>
           <Pressable style={styles.backButton} onPress={handleBackPress}>
@@ -87,6 +84,10 @@ const RewardsDetailScreen: React.FC<Props> = ({ navigation }) => {
           </View>
         </View>
 
+        <ScrollView 
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
         {/* 100-300 points section */}
         <View style={styles.section}>
           <AppText weight="semiBold" style={styles.sectionTitle}>
@@ -125,6 +126,7 @@ const RewardsDetailScreen: React.FC<Props> = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
@@ -134,13 +136,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.white,
   },
+  innerContainer: {
+    flex: 1,
+    backgroundColor: Colors.white,
+  },
   scrollContent: {
     paddingBottom: moderateScale(100),
   },
   headerSection: {
     backgroundColor: Colors.white,
     paddingHorizontal: Spacing.lg,
-    paddingTop: moderateScale(20),
+    paddingTop: moderateScale(8),
     paddingBottom: moderateScale(12),
   },
   backButton: {

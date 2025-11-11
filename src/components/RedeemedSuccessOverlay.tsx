@@ -19,6 +19,12 @@ const RedeemedSuccessOverlay: React.FC<RedeemedSuccessOverlayProps> = ({
 }) => {
   if (!visible) return null;
 
+  // Interpolate rotation value to string format
+  const rotation = checkmarkRotate.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+
   return (
     <Animated.View
       style={[
@@ -36,7 +42,7 @@ const RedeemedSuccessOverlay: React.FC<RedeemedSuccessOverlayProps> = ({
             {
               transform: [
                 { scale: checkmarkScale },
-                { rotate: checkmarkRotate },
+                { rotate: rotation },
               ],
             },
           ]}

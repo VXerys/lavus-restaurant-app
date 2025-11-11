@@ -115,6 +115,7 @@ export const RewardImages = {
   barPercent0: require('./images/rewards/bar-percent0.png'),
   barPercent50: require('./images/rewards/bar-percent50.png'),
   barPercent100: require('./images/rewards/bar-percent100.png'),
+  redeemCompleted: require('./images/rewards/redeem-completed.png'),
 };
 
 // Bottom Navigation Icons

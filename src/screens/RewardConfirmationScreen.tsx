@@ -2,12 +2,11 @@ import React from 'react';
 import {
   View,
   StyleSheet,
-  ScrollView,
-  SafeAreaView,
   Image,
   Pressable,
   Animated,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import AppText from '@components/AppText';
 import Button from '@components/Button';
@@ -32,16 +31,13 @@ const RewardConfirmationScreen: React.FC<Props> = ({ navigation, route }) => {
 
   // Custom navigation handler for animation
   const handleNavigateBack = () => {
-    // Navigate back to Rewards screen
-    // Go back twice: RewardConfirmation -> RewardsDetail -> Home (Rewards Tab)
+    // Generate random redeem number
+    const redeemNumber = Math.floor(10000000 + Math.random() * 90000000).toString();
+    
+    // Navigate to RedeemSuccess screen
     setTimeout(() => {
       try {
-        // First go back to RewardsDetail
-        navigation.goBack();
-        // Then after a short delay, go back to Home
-        setTimeout(() => {
-          navigation.goBack();
-        }, 100);
+        navigation.navigate('RedeemSuccess' as any, { redeemNumber });
       } catch (error) {
         console.log('Navigation error:', error);
       }
@@ -77,7 +73,7 @@ const RewardConfirmationScreen: React.FC<Props> = ({ navigation, route }) => {
 
   if (!reward) {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.screenContainer} edges={['top']}>
         <View style={styles.errorContainer}>
           <AppText weight="regular" style={styles.errorText}>
             Reward not found
@@ -88,30 +84,25 @@ const RewardConfirmationScreen: React.FC<Props> = ({ navigation, route }) => {
   }
 
   return (
-    <View style={styles.screenContainer}>
-      <SafeAreaView style={styles.container}>
-        {/* Redeemed Success Overlay */}
-        <RedeemedSuccessOverlay
-          visible={isClaimed}
-          fadeAnim={fadeAnim}
-          checkmarkScale={checkmarkScale}
-          checkmarkRotate={checkmarkRotate}
-        />
+    <SafeAreaView style={styles.screenContainer} edges={['top']}>
+      {/* Redeemed Success Overlay */}
+      <RedeemedSuccessOverlay
+        visible={isClaimed}
+        fadeAnim={fadeAnim}
+        checkmarkScale={checkmarkScale}
+        checkmarkRotate={checkmarkRotate}
+      />
 
-        <ScrollView
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
-          {/* Header */}
-          <View style={styles.header}>
-            <Pressable style={styles.backButton} onPress={handleBackPress}>
-              <Image source={NavigationIcons.back} style={styles.backIcon} />
-            </Pressable>
-            <AppText weight="regular" style={styles.headerTitle}>
-              Redeem Confirmation
-            </AppText>
-          </View>
+      <View style={styles.innerContainer}>
+        {/* Header */}
+        <View style={styles.header}>
+          <Pressable style={styles.backButton} onPress={handleBackPress}>
+            <Image source={NavigationIcons.back} style={styles.backIcon} />
+          </Pressable>
+          
+        </View>
 
+        <View style={styles.content}>
           {/* Logo */}
           <View style={styles.logoContainer}>
             <Image source={Images.logo} style={styles.logo} />
@@ -157,6 +148,9 @@ const RewardConfirmationScreen: React.FC<Props> = ({ navigation, route }) => {
             </AppText>
           </View>
 
+          {/* Spacer to push button down */}
+          <View style={styles.spacer} />
+
           {/* Redeem Button */}
           <View style={styles.buttonContainer}>
             <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
@@ -168,12 +162,12 @@ const RewardConfirmationScreen: React.FC<Props> = ({ navigation, route }) => {
               />
             </Animated.View>
           </View>
-        </ScrollView>
-      </SafeAreaView>
+        </View>
 
-      {/* Bottom Navigation Bar */}
-      <BottomTabBar activeTab="rewards" onTabPress={handleTabPress} />
-    </View>
+        {/* Bottom Navigation Bar */}
+        <BottomTabBar activeTab="rewards" onTabPress={handleTabPress} />
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -182,18 +176,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.white,
   },
-  container: {
+  innerContainer: {
     flex: 1,
     backgroundColor: Colors.white,
   },
-  scrollContent: {
-    paddingBottom: moderateScale(120),
+  content: {
+    flex: 1,
+    paddingBottom: moderateScale(100),
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: Spacing.lg,
-    paddingTop: moderateScale(16),
+    paddingTop: moderateScale(8),
     paddingBottom: moderateScale(16),
     backgroundColor: Colors.white,
   },
@@ -217,12 +212,12 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     alignItems: 'center',
-    marginTop: moderateScale(24),
-    marginBottom: moderateScale(32),
+    marginTop: moderateScale(5),
+    marginBottom: moderateScale(12),
   },
   logo: {
-    width: moderateScale(100),
-    height: moderateScale(100),
+    width: moderateScale(120),
+    height: moderateScale(120),
     resizeMode: 'contain',
   },
   title: {
@@ -301,9 +296,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     marginHorizontal: Spacing.lg,
-    marginBottom: moderateScale(180),
+    marginBottom: moderateScale(16),
     paddingTop: moderateScale(1),
     gap: moderateScale(16),
+  },
+  spacer: {
+    flex: 1,
   },
   totalLabel: {
     fontSize: scaleFontSize(18),
@@ -318,7 +316,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     alignItems: 'center',
     paddingHorizontal: Spacing.lg,
-    marginTop: moderateScale(0),
+    marginBottom: moderateScale(16),
   },
   errorContainer: {
     flex: 1,
