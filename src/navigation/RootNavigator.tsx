@@ -71,7 +71,13 @@ export const RootNavigator = () => {
                 />
               )}
             </Stack.Screen>
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Home">
+              {({ navigation }) => (
+                <HomeScreen
+                  onLoginPress={() => navigation.navigate('LoginOptions')}
+                />
+              )}
+            </Stack.Screen>
           </>
         )}
       </Stack.Navigator>
