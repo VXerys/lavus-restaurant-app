@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1085983698799",
+    "project_id": "lavus-app",
+    "storage_bucket": "lavus-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085983698799:android:2199cc80362bae0921c29a",
+        "android_client_info": {
+          "package_name": "com.vxerys.lavus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxgbd3lXlJjLWah59D_kEgmIEyBCj36Eo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

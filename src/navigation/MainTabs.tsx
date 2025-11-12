@@ -10,10 +10,11 @@ import type { TabRoute } from '@components/navigation/BottomTabBar';
 interface MainTabsProps {
   onLoginPress: () => void;
   navigation?: any;
+  initialTab?: TabRoute;
 }
 
-const MainTabs: React.FC<MainTabsProps> = ({ onLoginPress, navigation }) => {
-  const [activeTab, setActiveTab] = useState<TabRoute>('home');
+const MainTabs: React.FC<MainTabsProps> = ({ onLoginPress, navigation, initialTab }) => {
+  const [activeTab, setActiveTab] = useState<TabRoute>(initialTab || 'home');
 
   const renderScreen = () => {
     switch (activeTab) {
@@ -27,7 +28,7 @@ const MainTabs: React.FC<MainTabsProps> = ({ onLoginPress, navigation }) => {
       case 'rewards':
         return <RewardsScreen navigation={navigation} />;
       case 'reserve':
-        return <ReserveScreen />;
+        return <ReserveScreen navigation={navigation} />;
       default:
         return <HomeScreen onLoginPress={onLoginPress} navigation={navigation} />;
     }

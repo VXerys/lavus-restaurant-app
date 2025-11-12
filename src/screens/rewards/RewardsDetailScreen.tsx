@@ -36,7 +36,13 @@ const RewardCard: React.FC<RewardCardProps> = ({
   onPress,
 }) => {
   return (
-    <Pressable style={styles.rewardCard} onPress={onPress}>
+    <Pressable 
+      style={({ pressed }) => [
+        styles.rewardCard,
+        pressed && styles.rewardCardPressed,
+      ]} 
+      onPress={onPress}
+    >
       <View style={styles.imageContainer}>
         <Image source={image} style={styles.rewardImage} />
       </View>
@@ -216,6 +222,11 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     // Android Shadow
     elevation: 3,
+  },
+  rewardCardPressed: {
+    backgroundColor: '#f5f5f5',
+    transform: [{ scale: 0.97 }],
+    opacity: 0.9,
   },
   imageContainer: {
     width: moderateScale(100),

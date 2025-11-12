@@ -6,6 +6,7 @@ import { LoginOptionsScreen, LoginScreen, SignUpScreen } from '@screens/auth';
 import { MenuDetailScreen } from '@screens/home';
 import { HotDealDetailScreen } from '@screens/hot-deal';
 import { RewardsDetailScreen, RewardConfirmationScreen, RedeemSuccessScreen } from '@screens/rewards';
+import { ConfirmationScreen, WellDoneScreen } from '@screens/reserve';
 import MainTabs from '@navigation/MainTabs';
 
 export type RootStackParamList = {
@@ -14,12 +15,14 @@ export type RootStackParamList = {
   LoginOptions: undefined;
   Login: undefined;
   SignUp: undefined;
-  Home: undefined;
+  Home: { initialTab?: 'home' | 'hotDeal' | 'scan' | 'rewards' | 'reserve' } | undefined;
   MenuDetail: { menuId: string };
   HotDealDetail: { dealId: string };
   RewardsDetail: undefined;
   RewardConfirmation: { rewardId: string };
   RedeemSuccess: { redeemNumber: string };
+  ReservationConfirmation: { guests: number; date: Date; time: Date };
+  ReservationWellDone: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -77,10 +80,11 @@ export const RootNavigator = () => {
               )}
             </Stack.Screen>
             <Stack.Screen name="Home">
-              {({ navigation }) => (
+              {({ navigation, route }) => (
                 <MainTabs
                   onLoginPress={() => navigation.navigate('LoginOptions')}
                   navigation={navigation}
+                  initialTab={route.params?.initialTab}
                 />
               )}
             </Stack.Screen>
@@ -88,10 +92,7 @@ export const RootNavigator = () => {
               {({ navigation, route }) => (
                 <MenuDetailScreen
                   onBack={() => navigation.goBack()}
-                  onReserve={() => {
-                    // TODO: Navigate to reservation screen
-                    console.log('Reserve pressed');
-                  }}
+                  onReserve={() => navigation.navigate('Home', { initialTab: 'reserve' })}
                   menuId={route.params.menuId}
                 />
               )}
@@ -122,6 +123,33 @@ export const RootNavigator = () => {
                 <RedeemSuccessScreen 
                   navigation={navigation} 
                   route={route as any} 
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="ReservationConfirmation">
+              {({ navigation, route }) => (
+                <ConfirmationScreen
+                  onBack={() => navigation.goBack()}
+                  onConfirm={() => {
+                    navigation.navigate('ReservationWellDone');
+                  }}
+                  guests={route.params.guests}
+                  date={route.params.date}
+                  time={route.params.time}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="ReservationWellDone">
+              {({ navigation }) => (
+                <WellDoneScreen
+                  onBack={() => navigation.goBack()}
+                  onSetReminder={() => {
+                    // TODO: Implement Set Reminder functionality
+                    console.log('Set reminder pressed');
+                  }}
+                  onGoHome={() => {
+                    navigation.navigate('Home', { initialTab: 'home' });
+                  }}
                 />
               )}
             </Stack.Screen>

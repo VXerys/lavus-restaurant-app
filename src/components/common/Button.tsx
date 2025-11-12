@@ -62,7 +62,16 @@ const Button: React.FC<ButtonProps> = ({
   ];
 
   return (
-    <Pressable style={buttonStyles} {...pressableProps}>
+    <Pressable 
+      style={({ pressed }) => [
+        ...buttonStyles,
+        pressed && variant === 'primary' && styles.primaryPressed,
+        pressed && variant === 'outline' && styles.outlinePressed,
+        pressed && variant === 'reward' && styles.rewardPressed,
+        pressed && styles.pressed,
+      ]} 
+      {...pressableProps}
+    >
       <AppText weight="medium" style={textStyles}>
         {title}
       </AppText>
@@ -84,16 +93,28 @@ const styles = StyleSheet.create({
   primary: {
     backgroundColor: Colors.black,
   },
+  primaryPressed: {
+    backgroundColor: '#333333',
+    opacity: 0.8,
+  },
   outline: {
     backgroundColor: Colors.white,
     borderWidth: 2,
     borderColor: Colors.black,
+  },
+  outlinePressed: {
+    backgroundColor: '#f0f0f0',
+    borderColor: '#666666',
   },
   reward: {
     backgroundColor: Colors.primary,
     borderRadius: moderateScale(12),
     paddingVertical: moderateScale(14),
     paddingHorizontal: moderateScale(32),
+  },
+  rewardPressed: {
+    backgroundColor: '#d4c89f',
+    opacity: 0.9,
   },
   large: {
     paddingVertical: moderateScale(16),
@@ -118,6 +139,9 @@ const styles = StyleSheet.create({
   },
   textReward: {
     color: Colors.black,
+  },
+  pressed: {
+    transform: [{ scale: 0.97 }],
   },
 });
 

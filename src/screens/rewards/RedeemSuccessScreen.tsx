@@ -1,17 +1,15 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
   Image,
-  Pressable,
-  Animated,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { AppText } from '@components';
+import { AppText, Button } from '@components';
 import { RewardImages } from '@assets';
 import { Colors, Spacing } from '@theme/tokens';
-import { scaleFontSize, moderateScale } from '@utils/responsive';
+import { scaleFontSize, moderateScale, scaleWidth } from '@utils/responsive';
 
 type RootStackParamList = {
   RedeemSuccess: { redeemNumber: string };
@@ -23,23 +21,6 @@ type Props = NativeStackScreenProps<RootStackParamList, 'RedeemSuccess'>;
 
 const RedeemSuccessScreen: React.FC<Props> = ({ navigation, route }) => {
   const { redeemNumber } = route.params;
-  const scaleAnim = useRef(new Animated.Value(1)).current;
-
-  const handlePressIn = () => {
-    Animated.spring(scaleAnim, {
-      toValue: 0.95,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const handlePressOut = () => {
-    Animated.spring(scaleAnim, {
-      toValue: 1,
-      friction: 3,
-      tension: 40,
-      useNativeDriver: true,
-    }).start();
-  };
 
   const handleGoHome = () => {
     // Navigate back to Home (MainTabs)
@@ -79,18 +60,12 @@ const RedeemSuccessScreen: React.FC<Props> = ({ navigation, route }) => {
 
         {/* Go Home Button */}
         <View style={styles.buttonContainer}>
-          <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
-            <Pressable 
-              style={styles.homeButton}
-              onPress={handleGoHome}
-              onPressIn={handlePressIn}
-              onPressOut={handlePressOut}
-            >
-              <AppText weight="regular" style={styles.homeButtonText}>
-                Go Home
-              </AppText>
-            </Pressable>
-          </Animated.View>
+          <Button
+            title="Go Home"
+            onPress={handleGoHome}
+            variant="outline"
+            width={scaleWidth(280)}
+          />
         </View>
       </View>
     </SafeAreaView>

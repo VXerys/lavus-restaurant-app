@@ -23,7 +23,10 @@ const HotDealCard: React.FC<HotDealCardProps> = ({
   if (type === 'hero') {
     return (
       <Pressable
-        style={styles.heroCard}
+        style={({ pressed }) => [
+          styles.heroCard,
+          pressed && styles.heroCardPressed,
+        ]}
         onPress={onPress}
         android_ripple={{ color: 'rgba(255, 255, 255, 0.1)' }}
       >
@@ -45,7 +48,13 @@ const HotDealCard: React.FC<HotDealCardProps> = ({
           </View>
           
           {/* Button positioned at bottom left */}
-          <Pressable style={styles.heroButton} onPress={onPress}>
+          <Pressable 
+            style={({ pressed }) => [
+              styles.heroButton,
+              pressed && styles.heroButtonPressed,
+            ]} 
+            onPress={onPress}
+          >
             <AppText weight="semiBold" style={styles.heroButtonText}>
               Learn more
             </AppText>
@@ -57,7 +66,10 @@ const HotDealCard: React.FC<HotDealCardProps> = ({
 
   return (
     <Pressable
-      style={styles.regularCard}
+      style={({ pressed }) => [
+        styles.regularCard,
+        pressed && styles.regularCardPressed,
+      ]}
       onPress={onPress}
       android_ripple={{ color: 'rgba(0, 0, 0, 0.05)' }}
     >
@@ -73,7 +85,13 @@ const HotDealCard: React.FC<HotDealCardProps> = ({
         <AppText weight="serifTitle" style={styles.regularTitle}>
           {title}
         </AppText>
-        <Pressable style={styles.regularButton} onPress={onPress}>
+        <Pressable 
+          style={({ pressed }) => [
+            styles.regularButton,
+            pressed && styles.regularButtonPressed,
+          ]} 
+          onPress={onPress}
+        >
           <AppText weight="semiBold" style={styles.regularButtonText}>
             Learn more
           </AppText>
@@ -101,6 +119,10 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     // Android Shadow
     elevation: 8,
+  },
+  heroCardPressed: {
+    opacity: 0.95,
+    transform: [{ scale: 0.99 }],
   },
   heroContent: {
     paddingTop: scaleHeight(28),
@@ -152,6 +174,11 @@ const styles = StyleSheet.create({
     // Android Shadow
     elevation: 3,
   },
+  heroButtonPressed: {
+    backgroundColor: '#7a8a52',
+    opacity: 0.9,
+    transform: [{ scale: 0.97 }],
+  },
   heroButtonText: {
     fontSize: scaleFontSize(14),
     color: Colors.black,
@@ -182,6 +209,11 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     // Android Shadow
     elevation: 4,
+  },
+  regularCardPressed: {
+    backgroundColor: '#f8f8f8',
+    opacity: 0.95,
+    transform: [{ scale: 0.99 }],
   },
   regularImageContainer: {
     width: moderateScale(130),
@@ -232,6 +264,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     // Android Shadow
     elevation: 2,
+  },
+  regularButtonPressed: {
+    backgroundColor: '#333333',
+    opacity: 0.85,
+    transform: [{ scale: 0.97 }],
   },
   regularButtonText: {
     fontSize: scaleFontSize(13),

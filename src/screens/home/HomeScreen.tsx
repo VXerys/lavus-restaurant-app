@@ -44,7 +44,10 @@ const HomeScreen: React.FC<Props> = ({ onLoginPress, navigation }) => {
             <View style={styles.underline} />
           </View>
           <Pressable
-            style={styles.loginButton}
+            style={({ pressed }) => [
+              styles.loginButton,
+              pressed && styles.loginButtonPressed,
+            ]}
             onPress={onLoginPress}
           >
             <View style={styles.loginButtonInner}>
@@ -188,6 +191,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.xs + 2,
     borderRadius: Radius.sm,
+  },
+  loginButtonPressed: {
+    backgroundColor: '#333333',
+    opacity: 0.8,
+    transform: [{ scale: 0.97 }],
   },
   loginButtonInner: {
     flexDirection: 'row',
