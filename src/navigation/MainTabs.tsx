@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import HomeScreen from '@screens/HomeScreen';
-import HotDealScreen from '@screens/HotDealScreen';
-import RewardsScreen from '@screens/RewardsScreen';
-import ReserveScreen from '@screens/ReserveScreen';
-import BottomTabBar, { TabRoute } from '@components/BottomTabBar';
+import { HomeScreen } from '@screens/home';
+import { HotDealScreen } from '@screens/hot-deal';
+import { RewardsScreen } from '@screens/rewards';
+import { ReserveScreen } from '@screens/reserve';
+import { BottomTabBar } from '@components/navigation';
+import type { TabRoute } from '@components/navigation/BottomTabBar';
 
 interface MainTabsProps {
   onLoginPress: () => void;

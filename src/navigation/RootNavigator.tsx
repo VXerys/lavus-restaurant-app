@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SplashScreen from '@screens/SplashScreen';
-import OnboardingScreen from '@screens/OnboardingScreen';
-import LoginOptionsScreen from '@screens/LoginOptionsScreen';
-import LoginScreen from '@screens/LoginScreen';
-import SignUpScreen from '@screens/SignUpScreen';
+import { SplashScreen, OnboardingScreen } from '@screens/onboarding';
+import { LoginOptionsScreen, LoginScreen, SignUpScreen } from '@screens/auth';
+import { MenuDetailScreen } from '@screens/home';
+import { HotDealDetailScreen } from '@screens/hot-deal';
+import { RewardsDetailScreen, RewardConfirmationScreen, RedeemSuccessScreen } from '@screens/rewards';
 import MainTabs from '@navigation/MainTabs';
-import MenuDetailScreen from '@screens/MenuDetailScreen';
-import HotDealDetailScreen from '@screens/HotDealDetailScreen';
-import RewardsDetailScreen from '@screens/RewardsDetailScreen';
-import RewardConfirmationScreen from '@screens/RewardConfirmationScreen';
-import RedeemSuccessScreen from '@screens/RedeemSuccessScreen';
 
 export type RootStackParamList = {
   Splash: undefined;
