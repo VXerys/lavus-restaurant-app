@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SplashScreen, OnboardingScreen } from '@screens/onboarding';
 import { LoginOptionsScreen, LoginScreen, SignUpScreen } from '@screens/auth';
-import { MenuDetailScreen } from '@screens/home';
+import { MenuDetailScreen, ReviewsScreen } from '@screens/home';
 import { HotDealDetailScreen } from '@screens/hot-deal';
 import { RewardsDetailScreen, RewardConfirmationScreen, RedeemSuccessScreen } from '@screens/rewards';
 import { ConfirmationScreen, WellDoneScreen } from '@screens/reserve';
@@ -17,6 +17,7 @@ export type RootStackParamList = {
   SignUp: undefined;
   Home: { initialTab?: 'home' | 'hotDeal' | 'scan' | 'rewards' | 'reserve' } | undefined;
   MenuDetail: { menuId: string };
+  Reviews: { menuId: string };
   HotDealDetail: { dealId: string };
   RewardsDetail: undefined;
   RewardConfirmation: { rewardId: string };
@@ -94,6 +95,14 @@ export const RootNavigator = () => {
                   onBack={() => navigation.goBack()}
                   onReserve={() => navigation.navigate('Home', { initialTab: 'reserve' })}
                   menuId={route.params.menuId}
+                  navigation={navigation}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="Reviews">
+              {({ navigation }) => (
+                <ReviewsScreen
+                  onBack={() => navigation.goBack()}
                 />
               )}
             </Stack.Screen>

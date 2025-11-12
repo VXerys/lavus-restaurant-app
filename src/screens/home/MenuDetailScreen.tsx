@@ -19,12 +19,14 @@ interface MenuDetailScreenProps {
   onBack?: () => void;
   onReserve?: () => void;
   menuId?: string;
+  navigation?: any;
 }
 
 const MenuDetailScreen: React.FC<MenuDetailScreenProps> = ({ 
   onBack, 
   onReserve,
   menuId = 'salad-1',
+  navigation,
 }) => {
   // Get menu data from mock with proper error handling
   const menuData = getMenuDetail(menuId);
@@ -53,7 +55,7 @@ const MenuDetailScreen: React.FC<MenuDetailScreenProps> = ({
           <Pressable style={styles.backButton} onPress={onBack}>
             <Image source={NavigationIcons.back} style={styles.backIcon} />
           </Pressable>
-          <AppText weight="regular" style={styles.headerTitle}>Food info</AppText>
+          
         </View>
 
         <ScrollView 
@@ -87,7 +89,13 @@ const MenuDetailScreen: React.FC<MenuDetailScreenProps> = ({
                     ]} 
                   />
                 ))}
-                <Pressable>
+                <Pressable 
+                  style={({ pressed }) => [
+                    styles.reviewButton,
+                    pressed && styles.reviewButtonPressed,
+                  ]}
+                  onPress={() => navigation?.navigate('Reviews', { menuId })}
+                >
                   <AppText weight="regular" style={styles.reviewText}>
                     {displayData.reviewCount} reviews ›
                   </AppText>
@@ -174,6 +182,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: Colors.bg,
     paddingVertical: moderateScale(Spacing.xl),
+    marginTop: moderateScale(Spacing.md),
   },
   foodImage: {
     width: screenWidth * 0.85,
@@ -195,24 +204,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: moderateScale(Spacing.lg),
-    flexWrap: 'wrap',
-    gap: moderateScale(Spacing.sm),
   },
   ratingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: moderateScale(4),
+    flex: 1,
   },
   starIcon: {
-    width: moderateScale(20),
-    height: moderateScale(20),
+    width: moderateScale(15),
+    height: moderateScale(18),
     resizeMode: 'contain',
   },
   starIconDimmed: {
     opacity: 0.3,
   },
+  reviewButton: {
+    paddingHorizontal: moderateScale(4),
+    paddingVertical: moderateScale(2),
+  },
+  reviewButtonPressed: {
+    opacity: 0.6,
+    transform: [{ scale: 0.98 }],
+  },
   reviewText: {
-    fontSize: scaleFontSize(14),
+    fontSize: scaleFontSize(16),
     color: Colors.black,
     marginLeft: moderateScale(Spacing.xs),
   },
@@ -220,9 +236,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: moderateScale(Spacing.xs),
+    flexShrink: 0,
   },
   caloriesEmoji: {
     fontSize: scaleFontSize(18),
+    
+    marginLeft: moderateScale(8),
   },
   caloriesText: {
     fontSize: scaleFontSize(16),
