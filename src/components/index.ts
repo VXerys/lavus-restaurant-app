@@ -13,5 +13,8 @@ export * from './hot-deal';
 // Rewards Components
 export * from './rewards';
 
+// Scan Components
+export * from './scan';
+
 // Navigation Components
 export * from './navigation';

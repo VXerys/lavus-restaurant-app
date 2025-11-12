@@ -70,6 +70,25 @@ export interface RewardItem {
   isAvailable: boolean;
 }
 
+export interface OrderItem {
+  id: string;
+  name: string;
+  description?: string;
+  price: number;
+  quantity: number;
+  image: any; // require() image
+}
+
+export interface Order {
+  id: string;
+  items: OrderItem[];
+  subtotal: number;
+  tax?: number;
+  total: number;
+  status: 'pending' | 'paid' | 'cancelled';
+  createdAt: string;
+}
+
 // Generic API response wrappers (future real API alignment)
 export interface ApiListResponse<T> {
   data: T[];

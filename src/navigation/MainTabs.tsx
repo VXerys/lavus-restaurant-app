@@ -16,6 +16,15 @@ interface MainTabsProps {
 const MainTabs: React.FC<MainTabsProps> = ({ onLoginPress, navigation, initialTab }) => {
   const [activeTab, setActiveTab] = useState<TabRoute>(initialTab || 'home');
 
+  const handleTabPress = (tab: TabRoute) => {
+    if (tab === 'scan') {
+      // Navigate to full-screen Scan
+      navigation?.navigate('Scan');
+    } else {
+      setActiveTab(tab);
+    }
+  };
+
   const renderScreen = () => {
     switch (activeTab) {
       case 'home':
@@ -23,7 +32,7 @@ const MainTabs: React.FC<MainTabsProps> = ({ onLoginPress, navigation, initialTa
       case 'hotDeal':
         return <HotDealScreen navigation={navigation} />;
       case 'scan':
-        // TODO: Implement scan functionality
+        // Scan is a full-screen modal, so this shouldn't be reached
         return <HomeScreen onLoginPress={onLoginPress} navigation={navigation} />;
       case 'rewards':
         return <RewardsScreen navigation={navigation} />;
@@ -41,10 +50,7 @@ const MainTabs: React.FC<MainTabsProps> = ({ onLoginPress, navigation, initialTa
       </View>
       <BottomTabBar
         activeTab={activeTab}
-        onTabPress={(tab) => {
-          setActiveTab(tab);
-          console.log('Tab pressed:', tab);
-        }}
+        onTabPress={handleTabPress}
       />
     </View>
   );

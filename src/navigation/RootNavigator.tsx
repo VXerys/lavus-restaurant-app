@@ -7,6 +7,7 @@ import { MenuDetailScreen, ReviewsScreen } from '@screens/home';
 import { HotDealDetailScreen } from '@screens/hot-deal';
 import { RewardsDetailScreen, RewardConfirmationScreen, RedeemSuccessScreen } from '@screens/rewards';
 import { ConfirmationScreen, WellDoneScreen } from '@screens/reserve';
+import { ScanFlowScreen } from '@screens/scan';
 import MainTabs from '@navigation/MainTabs';
 
 export type RootStackParamList = {
@@ -19,6 +20,7 @@ export type RootStackParamList = {
   MenuDetail: { menuId: string };
   Reviews: { menuId: string };
   HotDealDetail: { dealId: string };
+  Scan: undefined;
   RewardsDetail: undefined;
   RewardConfirmation: { rewardId: string };
   RedeemSuccess: { redeemNumber: string };
@@ -157,6 +159,17 @@ export const RootNavigator = () => {
                     console.log('Set reminder pressed');
                   }}
                   onGoHome={() => {
+                    navigation.navigate('Home', { initialTab: 'home' });
+                  }}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="Scan">
+              {({ navigation }) => (
+                <ScanFlowScreen
+                  onBack={() => navigation.goBack()}
+                  onComplete={() => {
+                    console.log('Payment completed');
                     navigation.navigate('Home', { initialTab: 'home' });
                   }}
                 />
