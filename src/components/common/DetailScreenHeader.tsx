@@ -37,25 +37,15 @@ const styles = StyleSheet.create({
   backButton: {
     width: moderateScale(40),
     height: moderateScale(40),
-    backgroundColor: Colors.black,
-    borderRadius: moderateScale(20),
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: Spacing.md,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 4,
-    elevation: 3,
   },
   backIcon: {
-    width: moderateScale(20),
-    height: moderateScale(20),
+    width: moderateScale(24),
+    height: moderateScale(24),
     resizeMode: 'contain',
-    tintColor: Colors.white,
+    tintColor: Colors.black,
   },
   headerTitle: {
     fontSize: scaleFontSize(18),

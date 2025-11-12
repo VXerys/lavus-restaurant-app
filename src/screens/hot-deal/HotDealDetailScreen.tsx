@@ -49,7 +49,7 @@ const HotDealDetailScreen: React.FC<HotDealDetailScreenProps> = ({
     return (
       <SafeAreaView style={styles.safeArea} edges={['top']}>
         <View style={styles.container}>
-          <DetailScreenHeader title="Deal Details" onBack={onBack} />
+          <DetailScreenHeader title="" onBack={onBack} />
           <View style={styles.errorContainer}>
             <AppText weight="regular" style={styles.errorText}>
               Deal not found
@@ -64,7 +64,7 @@ const HotDealDetailScreen: React.FC<HotDealDetailScreenProps> = ({
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.container}>
         {/* Header with Back Button */}
-        <DetailScreenHeader title="Deal Details" onBack={onBack} />
+        <DetailScreenHeader title="" onBack={onBack} />
 
         {/* Claimed Success Overlay */}
         <ClaimedSuccessOverlay
