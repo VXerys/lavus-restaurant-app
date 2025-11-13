@@ -7,12 +7,25 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1085983698799:android:2199cc80362bae0921c29a",
+        "mobilesdk_app_id": "1:1085983698799:android:cc58e83127841f0d21c29a",
         "android_client_info": {
-          "package_name": "com.vxerys.lavus"
+          "package_name": "com.lavusrestaurantapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1085983698799-q2fm169t30sl99friu3pa47n5gp53p4v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lavusrestaurantapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1085983698799-kj8emrmoo8rnb3p1017pbve4lthd4r06.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBxgbd3lXlJjLWah59D_kEgmIEyBCj36Eo"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085983698799-kj8emrmoo8rnb3p1017pbve4lthd4r06.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

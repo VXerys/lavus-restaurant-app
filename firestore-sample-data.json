@@ -1,0 +1,148 @@
+{
+  "menus": [
+    {
+      "name": "Salmon Salad",
+      "description": "Fresh Norwegian salmon with mixed greens, cherry tomatoes, and house vinaigrette",
+      "price": 39,
+      "rating": 5.0,
+      "reviewCount": 2000,
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",
+      "category": "salad"
+    },
+    {
+      "name": "Shrimp Salad",
+      "description": "Grilled shrimp with crispy vegetables and lemon dressing",
+      "price": 29,
+      "rating": 4.5,
+      "reviewCount": 1500,
+      "imageUrl": "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=400",
+      "category": "salad"
+    },
+    {
+      "name": "Lavu's Salad",
+      "description": "Our signature salad with premium ingredients and special sauce",
+      "price": 29,
+      "rating": 4.5,
+      "reviewCount": 1800,
+      "imageUrl": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400",
+      "category": "salad"
+    },
+    {
+      "name": "Fruit Salad",
+      "description": "Fresh seasonal fruits with honey yogurt dressing",
+      "price": 25,
+      "rating": 4.8,
+      "reviewCount": 1200,
+      "imageUrl": "https://images.unsplash.com/photo-1564093497595-593b96d80180?w=400",
+      "category": "salad"
+    },
+    {
+      "name": "Fresh Orange Juice",
+      "description": "Freshly squeezed orange juice, no added sugar",
+      "price": 15,
+      "rating": 4.8,
+      "reviewCount": 1500,
+      "imageUrl": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400",
+      "category": "drink"
+    },
+    {
+      "name": "Tropical Smoothie",
+      "description": "Blend of mango, pineapple, and coconut milk",
+      "price": 18,
+      "rating": 4.9,
+      "reviewCount": 1800,
+      "imageUrl": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=400",
+      "category": "drink"
+    },
+    {
+      "name": "Iced Coffee",
+      "description": "Premium cold brew coffee with ice",
+      "price": 12,
+      "rating": 4.7,
+      "reviewCount": 2200,
+      "imageUrl": "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=400",
+      "category": "drink"
+    },
+    {
+      "name": "Margherita Pizza",
+      "description": "Classic pizza with tomato, mozzarella, and fresh basil",
+      "price": 45,
+      "rating": 4.9,
+      "reviewCount": 3000,
+      "imageUrl": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400",
+      "category": "pizza"
+    },
+    {
+      "name": "Pepperoni Pizza",
+      "description": "Loaded with premium pepperoni and extra cheese",
+      "price": 49,
+      "rating": 4.8,
+      "reviewCount": 2800,
+      "imageUrl": "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400",
+      "category": "pizza"
+    },
+    {
+      "name": "Chocolate Lava Cake",
+      "description": "Warm chocolate cake with molten chocolate center",
+      "price": 28,
+      "rating": 5.0,
+      "reviewCount": 2500,
+      "imageUrl": "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400",
+      "category": "dessert"
+    },
+    {
+      "name": "Tiramisu",
+      "description": "Classic Italian dessert with coffee-soaked ladyfingers",
+      "price": 32,
+      "rating": 4.9,
+      "reviewCount": 2100,
+      "imageUrl": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400",
+      "category": "dessert"
+    },
+    {
+      "name": "Spaghetti Carbonara",
+      "description": "Creamy pasta with bacon and parmesan cheese",
+      "price": 38,
+      "rating": 4.7,
+      "reviewCount": 1900,
+      "imageUrl": "https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400",
+      "category": "pasta"
+    },
+    {
+      "name": "Penne Arrabbiata",
+      "description": "Spicy tomato sauce with garlic and red chili",
+      "price": 35,
+      "rating": 4.6,
+      "reviewCount": 1600,
+      "imageUrl": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400",
+      "category": "pasta"
+    }
+  ],
+  "hotDeals": [
+    {
+      "type": "buy1get1",
+      "label": "BUY 1 GET 1",
+      "title": "Lavu's Cheesy Pizza",
+      "description": "Get two delicious pizzas for the price of one! Limited time offer.",
+      "imageUrl": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400",
+      "expiryDate": "2025-12-31T23:59:59.000Z"
+    },
+    {
+      "type": "discount",
+      "label": "50% OFF",
+      "title": "Caesar Salad Special",
+      "description": "Half price on our premium Caesar Salad this week only!",
+      "imageUrl": "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400",
+      "discountPercent": 50,
+      "expiryDate": "2025-11-30T23:59:59.000Z"
+    },
+    {
+      "type": "buy1get1",
+      "label": "BUY 1 GET 1",
+      "title": "Refreshing Smoothies",
+      "description": "Buy one smoothie, get another one free! Perfect for sharing.",
+      "imageUrl": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=400",
+      "expiryDate": "2025-12-15T23:59:59.000Z"
+    }
+  ]
+}

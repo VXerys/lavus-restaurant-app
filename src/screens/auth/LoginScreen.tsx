@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Image, TextInput, Pressable, Animated, ScrollView } from 'react-native';
+import { View, StyleSheet, Image, TextInput, Pressable, Animated, ScrollView, Alert } from 'react-native';
 import AppText from '@components/common/AppText';
 import Button from '@components/common/Button';
 import { Images, NavigationIcons } from '@assets';
@@ -12,19 +12,69 @@ import {
   scaleHeight,
   isSmallDevice 
 } from '@utils/responsive';
+import { signInWithEmail, signInWithGoogle } from '../../services/authService';
 
 interface Props {
   onBack?: () => void;
-  onGoogleLogin?: () => void;
-  onLogin?: () => void;
+  onLoginSuccess?: () => void;
   onSignUp?: () => void;
   onForgotPassword?: () => void;
 }
 
-const LoginScreen: React.FC<Props> = ({ onBack, onGoogleLogin, onLogin, onSignUp, onForgotPassword }) => {
+const LoginScreen: React.FC<Props> = ({ onBack, onLoginSuccess, onSignUp }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const scaleAnim = new Animated.Value(1);
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Please fill in all fields');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await signInWithEmail(email, password);
+      if (onLoginSuccess) {
+        onLoginSuccess();
+      }
+    } catch (error: any) {
+      Alert.alert('Login Failed', error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setGoogleLoading(true);
+    try {
+      await signInWithGoogle();
+      if (onLoginSuccess) {
+        onLoginSuccess();
+      }
+    } catch (error: any) {
+      Alert.alert('Google Sign-In Failed', error.message);
+    } finally {
+      setGoogleLoading(false);
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      Alert.alert('Error', 'Please enter your email first');
+      return;
+    }
+
+    try {
+      const { resetPassword } = require('../../services/authService');
+      await resetPassword(email);
+      Alert.alert('Success', 'Password reset email sent! Please check your inbox.');
+    } catch (error: any) {
+      Alert.alert('Error', error.message);
+    }
+  };
 
   const handleBackPressIn = () => {
     Animated.spring(scaleAnim, {
@@ -100,25 +150,32 @@ const LoginScreen: React.FC<Props> = ({ onBack, onGoogleLogin, onLogin, onSignUp
           </View>
 
           {/* Forgot Password */}
-          <Pressable onPress={onForgotPassword} style={styles.forgotContainer}>
+          <Pressable onPress={handleForgotPassword} style={styles.forgotContainer}>
             <AppText weight="regular" style={styles.forgotText}>Forgot password?</AppText>
           </Pressable>
 
           {/* Google Login Button */}
-          <Pressable style={styles.googleButton} onPress={onGoogleLogin}>
+          <Pressable 
+            style={[styles.googleButton, (loading || googleLoading) && styles.googleButtonDisabled]}
+            onPress={handleGoogleLogin}
+            disabled={loading || googleLoading}
+          >
             <Image 
               source={{ uri: 'https://www.google.com/favicon.ico' }}
               style={styles.googleIcon}
             />
-            <AppText weight="medium" style={styles.googleText}>Continue with Google</AppText>
+            <AppText weight="medium" style={styles.googleText}>
+              {googleLoading ? 'Loading...' : 'Continue with Google'}
+            </AppText>
           </Pressable>
 
           {/* Login Button */}
           <Button
-            title="Login Now"
+            title={loading ? 'Logging in...' : 'Login Now'}
             variant="primary"
             width={getButtonWidth(0.85)}
-            onPress={onLogin}
+            onPress={handleLogin}
+            disabled={loading || googleLoading}
             style={styles.loginButton}
           />
 
@@ -265,6 +322,9 @@ const styles = StyleSheet.create({
     fontSize: scaleFontSize(15),
     color: Colors.black,
     textDecorationLine: 'underline',
+  },
+  googleButtonDisabled: {
+    opacity: 0.5,
   },
 });
 

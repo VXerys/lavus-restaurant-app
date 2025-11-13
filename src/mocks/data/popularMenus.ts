@@ -274,5 +274,16 @@ export const getMenuItemsByCategory = (category: 'salad' | 'drink' | 'pizza' | '
   }
 };
 
+// Helper function to get all menu items
+export const getAllMenuItems = (): PopularMenuItem[] => {
+  return [
+    ...saladMenuItems,
+    ...drinkMenuItems,
+    ...pizzaMenuItems,
+    ...dessertMenuItems,
+    ...pastaMenuItems,
+  ];
+};
+
 // Default export for backward compatibility
 export const popularMenuItems = saladMenuItems;

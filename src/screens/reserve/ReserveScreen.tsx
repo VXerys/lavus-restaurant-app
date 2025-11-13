@@ -54,8 +54,8 @@ const ReserveScreen: React.FC<ReserveScreenProps> = ({ navigation }) => {
     if (navigation) {
       navigation.navigate('ReservationConfirmation', {
         guests: peopleCount,
-        date: selectedDate,
-        time: selectedTime,
+        date: selectedDate.toISOString(),
+        time: selectedTime.toISOString(),
       });
     }
   };

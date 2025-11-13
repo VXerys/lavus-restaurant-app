@@ -9,6 +9,7 @@
       "@components/*": ["src/components/*"],
       "@screens/*": ["src/screens/*"],
       "@navigation/*": ["src/navigation/*"],
+      "@services": ["src/services/index.ts"],
       "@services/*": ["src/services/*"],
       "@hooks/*": ["src/hooks/*"],
       "@utils/*": ["src/utils/*"],

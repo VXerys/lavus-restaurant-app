@@ -1,10 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import { View, StyleSheet, ScrollView, Pressable, TextInput, Image } from 'react-native';
+import { View, StyleSheet, ScrollView, Pressable, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AppText, MenuCard } from '@components';
+import { AppText, MenuCard, InfoOverlay, UserAvatar } from '@components';
+import { SearchModal } from '@components/home';
 import { CategoryIcons, CategoryKey, SearchIcons } from '@assets';
 import { Colors, Spacing, Radius } from '@theme/tokens';
 import { getMenuItemsByCategory } from '@mocks/data/popularMenus';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface Props {
   onLoginPress?: () => void;
@@ -20,8 +22,20 @@ const FOOD_CATEGORIES = [
 ] as const;
 
 const HomeScreen: React.FC<Props> = ({ onLoginPress, navigation }) => {
+  const { user } = useAuth();
   const [selectedCategory, setSelectedCategory] = useState<CategoryKey>('salad');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchModalVisible, setSearchModalVisible] = useState(false);
+  const [voiceInfoVisible, setVoiceInfoVisible] = useState(false);
+
+  const handleVoiceSearch = () => {
+    setVoiceInfoVisible(true);
+  };
+
+  const handleProfilePress = () => {
+    if (navigation) {
+      navigation.navigate('Settings');
+    }
+  };
 
   // Get menu items based on selected category
   const displayedMenuItems = useMemo(() => {
@@ -37,36 +51,52 @@ const HomeScreen: React.FC<Props> = ({ onLoginPress, navigation }) => {
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.container}>
-        {/* AppBar with Greeting and Login Button */}
+        {/* AppBar with Greeting and User Profile */}
         <View style={styles.appBar}>
           <View style={styles.greetingContainer}>
-            <AppText weight="serifTitle" style={styles.greeting}>Good morning!</AppText>
+            <AppText weight="serifTitle" style={styles.greeting}>
+              {user ? `Hello, ${user.displayName?.split(' ')[0] || 'User'}!` : 'Good morning!'}
+            </AppText>
             <View style={styles.underline} />
           </View>
-          <Pressable
-            style={({ pressed }) => [
-              styles.loginButton,
-              pressed && styles.loginButtonPressed,
-            ]}
-            onPress={onLoginPress}
-          >
-            <View style={styles.loginButtonInner}>
-              <AppText weight="semiBold" style={styles.loginButtonText}>Login Now</AppText>
-            </View>
-          </Pressable>
+          {user ? (
+            <UserAvatar
+              displayName={user.displayName}
+              photoURL={user.photoURL}
+              size="medium"
+              onPress={handleProfilePress}
+            />
+          ) : (
+            <Pressable
+              style={({ pressed }) => [
+                styles.loginButton,
+                pressed && styles.loginButtonPressed,
+              ]}
+              onPress={onLoginPress}
+            >
+              <View style={styles.loginButtonInner}>
+                <AppText weight="semiBold" style={styles.loginButtonText}>Login Now</AppText>
+              </View>
+            </Pressable>
+          )}
         </View>
 
         {/* Search Bar */}
         <View style={styles.searchContainer}>
-          <Image source={SearchIcons.search} style={styles.searchIconImage} />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="What are you looking for?"
-            placeholderTextColor={Colors.muted}
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-          />
-          <Image source={SearchIcons.mic} style={styles.micIconImage} />
+          <Pressable 
+            style={styles.searchBarPressable} 
+            onPress={() => setSearchModalVisible(true)}
+          >
+            <Image source={SearchIcons.search} style={styles.searchIconImage} />
+            <View style={styles.searchInput}>
+              <AppText weight="regular" style={styles.searchPlaceholder}>
+                What are you looking for?
+              </AppText>
+            </View>
+          </Pressable>
+          <Pressable onPress={handleVoiceSearch} style={styles.micButton}>
+            <Image source={SearchIcons.mic} style={styles.micIconImage} />
+          </Pressable>
         </View>
 
         {/* Food Type Section */}
@@ -147,6 +177,27 @@ const HomeScreen: React.FC<Props> = ({ onLoginPress, navigation }) => {
             ))}
           </View>
         </ScrollView>
+
+        {/* Search Modal */}
+        <SearchModal
+          visible={searchModalVisible}
+          onClose={() => setSearchModalVisible(false)}
+          onSelectItem={(itemId) => {
+            setSearchModalVisible(false);
+            if (navigation) {
+              navigation.navigate('MenuDetail', { menuId: itemId });
+            }
+          }}
+        />
+
+        {/* Voice Search Info Overlay */}
+        <InfoOverlay
+          visible={voiceInfoVisible}
+          icon="🎤"
+          title="Voice Search"
+          message="Voice search feature is coming soon!"
+          onClose={() => setVoiceInfoVisible(false)}
+        />
       </View>
     </SafeAreaView>
   );
@@ -221,6 +272,15 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 2,
   },
+  searchBarPressable: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  micButton: {
+    padding: Spacing.xs,
+    marginLeft: Spacing.xs,
+  },
   searchIconImage: {
     width: 20,
     height: 20,
@@ -230,15 +290,15 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     flex: 1,
+    justifyContent: 'center',
+  },
+  searchPlaceholder: {
     fontSize: 14,
-    color: Colors.text,
-    fontFamily: 'OpenSans-Regular',
-    padding: 0,
+    color: Colors.muted,
   },
   micIconImage: {
     width: 20,
     height: 20,
-    marginLeft: Spacing.sm,
     tintColor: Colors.muted,
     resizeMode: 'contain',
   },

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Pressable, Animated, ScrollView, Image } from 'react-native';
+import { View, StyleSheet, TextInput, Pressable, Animated, ScrollView, Image, Alert } from 'react-native';
 import AppText from '@components/common/AppText';
 import Button from '@components/common/Button';
 import { NavigationIcons } from '@assets';
@@ -11,19 +11,51 @@ import {
   scaleHeight,
   isSmallDevice 
 } from '@utils/responsive';
+import { signUpWithEmail } from '../../services/authService';
 
 interface Props {
   onBack?: () => void;
-  onSignUp?: () => void;
+  onSignUpSuccess?: (email: string) => void;
   onSignIn?: () => void;
 }
 
-const SignUpScreen: React.FC<Props> = ({ onBack, onSignUp, onSignIn }) => {
+const SignUpScreen: React.FC<Props> = ({ onBack, onSignUpSuccess, onSignIn }) => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const scaleAnim = new Animated.Value(1);
+
+  const handleSignUp = async () => {
+    if (!fullName || !email || !password || !confirmPassword) {
+      Alert.alert('Error', 'Please fill in all fields');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match');
+      return;
+    }
+
+    if (password.length < 6) {
+      Alert.alert('Error', 'Password must be at least 6 characters');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await signUpWithEmail(email, password, fullName);
+      // Don't show success alert, navigate to verification screen
+      if (onSignUpSuccess) {
+        onSignUpSuccess(email);
+      }
+    } catch (error: any) {
+      Alert.alert('Sign Up Failed', error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleBackPressIn = () => {
     Animated.spring(scaleAnim, {
@@ -124,10 +156,11 @@ const SignUpScreen: React.FC<Props> = ({ onBack, onSignUp, onSignIn }) => {
         {/* Sign Up Button */}
         <View style={styles.buttonContainer}>
           <Button
-            title="Sign Up"
+            title={loading ? "Creating Account..." : "Sign Up"}
             variant="primary"
             size="large"
-            onPress={onSignUp}
+            onPress={handleSignUp}
+            disabled={loading}
             width={getButtonWidth(0.9)}
           />
         </View>

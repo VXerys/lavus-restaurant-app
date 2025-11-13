@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SplashScreen, OnboardingScreen } from '@screens/onboarding';
-import { LoginOptionsScreen, LoginScreen, SignUpScreen } from '@screens/auth';
+import { LoginOptionsScreen, LoginScreen, SignUpScreen, EmailVerificationScreen } from '@screens/auth';
 import { MenuDetailScreen, ReviewsScreen } from '@screens/home';
 import { HotDealDetailScreen } from '@screens/hot-deal';
 import { RewardsDetailScreen, RewardConfirmationScreen, RedeemSuccessScreen } from '@screens/rewards';
 import { ConfirmationScreen, WellDoneScreen } from '@screens/reserve';
 import { ScanFlowScreen } from '@screens/scan';
+import { SettingsScreen } from '@screens/settings';
 import MainTabs from '@navigation/MainTabs';
 
 export type RootStackParamList = {
@@ -16,7 +17,9 @@ export type RootStackParamList = {
   LoginOptions: undefined;
   Login: undefined;
   SignUp: undefined;
-  Home: { initialTab?: 'home' | 'hotDeal' | 'scan' | 'rewards' | 'reserve' } | undefined;
+  EmailVerification: { email: string };
+  Main: { initialTab?: 'home' | 'hotDeal' | 'scan' | 'rewards' | 'reserve' } | undefined;
+  Settings: undefined;
   MenuDetail: { menuId: string };
   Reviews: { menuId: string };
   HotDealDetail: { dealId: string };
@@ -24,7 +27,7 @@ export type RootStackParamList = {
   RewardsDetail: undefined;
   RewardConfirmation: { rewardId: string };
   RedeemSuccess: { redeemNumber: string };
-  ReservationConfirmation: { guests: number; date: Date; time: Date };
+  ReservationConfirmation: { guests: number; date: string; time: string };
   ReservationWellDone: undefined;
 };
 
@@ -52,7 +55,7 @@ export const RootNavigator = () => {
                 <LoginOptionsScreen
                   onBack={() => navigation.navigate('Onboarding')}
                   onLoginNow={() => navigation.replace('Login')}
-                  onLoginLater={() => navigation.replace('Home')}
+                  onLoginLater={() => navigation.replace('Main')}
                 />
               )}
             </Stack.Screen>
@@ -60,16 +63,8 @@ export const RootNavigator = () => {
               {({ navigation }) => (
                 <LoginScreen
                   onBack={() => navigation.navigate('LoginOptions')}
-                  onGoogleLogin={() => {
-                    // TODO: Implement Google Login
-                    console.log('Google Login pressed');
-                  }}
-                  onLogin={() => navigation.replace('Home')}
+                  onLoginSuccess={() => navigation.replace('Main')}
                   onSignUp={() => navigation.navigate('SignUp')}
-                  onForgotPassword={() => {
-                    // TODO: Navigate to Forgot Password screen
-                    console.log('Forgot password pressed');
-                  }}
                 />
               )}
             </Stack.Screen>
@@ -77,12 +72,21 @@ export const RootNavigator = () => {
               {({ navigation }) => (
                 <SignUpScreen
                   onBack={() => navigation.navigate('Login')}
-                  onSignUp={() => navigation.replace('Home')}
+                  onSignUpSuccess={(email) => navigation.replace('EmailVerification', { email })}
                   onSignIn={() => navigation.navigate('Login')}
                 />
               )}
             </Stack.Screen>
-            <Stack.Screen name="Home">
+            <Stack.Screen name="EmailVerification">
+              {({ navigation, route }) => (
+                <EmailVerificationScreen
+                  email={route.params.email}
+                  onVerified={() => navigation.replace('Main')}
+                  onBack={() => navigation.replace('LoginOptions')}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="Main">
               {({ navigation, route }) => (
                 <MainTabs
                   onLoginPress={() => navigation.navigate('LoginOptions')}
@@ -91,11 +95,19 @@ export const RootNavigator = () => {
                 />
               )}
             </Stack.Screen>
+            <Stack.Screen name="Settings">
+              {({ navigation }) => (
+                <SettingsScreen
+                  navigation={navigation}
+                  onBack={() => navigation.goBack()}
+                />
+              )}
+            </Stack.Screen>
             <Stack.Screen name="MenuDetail">
               {({ navigation, route }) => (
                 <MenuDetailScreen
                   onBack={() => navigation.goBack()}
-                  onReserve={() => navigation.navigate('Home', { initialTab: 'reserve' })}
+                  onReserve={() => navigation.navigate('Main', { initialTab: 'reserve' })}
                   menuId={route.params.menuId}
                   navigation={navigation}
                 />
@@ -145,8 +157,8 @@ export const RootNavigator = () => {
                     navigation.navigate('ReservationWellDone');
                   }}
                   guests={route.params.guests}
-                  date={route.params.date}
-                  time={route.params.time}
+                  date={new Date(route.params.date)}
+                  time={new Date(route.params.time)}
                 />
               )}
             </Stack.Screen>
@@ -159,7 +171,7 @@ export const RootNavigator = () => {
                     console.log('Set reminder pressed');
                   }}
                   onGoHome={() => {
-                    navigation.navigate('Home', { initialTab: 'home' });
+                    navigation.navigate('Main', { initialTab: 'home' });
                   }}
                 />
               )}
@@ -170,7 +182,7 @@ export const RootNavigator = () => {
                   onBack={() => navigation.goBack()}
                   onComplete={() => {
                     console.log('Payment completed');
-                    navigation.navigate('Home', { initialTab: 'home' });
+                    navigation.navigate('Main', { initialTab: 'home' });
                   }}
                 />
               )}
