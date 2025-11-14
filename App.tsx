@@ -11,8 +11,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import RootNavigator from '@navigation/RootNavigator';
 import { AuthProvider } from './src/contexts/AuthContext';
 import { configureGoogleSignIn } from './src/services/authService';
-import { uploadSampleData } from './src/utils/uploadFirestoreData';
-import { testFirestoreConnection } from './src/utils/testFirestore';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -23,11 +21,9 @@ function App() {
     
     // 🧪 STEP 1: Test Firestore Connection First
     // Uncomment this to test your Firestore setup:
-    // testFirestoreConnection();
     
     // 🔥 STEP 2: Upload sample data (RUN ONCE!)
     // After test passes, comment test above and uncomment this:
-    uploadSampleData();
   }, []);
 
   return (
