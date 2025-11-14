@@ -7,10 +7,11 @@ Sistem limitasi slot meja untuk restaurant reservation. Setiap ukuran meja (1-8 
 ## 🎯 Concept
 
 ### Slot Allocation
+
 Restoran memiliki keterbatasan meja untuk setiap ukuran party:
 
 | Table Size | Available Slots | Total Capacity per Time Slot |
-|------------|-----------------|------------------------------|
+| ---------- | --------------- | ---------------------------- |
 | 1 person   | 2 slots         | 2 guests max                 |
 | 2 persons  | 2 slots         | 4 guests max                 |
 | 3 persons  | 2 slots         | 6 guests max                 |
@@ -110,24 +111,29 @@ interface AvailabilityCheck {
 export const checkTableAvailability = async (
   date: Date,
   time: Date,
-  peopleCount: number
+  peopleCount: number,
 ): Promise<AvailabilityCheck> => {
   try {
     // Format date and time
     const dateString = date.toISOString().split('T')[0]; // YYYY-MM-DD
-    const timeString = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`; // HH:MM
+    const timeString = `${time.getHours().toString().padStart(2, '0')}:${time
+      .getMinutes()
+      .toString()
+      .padStart(2, '0')}`; // HH:MM
     const tableKey = `${peopleCount}-person`;
 
     // Query Firebase
     const ref = database().ref(
-      `reservations/${dateString}/${timeString}/${tableKey}`
+      `reservations/${dateString}/${timeString}/${tableKey}`,
     );
-    
+
     const snapshot = await ref.once('value');
     const slots = snapshot.val() || {};
 
     // Count booked slots
-    const bookedSlots = Object.values(slots).filter(slot => slot !== null).length;
+    const bookedSlots = Object.values(slots).filter(
+      slot => slot !== null,
+    ).length;
     const remainingSlots = 2 - bookedSlots;
 
     return {
@@ -154,33 +160,35 @@ export const reserveTableSlot = async (
   time: Date,
   peopleCount: number,
   userId: string,
-  guestName: string
+  guestName: string,
 ): Promise<{ success: boolean; confirmationNumber: string }> => {
   try {
     // Format keys
     const dateString = date.toISOString().split('T')[0];
-    const timeString = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`;
+    const timeString = `${time.getHours().toString().padStart(2, '0')}:${time
+      .getMinutes()
+      .toString()
+      .padStart(2, '0')}`;
     const tableKey = `${peopleCount}-person`;
 
     // Check availability first
     const availability = await checkTableAvailability(date, time, peopleCount);
-    
+
     if (!availability.available) {
       throw new Error('No available slots');
     }
 
     // Get reference
     const ref = database().ref(
-      `reservations/${dateString}/${timeString}/${tableKey}`
+      `reservations/${dateString}/${timeString}/${tableKey}`,
     );
-    
+
     const snapshot = await ref.once('value');
     const slots = snapshot.val() || {};
 
     // Find available slot
-    const slotNumber = slots.slot1 === null || slots.slot1 === undefined 
-      ? 'slot1' 
-      : 'slot2';
+    const slotNumber =
+      slots.slot1 === null || slots.slot1 === undefined ? 'slot1' : 'slot2';
 
     // Generate confirmation number
     const confirmationNumber = generateConfirmationNumber();
@@ -217,7 +225,9 @@ const generateConfirmationNumber = (): string => {
   const date = new Date();
   const year = date.getFullYear().toString().slice(-2);
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+  const random = Math.floor(Math.random() * 10000)
+    .toString()
+    .padStart(4, '0');
   return `RES-${year}${month}-${random}`;
 };
 ```
@@ -242,12 +252,8 @@ Visual: Green background, checkmark icon
 
 ```typescript
 <View style={[styles.availabilityBanner, styles.limitedAvailability]}>
-  <Text style={styles.warningText}>
-    ⚠️ Almost full! Only 1 slot remaining
-  </Text>
-  <Text style={styles.subText}>
-    Book now before it's gone!
-  </Text>
+  <Text style={styles.warningText}>⚠️ Almost full! Only 1 slot remaining</Text>
+  <Text style={styles.subText}>Book now before it's gone!</Text>
 </View>
 ```
 
@@ -257,11 +263,10 @@ Visual: Yellow/Orange background, warning icon
 
 ```typescript
 <View style={[styles.availabilityBanner, styles.fullyBooked]}>
-  <Text style={styles.errorText}>
-    ❌ Sorry, fully booked!
-  </Text>
+  <Text style={styles.errorText}>❌ Sorry, fully booked!</Text>
   <Text style={styles.subText}>
-    All {peopleCount}-person tables are reserved for {formatDate(date)} at {formatTime(time)}
+    All {peopleCount}-person tables are reserved for {formatDate(date)} at{' '}
+    {formatTime(time)}
   </Text>
   <View style={styles.suggestions}>
     <Text style={styles.suggestionsTitle}>Suggestions:</Text>
@@ -288,7 +293,9 @@ const PeopleCounter: React.FC<PeopleCounterProps> = ({
   selectedTime,
   // ... other props
 }) => {
-  const [availability, setAvailability] = useState<AvailabilityCheck | null>(null);
+  const [availability, setAvailability] = useState<AvailabilityCheck | null>(
+    null,
+  );
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -303,7 +310,7 @@ const PeopleCounter: React.FC<PeopleCounterProps> = ({
         const result = await checkTableAvailability(
           selectedDate,
           selectedTime,
-          count
+          count,
         );
         setAvailability(result);
       } catch (error) {
@@ -319,18 +326,20 @@ const PeopleCounter: React.FC<PeopleCounterProps> = ({
   return (
     <View style={styles.container}>
       {/* Existing counter UI */}
-      
+
       {/* Availability Indicator */}
       {loading && <ActivityIndicator />}
-      
+
       {availability && (
-        <View style={[
-          styles.availabilityBadge,
-          availability.remainingSlots === 0 && styles.fullyBooked,
-          availability.remainingSlots === 1 && styles.limitedAvailability,
-        ]}>
+        <View
+          style={[
+            styles.availabilityBadge,
+            availability.remainingSlots === 0 && styles.fullyBooked,
+            availability.remainingSlots === 1 && styles.limitedAvailability,
+          ]}
+        >
           <AppText style={styles.availabilityText}>
-            {availability.remainingSlots === 0 
+            {availability.remainingSlots === 0
               ? '❌ Fully Booked - Try different time'
               : availability.remainingSlots === 1
               ? '⚠️ Only 1 slot left!'
@@ -370,7 +379,7 @@ const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
           [
             { text: 'Go Back', onPress: () => navigation.goBack() },
             { text: 'Try Another Time', style: 'cancel' },
-          ]
+          ],
         );
         return;
       }
@@ -381,7 +390,7 @@ const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
         time,
         guests,
         currentUser.uid,
-        currentUser.displayName
+        currentUser.displayName,
       );
 
       if (result.success) {
@@ -389,7 +398,7 @@ const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
         Alert.alert(
           'Reservation Confirmed! 🎉',
           `Your confirmation number is: ${result.confirmationNumber}`,
-          [{ text: 'OK', onPress: () => onConfirm() }]
+          [{ text: 'OK', onPress: () => onConfirm() }],
         );
       }
     } catch (error) {
@@ -403,16 +412,14 @@ const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
   return (
     <SafeAreaView>
       {/* Existing confirmation UI */}
-      
+
       <Button
         title={reserving ? 'Confirming...' : 'Confirm Reservation'}
         onPress={handleConfirm}
         disabled={reserving}
       />
 
-      {error && (
-        <Text style={styles.errorText}>{error}</Text>
-      )}
+      {error && <Text style={styles.errorText}>{error}</Text>}
     </SafeAreaView>
   );
 };
@@ -430,10 +437,10 @@ export const holdSlotTemporarily = async (
   date: Date,
   time: Date,
   peopleCount: number,
-  userId: string
+  userId: string,
 ): Promise<string> => {
   const holdId = `HOLD-${Date.now()}`;
-  const expiresAt = Date.now() + (5 * 60 * 1000); // 5 minutes
+  const expiresAt = Date.now() + 5 * 60 * 1000; // 5 minutes
 
   // Save temporary hold
   await database().ref(`temporaryHolds/${holdId}`).set({
@@ -474,10 +481,10 @@ export const joinWaitlist = async (
   date: Date,
   time: Date,
   peopleCount: number,
-  userId: string
+  userId: string,
 ): Promise<void> => {
   const waitlistRef = database().ref('waitlist');
-  
+
   await waitlistRef.push({
     userId,
     date: date.toISOString().split('T')[0],
@@ -492,16 +499,14 @@ export const joinWaitlist = async (
 export const notifyWaitlist = async (
   date: string,
   time: string,
-  peopleCount: number
+  peopleCount: number,
 ): Promise<void> => {
   const waitlistRef = database().ref('waitlist');
-  
-  const snapshot = await waitlistRef
-    .orderByChild('addedAt')
-    .once('value');
+
+  const snapshot = await waitlistRef.orderByChild('addedAt').once('value');
 
   const entries: WaitlistEntry[] = [];
-  snapshot.forEach((child) => {
+  snapshot.forEach(child => {
     const entry = child.val();
     if (
       entry.date === date &&
@@ -521,7 +526,7 @@ export const notifyWaitlist = async (
       title: 'Table Available!',
       body: `A ${peopleCount}-person table is now available for ${date} at ${time}`,
     });
-    
+
     // Mark as notified
     await waitlistRef.child(firstEntry.key).update({ notified: true });
   }
@@ -535,24 +540,24 @@ export const notifyWaitlist = async (
  * Get all reservations for a specific date
  */
 export const getReservationsByDate = async (
-  date: Date
+  date: Date,
 ): Promise<Reservation[]> => {
   const dateString = date.toISOString().split('T')[0];
   const ref = database().ref(`reservations/${dateString}`);
-  
+
   const snapshot = await ref.once('value');
   const reservations: Reservation[] = [];
-  
-  snapshot.forEach((timeSlot) => {
-    timeSlot.forEach((tableSize) => {
-      tableSize.forEach((slot) => {
+
+  snapshot.forEach(timeSlot => {
+    timeSlot.forEach(tableSize => {
+      tableSize.forEach(slot => {
         if (slot.val()) {
           reservations.push(slot.val());
         }
       });
     });
   });
-  
+
   return reservations;
 };
 
@@ -560,7 +565,7 @@ export const getReservationsByDate = async (
  * Get slot utilization statistics
  */
 export const getSlotUtilization = async (
-  date: Date
+  date: Date,
 ): Promise<{
   totalSlots: number;
   bookedSlots: number;
@@ -589,7 +594,7 @@ export const getSlotUtilization = async (
 ```typescript
 export const getPopularTimeSlots = async (
   startDate: Date,
-  endDate: Date
+  endDate: Date,
 ): Promise<Array<{ time: string; bookings: number }>> => {
   // Query reservations between dates
   // Aggregate by time slot
@@ -602,7 +607,7 @@ export const getPopularTimeSlots = async (
 ```typescript
 export const getPopularTableSizes = async (
   startDate: Date,
-  endDate: Date
+  endDate: Date,
 ): Promise<Array<{ tableSize: number; bookings: number }>> => {
   // Query reservations between dates
   // Aggregate by table size

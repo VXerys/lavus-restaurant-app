@@ -1,0 +1,13 @@
+{
+  "markdownlint.config": {
+    "default": false
+  },
+  "markdownlint.ignore": [
+    "**/*.md"
+  ],
+  "java.compile.nullAnalysis.mode": "disabled",
+  "java.configuration.updateBuildConfiguration": "disabled",
+  "java.import.gradle.enabled": false,
+  "gradle.javaDebug.cleanOutput": false,
+  "java.gradle.buildServer.enabled": "off"
+}

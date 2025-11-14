@@ -10,23 +10,23 @@ Menetapkan pola konsisten untuk pembuatan, penamaan, review, dan merge branch se
 
 ## Cabang Utama
 
-| Branch | Fungsi | Catatan |
-|--------|--------|---------|
-| `main` | Source kode siap produksi / release | Proteksi: wajib PR + CI hijau |
+| Branch               | Fungsi                                | Catatan                                                         |
+| -------------------- | ------------------------------------- | --------------------------------------------------------------- |
+| `main`               | Source kode siap produksi / release   | Proteksi: wajib PR + CI hijau                                   |
 | `develop` (opsional) | Integrasi harian fitur sebelum stabil | Jika tim <3 dev boleh dihilangkan dan langsung ke `main` via PR |
 
 Jika tanpa `develop`, pastikan release tagging dari `main`.
 
 ## Tipe Branch
 
-| Tipe | Format Nama | Tujuan | Contoh |
-|------|-------------|--------|--------|
-| Feature | `feature/<kata-kunci>` | Fitur baru | `feature/menu-ui` |
-| Bugfix | `bugfix/<issue-id-deskriptif>` | Perbaikan non-kritis | `bugfix/menu-filter-reset` |
-| Hotfix | `hotfix/<deskripsi-singkat>` | Perbaikan kritikal produksi | `hotfix/checkout-null-crash` |
-| Release | `release/<versi>` | Stabilisasi menjelang rilis | `release/1.2.0` |
-| Chore | `chore/<aktivitas>` | Tugas teknis (deps, build) | `chore/update-gradle-wrapper` |
-| Docs | `docs/<topik>` | Dokumentasi | `docs/testing-strategy` |
+| Tipe    | Format Nama                    | Tujuan                      | Contoh                        |
+| ------- | ------------------------------ | --------------------------- | ----------------------------- |
+| Feature | `feature/<kata-kunci>`         | Fitur baru                  | `feature/menu-ui`             |
+| Bugfix  | `bugfix/<issue-id-deskriptif>` | Perbaikan non-kritis        | `bugfix/menu-filter-reset`    |
+| Hotfix  | `hotfix/<deskripsi-singkat>`   | Perbaikan kritikal produksi | `hotfix/checkout-null-crash`  |
+| Release | `release/<versi>`              | Stabilisasi menjelang rilis | `release/1.2.0`               |
+| Chore   | `chore/<aktivitas>`            | Tugas teknis (deps, build)  | `chore/update-gradle-wrapper` |
+| Docs    | `docs/<topik>`                 | Dokumentasi                 | `docs/testing-strategy`       |
 
 ## Aturan Pembuatan Branch
 
@@ -62,21 +62,21 @@ Sebelum minta review:
 
 ## CI Wajib Lulus
 
-| Check | Tools | Kriteria |
-|-------|-------|----------|
-| Lint | ESLint | Tidak ada error (warning boleh ≤ agreed) |
-| Format | Prettier | Tidak ada diff setelah format |
-| Unit Test | Jest | Coverage line ≥ 70% (naik bertahap) |
-| Build Android | Gradle assembleDebug | Sukses tanpa gagal |
-| Type Check | `tsc --noEmit` | 0 error |
+| Check         | Tools                | Kriteria                                 |
+| ------------- | -------------------- | ---------------------------------------- |
+| Lint          | ESLint               | Tidak ada error (warning boleh ≤ agreed) |
+| Format        | Prettier             | Tidak ada diff setelah format            |
+| Unit Test     | Jest                 | Coverage line ≥ 70% (naik bertahap)      |
+| Build Android | Gradle assembleDebug | Sukses tanpa gagal                       |
+| Type Check    | `tsc --noEmit`       | 0 error                                  |
 
 ## Strategi Merge
 
-| Scenario | Aksi | Alasan |
-|----------|------|--------|
-| Feature selesai | Squash & merge | History bersih, 1 komit per feature di main |
-| Hotfix | Merge commit (non-squash) | Pelacakan patch detail jika perlu revert granular |
-| Release branch | Merge commit + tag | Mempertahankan timeline rilis |
+| Scenario        | Aksi                      | Alasan                                            |
+| --------------- | ------------------------- | ------------------------------------------------- |
+| Feature selesai | Squash & merge            | History bersih, 1 komit per feature di main       |
+| Hotfix          | Merge commit (non-squash) | Pelacakan patch detail jika perlu revert granular |
+| Release branch  | Merge commit + tag        | Mempertahankan timeline rilis                     |
 
 Gunakan Squash default kecuali tabel di atas menentukan lain.
 

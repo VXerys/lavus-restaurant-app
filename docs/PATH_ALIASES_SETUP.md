@@ -10,17 +10,17 @@ Mengurangi import relatif panjang dan meningkatkan keterbacaan kode komponen (co
 
 ## Alias yang Direkomendasikan
 
-| Alias | Path | Kegunaan |
-|-------|------|----------|
+| Alias         | Path             | Kegunaan                             |
+| ------------- | ---------------- | ------------------------------------ |
 | `@components` | `src/components` | Komponen reusable (Button, CardMenu) |
-| `@screens` | `src/screens` | Screen utama navigasi |
-| `@navigation` | `src/navigation` | Stack & tab navigators |
-| `@hooks` | `src/hooks` | Custom hooks (useFetchMenu) |
-| `@services` | `src/services` | API client, integrasi fetch |
-| `@store` | `src/store` | State management (Redux/Zustand) |
-| `@assets` | `src/assets` | Gambar, ikon |
-| `@utils` | `src/utils` | Helper functions |
-| `@types` | `src/types` | Type / interface TS |
+| `@screens`    | `src/screens`    | Screen utama navigasi                |
+| `@navigation` | `src/navigation` | Stack & tab navigators               |
+| `@hooks`      | `src/hooks`      | Custom hooks (useFetchMenu)          |
+| `@services`   | `src/services`   | API client, integrasi fetch          |
+| `@store`      | `src/store`      | State management (Redux/Zustand)     |
+| `@assets`     | `src/assets`     | Gambar, ikon                         |
+| `@utils`      | `src/utils`      | Helper functions                     |
+| `@types`      | `src/types`      | Type / interface TS                  |
 
 ## 1. Instal Plugin (Jika belum)
 
@@ -50,11 +50,11 @@ module.exports = {
           '@store': './src/store',
           '@assets': './src/assets',
           '@utils': './src/utils',
-          '@types': './src/types'
-        }
-      }
-    ]
-  ]
+          '@types': './src/types',
+        },
+      },
+    ],
+  ],
 };
 ```
 
@@ -110,11 +110,11 @@ Tambahkan (opsional) di `.vscode/settings.json`:
 
 ## 6. Masalah Umum & Solusi
 
-| Masalah | Penyebab | Solusi |
-|---------|----------|--------|
-| Alias tidak dikenali saat lint | ESLint belum aware | Tambah setting parser + plugin import resolver |
-| Test Jest gagal resolve | Jest belum map | Tambahkan `moduleNameMapper` di `jest.config.js` |
-| Build Android error "Unable to resolve module" | Cache Metro lama | Jalankan `npx react-native start --reset-cache` |
+| Masalah                                        | Penyebab           | Solusi                                           |
+| ---------------------------------------------- | ------------------ | ------------------------------------------------ |
+| Alias tidak dikenali saat lint                 | ESLint belum aware | Tambah setting parser + plugin import resolver   |
+| Test Jest gagal resolve                        | Jest belum map     | Tambahkan `moduleNameMapper` di `jest.config.js` |
+| Build Android error "Unable to resolve module" | Cache Metro lama   | Jalankan `npx react-native start --reset-cache`  |
 
 ### Contoh `jest.config.js` Mapper
 
@@ -123,9 +123,9 @@ module.exports = {
   preset: 'react-native',
   moduleNameMapper: {
     '^@components/(.*)$': '<rootDir>/src/components/$1',
-    '^@screens/(.*)$': '<rootDir>/src/screens/$1'
+    '^@screens/(.*)$': '<rootDir>/src/screens/$1',
     // tambahkan sesuai kebutuhan
-  }
+  },
 };
 ```
 

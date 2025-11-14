@@ -31,7 +31,7 @@ Our testing strategy follows the **Testing Pyramid** principle, emphasizing:
          /____\        - Critical user journeys
         /      \       - Cross-feature integration
        /        \      - Production environment validation
-      /__________\     
+      /__________\
      /            \    Integration Tests (20-30%)
     /              \   - Component interactions
    /________________\  - API contract validation
@@ -45,6 +45,7 @@ Our testing strategy follows the **Testing Pyramid** principle, emphasizing:
 ```
 
 **Rationale:**
+
 - **Unit tests** are fast, isolated, and provide quick feedback during development
 - **Integration tests** validate component collaboration without full system complexity
 - **E2E tests** provide confidence but are slower and more brittle; used judiciously for critical paths
@@ -55,16 +56,16 @@ Our testing strategy follows the **Testing Pyramid** principle, emphasizing:
 
 ### Comprehensive Testing Architecture
 
-| Testing Layer | Primary Tools | Scope & Focus | Execution Environment |
-|---------------|--------------|---------------|----------------------|
-| **Unit Testing** | Jest + React Testing Library | Individual components, hooks, utilities in isolation | Local development, CI pipeline |
-| **Integration Testing** | Jest + Mock Service Worker (MSW) | Component interactions, form submissions, API integration contracts | Local development, CI pipeline |
-| **Component Testing** | React Testing Library | UI component behavior, user interactions, accessibility | Local development, CI pipeline |
-| **End-to-End Testing** | Detox (React Native) | Complete user journeys, cross-screen flows, production-like scenarios | Emulators, real devices, CI pipeline |
-| **Visual Regression** | Percy / Chromatic (future) | UI consistency, design system compliance, responsive layouts | CI pipeline, pre-release |
-| **Performance Testing** | React Native Performance Monitor, Flipper | Render performance, memory usage, API latency | Development, staging environment |
-| **Accessibility Testing** | eslint-plugin-jsx-a11y, Axe | Screen reader compatibility, WCAG compliance, keyboard navigation | Local development, CI pipeline |
-| **Manual Exploratory** | Human testers | Edge cases, usability, real-world scenarios | Staging environment, pre-release |
+| Testing Layer             | Primary Tools                             | Scope & Focus                                                         | Execution Environment                |
+| ------------------------- | ----------------------------------------- | --------------------------------------------------------------------- | ------------------------------------ |
+| **Unit Testing**          | Jest + React Testing Library              | Individual components, hooks, utilities in isolation                  | Local development, CI pipeline       |
+| **Integration Testing**   | Jest + Mock Service Worker (MSW)          | Component interactions, form submissions, API integration contracts   | Local development, CI pipeline       |
+| **Component Testing**     | React Testing Library                     | UI component behavior, user interactions, accessibility               | Local development, CI pipeline       |
+| **End-to-End Testing**    | Detox (React Native)                      | Complete user journeys, cross-screen flows, production-like scenarios | Emulators, real devices, CI pipeline |
+| **Visual Regression**     | Percy / Chromatic (future)                | UI consistency, design system compliance, responsive layouts          | CI pipeline, pre-release             |
+| **Performance Testing**   | React Native Performance Monitor, Flipper | Render performance, memory usage, API latency                         | Development, staging environment     |
+| **Accessibility Testing** | eslint-plugin-jsx-a11y, Axe               | Screen reader compatibility, WCAG compliance, keyboard navigation     | Local development, CI pipeline       |
+| **Manual Exploratory**    | Human testers                             | Edge cases, usability, real-world scenarios                           | Staging environment, pre-release     |
 
 ---
 
@@ -94,16 +95,16 @@ yarn test --coverage --coverageThreshold='{"global":{"lines":70,"branches":65}}'
 
 **Module-Specific Coverage Requirements:**
 
-| Module Category | Minimum Line Coverage | Minimum Branch Coverage | Rationale |
-|-----------------|----------------------|------------------------|-----------|
-| **Authentication & Authorization** | 90% | 80% | Security-critical; failure impacts user trust |
-| **Payment & Checkout** | 90% | 85% | Financial transactions; regulatory compliance |
-| **Reservation System** | 85% | 75% | Core business value; high user impact |
-| **Menu Browsing & Search** | 80% | 70% | Primary user journey; frequent usage |
-| **Profile Management** | 75% | 65% | Standard functionality; moderate risk |
-| **Rewards & Loyalty** | 80% | 70% | Business logic complexity; promotional integrity |
-| **UI Components (Shared)** | 80% | 70% | Reusability requires reliability |
-| **Utility Functions** | 95% | 90% | Pure functions; should be fully testable |
+| Module Category                    | Minimum Line Coverage | Minimum Branch Coverage | Rationale                                        |
+| ---------------------------------- | --------------------- | ----------------------- | ------------------------------------------------ |
+| **Authentication & Authorization** | 90%                   | 80%                     | Security-critical; failure impacts user trust    |
+| **Payment & Checkout**             | 90%                   | 85%                     | Financial transactions; regulatory compliance    |
+| **Reservation System**             | 85%                   | 75%                     | Core business value; high user impact            |
+| **Menu Browsing & Search**         | 80%                   | 70%                     | Primary user journey; frequent usage             |
+| **Profile Management**             | 75%                   | 65%                     | Standard functionality; moderate risk            |
+| **Rewards & Loyalty**              | 80%                   | 70%                     | Business logic complexity; promotional integrity |
+| **UI Components (Shared)**         | 80%                   | 70%                     | Reusability requires reliability                 |
+| **Utility Functions**              | 95%                   | 90%                     | Pure functions; should be fully testable         |
 
 ### Quality Gates for Pull Requests
 
@@ -152,15 +153,15 @@ Create `jest.config.js` in project root:
 ```javascript
 module.exports = {
   preset: 'react-native',
-  
+
   // Setup files to run before tests
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  
+
   // Transform node_modules that need compilation
   transformIgnorePatterns: [
-    'node_modules/(?!(react-native|@react-native|react-navigation|@react-navigation|@react-native-community|react-native-vector-icons)/)'
+    'node_modules/(?!(react-native|@react-native|react-navigation|@react-navigation|@react-native-community|react-native-vector-icons)/)',
   ],
-  
+
   // Path alias mapping (must match tsconfig.json)
   moduleNameMapper: {
     '^@components/(.*)$': '<rootDir>/src/components/$1',
@@ -172,11 +173,11 @@ module.exports = {
     '^@theme/(.*)$': '<rootDir>/src/theme/$1',
     '^@assets/(.*)$': '<rootDir>/src/assets/$1',
     '^@types/(.*)$': '<rootDir>/src/types/$1',
-    
+
     // Mock static assets
     '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/__mocks__/fileMock.js',
   },
-  
+
   // Coverage configuration
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
@@ -185,7 +186,7 @@ module.exports = {
     '!src/**/index.ts',
     '!src/assets/**',
   ],
-  
+
   coverageThresholds: {
     global: {
       lines: 70,
@@ -194,13 +195,10 @@ module.exports = {
       statements: 70,
     },
   },
-  
+
   // Test match patterns
-  testMatch: [
-    '**/__tests__/**/*.test.{ts,tsx}',
-    '**/*.test.{ts,tsx}',
-  ],
-  
+  testMatch: ['**/__tests__/**/*.test.{ts,tsx}', '**/*.test.{ts,tsx}'],
+
   // Module file extensions
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
 };
@@ -218,7 +216,7 @@ jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
 // Mock AsyncStorage
 jest.mock('@react-native-async-storage/async-storage', () =>
-  require('@react-native-async-storage/async-storage/jest/async-storage-mock')
+  require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
 );
 
 // Mock react-native-vector-icons
@@ -288,26 +286,26 @@ describe('MenuCard Component', () => {
   describe('Rendering', () => {
     it('should display menu item title', () => {
       render(<MenuCard item={mockMenuItem} onPress={mockOnPress} />);
-      
+
       expect(screen.getByText('Salmon Salad')).toBeTruthy();
     });
 
     it('should display formatted price', () => {
       render(<MenuCard item={mockMenuItem} onPress={mockOnPress} />);
-      
+
       expect(screen.getByText('$39.00')).toBeTruthy();
     });
 
     it('should display rating with star icon', () => {
       render(<MenuCard item={mockMenuItem} onPress={mockOnPress} />);
-      
+
       expect(screen.getByText('4.5')).toBeTruthy();
       expect(screen.getByTestId('rating-stars')).toBeTruthy();
     });
 
     it('should render menu item image', () => {
       render(<MenuCard item={mockMenuItem} onPress={mockOnPress} />);
-      
+
       const image = screen.getByTestId('menu-item-image');
       expect(image.props.source).toEqual({ uri: mockMenuItem.imageUrl });
     });
@@ -316,17 +314,17 @@ describe('MenuCard Component', () => {
   describe('Interactions', () => {
     it('should call onPress when card is tapped', () => {
       render(<MenuCard item={mockMenuItem} onPress={mockOnPress} />);
-      
+
       const card = screen.getByTestId('menu-card');
       fireEvent.press(card);
-      
+
       expect(mockOnPress).toHaveBeenCalledTimes(1);
       expect(mockOnPress).toHaveBeenCalledWith(mockMenuItem);
     });
 
     it('should not crash when onPress is undefined', () => {
       render(<MenuCard item={mockMenuItem} />);
-      
+
       const card = screen.getByTestId('menu-card');
       expect(() => fireEvent.press(card)).not.toThrow();
     });
@@ -334,27 +332,32 @@ describe('MenuCard Component', () => {
 
   describe('Edge Cases', () => {
     it('should handle missing description gracefully', () => {
-      const itemWithoutDescription = { ...mockMenuItem, description: undefined };
-      
+      const itemWithoutDescription = {
+        ...mockMenuItem,
+        description: undefined,
+      };
+
       render(<MenuCard item={itemWithoutDescription} onPress={mockOnPress} />);
-      
+
       expect(screen.queryByTestId('menu-description')).toBeNull();
     });
 
     it('should display placeholder image when imageUrl is missing', () => {
       const itemWithoutImage = { ...mockMenuItem, imageUrl: undefined };
-      
+
       render(<MenuCard item={itemWithoutImage} onPress={mockOnPress} />);
-      
+
       const image = screen.getByTestId('menu-item-image');
-      expect(image.props.source).toEqual(require('@assets/images/placeholder.png'));
+      expect(image.props.source).toEqual(
+        require('@assets/images/placeholder.png'),
+      );
     });
 
     it('should format price correctly for whole numbers', () => {
       const itemWithWholePrice = { ...mockMenuItem, price: 25 };
-      
+
       render(<MenuCard item={itemWithWholePrice} onPress={mockOnPress} />);
-      
+
       expect(screen.getByText('$25.00')).toBeTruthy();
     });
   });
@@ -362,26 +365,30 @@ describe('MenuCard Component', () => {
   describe('Accessibility', () => {
     it('should have accessible label for screen readers', () => {
       render(<MenuCard item={mockMenuItem} onPress={mockOnPress} />);
-      
+
       const card = screen.getByTestId('menu-card');
       expect(card.props.accessibilityLabel).toBe(
-        'Salmon Salad, $39.00, rated 4.5 stars'
+        'Salmon Salad, $39.00, rated 4.5 stars',
       );
     });
 
     it('should have accessible role and hint', () => {
       render(<MenuCard item={mockMenuItem} onPress={mockOnPress} />);
-      
+
       const card = screen.getByTestId('menu-card');
       expect(card.props.accessibilityRole).toBe('button');
-      expect(card.props.accessibilityHint).toBe('Tap to view menu item details');
+      expect(card.props.accessibilityHint).toBe(
+        'Tap to view menu item details',
+      );
     });
   });
 
   describe('Snapshot Testing', () => {
     it('should match snapshot', () => {
-      const { toJSON } = render(<MenuCard item={mockMenuItem} onPress={mockOnPress} />);
-      
+      const { toJSON } = render(
+        <MenuCard item={mockMenuItem} onPress={mockOnPress} />,
+      );
+
       expect(toJSON()).toMatchSnapshot();
     });
   });
@@ -448,7 +455,7 @@ describe('useFetchMenu Hook', () => {
       await waitFor(() => {
         expect(global.fetch).toHaveBeenCalledWith(
           expect.stringContaining('/api/menu'),
-          expect.any(Object)
+          expect.any(Object),
         );
       });
     });
@@ -457,7 +464,7 @@ describe('useFetchMenu Hook', () => {
   describe('Error Handling', () => {
     it('should handle network errors gracefully', async () => {
       (global.fetch as jest.Mock).mockRejectedValueOnce(
-        new Error('Network request failed')
+        new Error('Network request failed'),
       );
 
       const { result } = renderHook(() => useFetchMenu());
@@ -492,7 +499,10 @@ describe('useFetchMenu Hook', () => {
     it('should refetch data when refetch is called', async () => {
       (global.fetch as jest.Mock)
         .mockResolvedValueOnce({ ok: true, json: async () => mockMenuData })
-        .mockResolvedValueOnce({ ok: true, json: async () => [mockMenuData[0]] });
+        .mockResolvedValueOnce({
+          ok: true,
+          json: async () => [mockMenuData[0]],
+        });
 
       const { result } = renderHook(() => useFetchMenu());
 
@@ -596,10 +606,10 @@ it('should update cart total when item is added', () => {
   // Arrange: Set up test data and initial state
   const initialCart = { items: [], total: 0 };
   const newItem = { id: '1', price: 25 };
-  
+
   // Act: Perform the action being tested
   const updatedCart = addItemToCart(initialCart, newItem);
-  
+
   // Assert: Verify the expected outcome
   expect(updatedCart.total).toBe(25);
   expect(updatedCart.items).toHaveLength(1);
@@ -611,11 +621,13 @@ it('should update cart total when item is added', () => {
 Use descriptive test names following the pattern: "should [expected behavior] when [condition]"
 
 ✅ **Good:**
+
 - `should display error message when API call fails`
 - `should disable submit button when form is invalid`
 - `should navigate to detail screen when menu card is tapped`
 
 ❌ **Poor:**
+
 - `test 1`
 - `it works`
 - `check button`
@@ -649,17 +661,24 @@ describe('UserProfile', () => {
     // Reset any global state
   });
 
-  it('test 1', () => { /* ... */ });
-  it('test 2', () => { /* ... */ }); // Should not depend on test 1
+  it('test 1', () => {
+    /* ... */
+  });
+  it('test 2', () => {
+    /* ... */
+  }); // Should not depend on test 1
 });
 ```
 
 ---
+
     await act(async () => {});
     expect(result.current.data.length).toBe(1);
-  });
+
 });
-```
+});
+
+````
 
 ## Integrasi Form Reservasi
 Test memvalidasi tampilan error ketika jumlah tamu kosong atau tanggal tidak dipilih.
@@ -668,8 +687,10 @@ Test memvalidasi tampilan error ketika jumlah tamu kosong atau tanggal tidak dip
 ### Instalasi
 ```bash
 yarn add --dev detox
-```
+````
+
 Tambahkan di `package.json`:
+
 ```json
 {
   "scripts": {
@@ -678,7 +699,9 @@ Tambahkan di `package.json`:
   }
 }
 ```
+
 Konfigurasi `.detoxrc.json` (contoh sederhana):
+
 ```json
 {
   "configurations": {
@@ -693,7 +716,9 @@ Konfigurasi `.detoxrc.json` (contoh sederhana):
   }
 }
 ```
+
 Contoh test E2E:
+
 ```javascript
 // e2e/reservationFlow.test.js
 describe('Reservation Flow', () => {
@@ -712,11 +737,14 @@ describe('Reservation Flow', () => {
 ```
 
 ## Strategi Mocking
+
 - Gunakan `jest.fn()` untuk network sederhana.
 - Abstraksikan fetch di service agar mudah di-mock.
 
 ## Pipeline CI (Contoh GitHub Actions)
+
 `.github/workflows/ci.yml` snippet:
+
 ```yaml
 name: CI
 on: [pull_request]
@@ -739,25 +767,30 @@ jobs:
 ```
 
 ## Prioritas Penulisan Test (Urutan)
+
 1. Util & hooks murni logic.
 2. Komponen UI dengan kondisi (loading/error/empty).
 3. Flow kritis (checkout, reservasi) integrasi.
 4. Edge case (jaringan gagal, data kosong).
 
 ## Anti-Pattern
-| Pola Buruk | Dampak |
-|-----------|--------|
-| Snapshot berlebihan (seluruh screen kompleks) | Sulit maintenance | 
-| Mock terlalu dalam (sampai semua library) | Hilang nilai test | 
-| Test bergantung urutan global | Flaky | 
+
+| Pola Buruk                                    | Dampak            |
+| --------------------------------------------- | ----------------- |
+| Snapshot berlebihan (seluruh screen kompleks) | Sulit maintenance |
+| Mock terlalu dalam (sampai semua library)     | Hilang nilai test |
+| Test bergantung urutan global                 | Flaky             |
 
 ## Evaluasi Berkala
+
 Per sprint: review file paling sering berubah tanpa test -> tambah test.
 
 ## Cara Mengganti Placeholder
+
 `<<NODE_LTS_VERSION>>` ganti dengan versi Node (misal 20). Jika ada `<<API_BASE_URL>>` di service test, isi sesuai environment.
 
 ## Related Docs
+
 - `DEFINITION_OF_DONE.md`
 - `PATH_ALIASES_SETUP.md`
 - `DEVELOPMENT_CHECKLIST.md`

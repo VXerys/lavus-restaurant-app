@@ -1,4 +1,4 @@
-# ✅ FIRESTORE UPLOAD - FIXED & READY!
+# ✅ FIRESTORE UPLOAD - FIXED & READY
 
 **Status:** All errors fixed - Ready to test  
 **Date:** 2025-11-13  
@@ -8,15 +8,17 @@
 
 ## 🔧 Perbaikan Yang Dilakukan
 
-### 1. ❌ Error Sebelumnya:
-```
+### 1. ❌ Error Sebelumnya
+
+```text
 TypeError: this._firestore.native.documentSet is not a function
 TypeError: this._firestore.native.documentBatch is not a function
 ```
 
-### 2. ✅ Solusi Yang Diterapkan:
+### 2. ✅ Solusi Yang Diterapkan
 
 #### **Upload Method:**
+
 - ✅ Gunakan `firestore()` instance dengan benar
 - ✅ Gunakan `collection().add()` method (paling kompatibel)
 - ✅ Gunakan `firestore.Timestamp` untuk dates
@@ -25,6 +27,7 @@ TypeError: this._firestore.native.documentBatch is not a function
 - ✅ Progress tracking dengan counter
 
 #### **Key Changes:**
+
 ```typescript
 // ❌ BEFORE (Error):
 await firestore().collection('menus').doc(menu.id).set({...})
@@ -42,9 +45,10 @@ const docRef = await db.collection('menus').add({
 
 ## 📊 Data Structure
 
-### Firestore Collections:
+### Firestore Collections
 
-#### **menus** collection:
+#### **menus** collection
+
 ```typescript
 {
   // Auto-generated document ID (bukan originalId)
@@ -61,7 +65,8 @@ const docRef = await db.collection('menus').add({
 }
 ```
 
-#### **hotDeals** collection:
+#### **hotDeals** collection
+
 ```typescript
 {
   // Auto-generated document ID
@@ -82,9 +87,11 @@ const docRef = await db.collection('menus').add({
 ## 🚀 Cara Test (Step by Step)
 
 ### Step 1: Pastikan Firestore Database Sudah Dibuat
+
 ✅ Di Firebase Console → Cloud Firestore → Database created
 
 ### Step 2: Run Aplikasi
+
 ```powershell
 npx react-native run-android
 ```
@@ -92,7 +99,8 @@ npx react-native run-android
 ### Step 3: Monitor Console Output
 
 **Expected output:**
-```
+
+```text
 📦 Starting menu upload...
 📦 Found 17 menu items to upload
 ⏳ Uploading 1/17: Salmon Salad...
@@ -113,8 +121,10 @@ npx react-native run-android
 ```
 
 ### Step 4: Alert Popup
+
 Akan muncul alert:
-```
+
+```text
 Success!
 Uploaded successfully!
 
@@ -125,6 +135,7 @@ You can now toggle to Firestore mode in HomeScreen!
 ```
 
 ### Step 5: Verify di Firebase Console
+
 1. Buka Firebase Console
 2. Go to Cloud Firestore → Data
 3. Lihat collections:
@@ -132,17 +143,20 @@ You can now toggle to Firestore mode in HomeScreen!
    - ✅ `hotDeals` (6 documents)
 
 ### Step 6: Test di App
+
 1. Buka **HomeScreen**
 2. Ada tombol toggle (dev mode): **📦 Mock Data**
 3. Tap untuk switch ke: **🔥 Firestore**
 4. **Data muncul dengan gambar lokal!** ✨
 
 ### Step 7: Comment Upload Function
+
 **PENTING!** Setelah upload berhasil, edit `App.tsx`:
+
 ```typescript
 useEffect(() => {
   configureGoogleSignIn();
-  
+
   // 🔥 FIRESTORE: Upload sample data (RUN ONCE!)
   // uploadSampleData(); // ← COMMENT THIS!
 }, []);
@@ -152,9 +166,10 @@ useEffect(() => {
 
 ## 🔍 Troubleshooting
 
-### Jika Masih Error:
+### Jika Masih Error
 
 #### 1. **Clean & Rebuild**
+
 ```powershell
 cd android
 .\gradlew clean
@@ -163,7 +178,9 @@ npx react-native run-android
 ```
 
 #### 2. **Check Firestore Rules**
+
 Di Firebase Console → Firestore → Rules, pastikan:
+
 ```javascript
 rules_version = '2';
 service cloud.firestore {
@@ -176,34 +193,41 @@ service cloud.firestore {
 ```
 
 #### 3. **Check Network Connection**
+
 - Firestore butuh internet untuk upload
 - Check apakah emulator bisa akses internet
 
 #### 4. **Check Console Logs**
+
 Kalau ada error, console akan show:
-```
+
+```text
 ❌ Failed to upload Salmon Salad: [error message]
 ```
 
 #### 5. **Verify Firebase Config**
+
 Check `android/app/google-services.json` ada dan valid
 
 ---
 
 ## 📈 Expected Results
 
-### ✅ Success Indicators:
+### ✅ Success Indicators
 
 1. **Console Logs:**
+
    - ✅ "Starting menu upload..."
    - ✅ "✅ [X/17] Menu Name (ID: ...)"
    - ✅ "🎉 Menu upload complete"
    - ✅ "🎉 Hot deals upload complete"
 
 2. **Alert Popup:**
+
    - ✅ "Success! Uploaded successfully!"
 
 3. **Firebase Console:**
+
    - ✅ `menus` collection with 17 docs
    - ✅ `hotDeals` collection with 6 docs
 
@@ -239,7 +263,7 @@ Aplikasi Anda **PERFECT SCORE (97-100%)** jika:
 ✅ Local images display  
 ✅ Loading states functional  
 ✅ Error handling proper  
-✅ Toggle feature working  
+✅ Toggle feature working
 
 ---
 

@@ -3,6 +3,7 @@
 ## 📋 Alur Kerja Upload Data
 
 ### **Flow Diagram:**
+
 ```
 App Start
    ↓
@@ -45,7 +46,9 @@ Show Result Alert
 ### **Problem 1: "Upload Failed, No Data Was Uploaded"**
 
 #### **Penyebab A: Firestore Belum Diaktifkan**
+
 **Solusi:**
+
 1. Buka [Firebase Console](https://console.firebase.google.com)
 2. Pilih project Anda
 3. Menu kiri: **Firestore Database**
@@ -55,9 +58,12 @@ Show Result Alert
 7. Klik **"Enable"**
 
 #### **Penyebab B: Permission Denied (Rules terlalu ketat)**
+
 **Solusi:**
+
 1. Firebase Console → **Firestore Database** → Tab **"Rules"**
 2. Paste rules ini (untuk development):
+
 ```javascript
 rules_version = '2';
 service cloud.firestore {
@@ -68,17 +74,21 @@ service cloud.firestore {
   }
 }
 ```
+
 3. Klik **"Publish"**
 
 ⚠️ **Warning:** Rules ini untuk development only! Untuk production, gunakan rules yang lebih secure.
 
 #### **Penyebab C: google-services.json Salah/Tidak Ada**
+
 **Solusi:**
+
 1. Firebase Console → Project Settings → **"Your apps"**
 2. Pilih Android app (atau add app jika belum ada)
 3. Download **google-services.json** yang baru
 4. Copy ke: `android/app/google-services.json`
 5. Rebuild app:
+
 ```bash
 cd android
 ./gradlew clean
@@ -87,13 +97,17 @@ npx react-native run-android
 ```
 
 #### **Penyebab D: Tidak Ada Internet**
+
 **Solusi:**
+
 - Pastikan device/emulator terhubung ke internet
 - Test dengan buka browser di emulator
 - Cek WiFi/data cellular
 
 #### **Penyebab E: Firebase Package Belum Terinstall Benar**
+
 **Solusi:**
+
 ```bash
 # Reinstall packages
 npm install @react-native-firebase/app @react-native-firebase/firestore
@@ -114,19 +128,21 @@ npx react-native run-android
 ### **Step 1: Test Connection**
 
 Edit `App.tsx`:
+
 ```typescript
 useEffect(() => {
   configureGoogleSignIn();
-  
+
   // UNCOMMENT THIS:
   testFirestoreConnection();
-  
+
   // COMMENT THIS:
   // uploadSampleData();
 }, []);
 ```
 
 Run app dan lihat hasil test di console. Akan ada 5 test:
+
 1. ✅ Import check
 2. ✅ Instance check
 3. ✅ Connection check
@@ -138,13 +154,14 @@ Jika **SEMUA PASS** → lanjut ke Step 2
 ### **Step 2: Upload Data**
 
 Edit `App.tsx`:
+
 ```typescript
 useEffect(() => {
   configureGoogleSignIn();
-  
+
   // COMMENT THIS:
   // testFirestoreConnection();
-  
+
   // UNCOMMENT THIS:
   uploadSampleData();
 }, []);
@@ -157,6 +174,7 @@ Run app dan tunggu alert "Success!"
 Buka Firebase Console → Firestore Database
 
 Harus ada 2 collections:
+
 - **menus** (13 documents)
 - **hotDeals** (3 documents)
 
@@ -165,6 +183,7 @@ Harus ada 2 collections:
 ## 📊 Understanding Console Logs
 
 ### **Successful Upload Logs:**
+
 ```
 🚀 Starting Firestore data upload...
 🔍 Checking if data already exists...
@@ -184,6 +203,7 @@ Harus ada 2 collections:
 ```
 
 ### **Failed Upload Logs (Connection Issue):**
+
 ```
 🚀 Starting Firestore data upload...
 🔍 Checking if data already exists...
@@ -193,23 +213,28 @@ Harus ada 2 collections:
 🔄 Testing Firestore connection...
 ❌ Firestore connection failed: [ERROR]
 ```
+
 **→ Problem: Cannot connect to Firestore**
 
 ### **Failed Upload Logs (Permission Issue):**
+
 ```
 ...
 ✅ Firestore connection successful
 ⏳ [1/13] Uploading: Salmon Salad...
 ❌ Failed to upload Salmon Salad: [permission-denied]
 ```
+
 **→ Problem: Firestore rules blocking access**
 
 ### **Failed Upload Logs (No Mock Data):**
+
 ```
 📦 Starting menu upload...
 📦 Found 0 menu items to upload
 ❌ No menu data found in mock files
 ```
+
 **→ Problem: Mock files not found/imported correctly**
 
 ---
@@ -217,6 +242,7 @@ Harus ada 2 collections:
 ## 🔍 Debugging Checklist
 
 ### **Before Running Upload:**
+
 - [ ] Firebase project created
 - [ ] Firestore Database enabled
 - [ ] Rules set to allow read/write (test mode)
@@ -226,11 +252,13 @@ Harus ada 2 collections:
 - [ ] Device/emulator has internet connection
 
 ### **During Upload:**
+
 - [ ] Watch Metro Bundler console for logs
 - [ ] Check for error messages
 - [ ] Note where it stops (connection? permission? data?)
 
 ### **After Upload:**
+
 - [ ] Check Firebase Console → Firestore Database
 - [ ] Verify collections exist (menus, hotDeals)
 - [ ] Count documents (should be 13 menus, 3 deals)
@@ -241,6 +269,7 @@ Harus ada 2 collections:
 ## 💡 Quick Commands
 
 ### **Check if Firestore is working:**
+
 ```bash
 # Run app
 npx react-native run-android
@@ -250,6 +279,7 @@ npx react-native log-android
 ```
 
 ### **Clean rebuild if needed:**
+
 ```bash
 cd android
 ./gradlew clean
@@ -258,6 +288,7 @@ npx react-native run-android
 ```
 
 ### **Check Firebase package:**
+
 ```bash
 npm list @react-native-firebase/firestore
 ```
@@ -286,6 +317,7 @@ src/
 ### **In Firebase Console:**
 
 **Collection: `menus`** (13 documents)
+
 ```
 Document fields:
 - originalId: string
@@ -301,6 +333,7 @@ Document fields:
 ```
 
 **Collection: `hotDeals`** (3 documents)
+
 ```
 Document fields:
 - originalId: string
@@ -319,6 +352,7 @@ Document fields:
 ## 🆘 Still Having Issues?
 
 ### **Check Console Output:**
+
 1. Run: `npx react-native run-android`
 2. Open another terminal: `npx react-native log-android`
 3. Copy **SEMUA** log output dari console
@@ -329,13 +363,13 @@ Document fields:
 
 ### **Common Error Messages:**
 
-| Error | Meaning | Solution |
-|-------|---------|----------|
-| `Default FirebaseApp is not initialized` | Firebase not setup | Check google-services.json |
-| `permission-denied` | Firestore rules blocking | Update Firestore rules |
-| `network-request-failed` | No internet | Check connection |
-| `not-found` | Collection/doc missing | Normal for first run |
-| `already-exists` | Duplicate write | Data already uploaded |
+| Error                                    | Meaning                  | Solution                   |
+| ---------------------------------------- | ------------------------ | -------------------------- |
+| `Default FirebaseApp is not initialized` | Firebase not setup       | Check google-services.json |
+| `permission-denied`                      | Firestore rules blocking | Update Firestore rules     |
+| `network-request-failed`                 | No internet              | Check connection           |
+| `not-found`                              | Collection/doc missing   | Normal for first run       |
+| `already-exists`                         | Duplicate write          | Data already uploaded      |
 
 ---
 

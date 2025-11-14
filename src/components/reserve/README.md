@@ -26,11 +26,13 @@ src/
 Komponen untuk memilih tanggal reservasi dengan tampilan 7 hari ke depan.
 
 **Props:**
+
 - `selectedDate: Date` - Tanggal yang dipilih
 - `onDateSelect: (date: Date) => void` - Callback saat tanggal dipilih
 - `monthName: string` - Nama bulan yang ditampilkan
 
 **Features:**
+
 - Generate 7 hari otomatis dari hari ini
 - Highlight tanggal yang dipilih
 - Responsive design
@@ -41,12 +43,14 @@ Komponen untuk memilih tanggal reservasi dengan tampilan 7 hari ke depan.
 Komponen untuk memilih waktu dengan format 12-hour dan AM/PM.
 
 **Props:**
+
 - `selectedTime: Date` - Waktu yang dipilih
 - `onPeriodChange: (period: 'AM' | 'PM') => void` - Callback untuk ubah AM/PM
 - `onHourChange: (hour: number) => void` - Callback untuk ubah jam
 - `onMinuteChange: (minute: number) => void` - Callback untuk ubah menit
 
 **Features:**
+
 - Hour picker (1-12)
 - Minute picker (0-59)
 - AM/PM toggle
@@ -58,12 +62,14 @@ Komponen untuk memilih waktu dengan format 12-hour dan AM/PM.
 Komponen counter dengan visualisasi meja dinamis.
 
 **Props:**
+
 - `count: number` - Jumlah orang saat ini
 - `onIncrement: () => void` - Callback untuk tambah jumlah
 - `onDecrement: () => void` - Callback untuk kurangi jumlah
 - `maxCount?: number` - Maksimal jumlah orang (default: 8)
 
 **Features:**
+
 - Counter dengan button +/-
 - Dynamic table visualization (1-8 orang)
 - Badge indicator jumlah orang
@@ -77,6 +83,7 @@ Komponen counter dengan visualisasi meja dinamis.
 Hook untuk mengelola state dan logic reservasi.
 
 **Returns:**
+
 ```typescript
 {
   selectedDate: Date;
@@ -94,6 +101,7 @@ Hook untuk mengelola state dan logic reservasi.
 ```
 
 **Features:**
+
 - Centralized state management
 - Date/time manipulation logic
 - Validation logic
@@ -130,20 +138,20 @@ const ReserveScreen = () => {
           onDateSelect={setSelectedDate}
           monthName={monthName}
         />
-        
+
         <TimePicker
           selectedTime={selectedTime}
           onPeriodChange={handlePeriodChange}
           onHourChange={handleHourChange}
           onMinuteChange={handleMinuteChange}
         />
-        
+
         <PeopleCounter
           count={peopleCount}
           onIncrement={incrementPeople}
           onDecrement={decrementPeople}
         />
-        
+
         <Button onPress={handleReservation} />
       </ScrollView>
     </SafeAreaView>
@@ -154,21 +162,25 @@ const ReserveScreen = () => {
 ## ✨ Benefits
 
 ### 1. **Modular & Reusable**
+
 - Setiap komponen independen
 - Bisa digunakan di screen lain
 - Easy to test
 
 ### 2. **Maintainable**
+
 - Separation of concerns
 - Logic terpisah dari UI (custom hook)
 - Clean code structure
 
 ### 3. **Type Safe**
+
 - Full TypeScript support
 - Clear prop interfaces
 - Better IDE autocomplete
 
 ### 4. **Scalable**
+
 - Easy to extend
 - Add features tanpa merusak existing code
 - Component composition
@@ -176,11 +188,13 @@ const ReserveScreen = () => {
 ## 📊 Code Metrics
 
 **Before Refactoring:**
+
 - ReserveScreen.tsx: ~500 lines
 - All logic in one file
 - Hard to maintain
 
 **After Refactoring:**
+
 - ReserveScreen.tsx: ~120 lines (76% reduction!)
 - DatePicker.tsx: ~150 lines
 - TimePicker.tsx: ~180 lines
@@ -192,6 +206,7 @@ const ReserveScreen = () => {
 ## 🎨 Design System
 
 All components follow:
+
 - Responsive design (scaleWidth, scaleHeight, scaleFontSize)
 - Theme tokens (Colors, Spacing, Radius)
 - Consistent styling

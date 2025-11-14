@@ -1,14 +1,17 @@
 # Reservation Confirmation Screen
 
 ## Overview
+
 The Confirmation Screen displays a summary of the user's reservation details before final confirmation. It presents the guest count, date, and time in a clean, centered layout matching the Figma design 100%.
 
 ## Component Structure
 
 ### ConfirmationScreen.tsx
+
 Main confirmation screen component that displays reservation overview.
 
 **Props:**
+
 - `onBack?: () => void` - Handler for back button navigation
 - `onConfirm?: () => void` - Handler for confirm button press
 - `guests: number` - Number of guests (0-8)
@@ -16,6 +19,7 @@ Main confirmation screen component that displays reservation overview.
 - `time: Date` - Selected reservation time
 
 **Features:**
+
 - ✅ Back button navigation
 - ✅ Restaurant logo display
 - ✅ Reservation summary (Guests, Day, Time)
@@ -48,6 +52,7 @@ Main confirmation screen component that displays reservation overview.
 ## Usage
 
 ### Navigation Flow
+
 ```typescript
 ReserveScreen
      ↓ (Reserve button clicked)
@@ -63,6 +68,7 @@ navigation.navigate('Home', { initialTab: 'home' })
 ```
 
 ### Example Implementation
+
 ```typescript
 <ConfirmationScreen
   onBack={() => navigation.goBack()}
@@ -80,18 +86,21 @@ navigation.navigate('Home', { initialTab: 'home' })
 ## Styling & Design
 
 ### Typography
+
 - **Title**: Serif font, 40px, black
 - **Subtitle**: Regular font, 16px, black
 - **Detail Labels**: Regular font, 18px, black
 - **Detail Values**: SemiBold font, 24px, black
 
 ### Layout
+
 - **Background**: Colors.bg (light background)
 - **Logo Size**: 120x120 (scaled)
 - **Button Width**: 280px (scaled)
 - **Details Layout**: Flexbox row, evenly spaced
 
 ### Spacing
+
 - Logo to Title: 32px
 - Title to Subtitle: 12px
 - Subtitle to Details: 48px
@@ -100,21 +109,37 @@ navigation.navigate('Home', { initialTab: 'home' })
 ## Utility Functions
 
 ### formatDate(dateObj: Date): string
+
 Formats Date object to "MMM DD" format (e.g., "Aug 30")
 
 **Implementation:**
+
 ```typescript
-const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const monthNames = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
 const month = monthNames[dateObj.getMonth()];
 const day = dateObj.getDate();
 return `${month} ${day}`;
 ```
 
 ### formatTime(timeObj: Date): string
+
 Formats Date object to "HH:MM" format in 24-hour (e.g., "18:30")
 
 **Implementation:**
+
 ```typescript
 const hours = timeObj.getHours().toString().padStart(2, '0');
 const minutes = timeObj.getMinutes().toString().padStart(2, '0');
@@ -124,14 +149,16 @@ return `${hours}:${minutes}`;
 ## Responsive Design
 
 All dimensions use responsive scaling functions:
+
 - `scaleWidth()` - Horizontal dimensions
-- `scaleHeight()` - Vertical dimensions  
+- `scaleHeight()` - Vertical dimensions
 - `scaleFontSize()` - Font sizes
 - `moderateScale()` - Icons and small elements
 
 ## Integration Points
 
 ### RootNavigator.tsx
+
 ```typescript
 <Stack.Screen name="ReservationConfirmation">
   {({ navigation, route }) => (
@@ -150,6 +177,7 @@ All dimensions use responsive scaling functions:
 ```
 
 ### ReserveScreen.tsx
+
 ```typescript
 const handleReservation = () => {
   navigation.navigate('ReservationConfirmation', {
@@ -168,6 +196,7 @@ const handleReservation = () => {
 The restaurant has a limited number of tables for each party size. Each table configuration (1-person to 8-person) has exactly **2 slots available**.
 
 **Slot Allocation:**
+
 - 1-person table: 2 slots
 - 2-person table: 2 slots
 - 3-person table: 2 slots
@@ -180,6 +209,7 @@ The restaurant has a limited number of tables for each party size. Each table co
 **Implementation Strategy:**
 
 1. **Real-time Availability Check**
+
 ```typescript
 interface TableSlot {
   tableSize: number; // 1-8 people
@@ -194,13 +224,13 @@ interface TableSlot {
 const checkTableAvailability = async (
   date: Date,
   time: Date,
-  peopleCount: number
+  peopleCount: number,
 ): Promise<{ available: boolean; remainingSlots: number }> => {
   // Query Firebase for reservations on this date/time
   const reservations = await getReservations(date, time, peopleCount);
   const bookedSlots = reservations.length;
   const remainingSlots = 2 - bookedSlots;
-  
+
   return {
     available: remainingSlots > 0,
     remainingSlots: remainingSlots,
@@ -213,6 +243,7 @@ const checkTableAvailability = async (
 Show availability information to users when they select table size:
 
 **Scenario A - Table Available:**
+
 ```
 ✅ Great choice!
 There are 2 slots available for {peopleCount}-person tables
@@ -220,6 +251,7 @@ on {date} at {time}.
 ```
 
 **Scenario B - Limited Availability:**
+
 ```
 ⚠️ Almost full!
 Only 1 slot remaining for {peopleCount}-person tables
@@ -228,6 +260,7 @@ Book now before it's gone!
 ```
 
 **Scenario C - Fully Booked:**
+
 ```
 ❌ Sorry, fully booked!
 All {peopleCount}-person tables are reserved
@@ -240,6 +273,7 @@ Suggestions:
 ```
 
 3. **Firebase Database Structure**
+
 ```typescript
 // Firebase Realtime Database structure
 {
@@ -285,6 +319,7 @@ Suggestions:
 4. **UI Components for Availability Display**
 
 **In ReserveScreen (PeopleCounter):**
+
 ```typescript
 const [availability, setAvailability] = useState<{
   available: boolean;
@@ -296,31 +331,34 @@ useEffect(() => {
     const result = await checkTableAvailability(
       selectedDate,
       selectedTime,
-      peopleCount
+      peopleCount,
     );
     setAvailability(result);
   };
-  
+
   if (peopleCount > 0) {
     checkAvailability();
   }
 }, [selectedDate, selectedTime, peopleCount]);
 
 // Show availability badge
-{availability && (
-  <View style={styles.availabilityBadge}>
-    <AppText style={styles.availabilityText}>
-      {availability.remainingSlots === 0 
-        ? '❌ Fully Booked'
-        : availability.remainingSlots === 1
-        ? '⚠️ Only 1 slot left!'
-        : '✅ Available'}
-    </AppText>
-  </View>
-)}
+{
+  availability && (
+    <View style={styles.availabilityBadge}>
+      <AppText style={styles.availabilityText}>
+        {availability.remainingSlots === 0
+          ? '❌ Fully Booked'
+          : availability.remainingSlots === 1
+          ? '⚠️ Only 1 slot left!'
+          : '✅ Available'}
+      </AppText>
+    </View>
+  );
+}
 ```
 
 **In ConfirmationScreen:**
+
 ```typescript
 const [slotConfirmation, setSlotConfirmation] = useState<string>('');
 
@@ -329,17 +367,17 @@ useEffect(() => {
     try {
       // Check one more time before confirming
       const available = await checkTableAvailability(date, time, guests);
-      
+
       if (!available.available) {
         // Show error: Table just got booked by someone else
         Alert.alert(
           'Sorry!',
           'This table was just booked by another guest. Please try a different time.',
-          [{ text: 'OK', onPress: () => navigation.goBack() }]
+          [{ text: 'OK', onPress: () => navigation.goBack() }],
         );
         return;
       }
-      
+
       // Reserve the slot temporarily
       const confirmationNumber = await reserveTemporarySlot(date, time, guests);
       setSlotConfirmation(confirmationNumber);
@@ -347,7 +385,7 @@ useEffect(() => {
       console.error('Error reserving slot:', error);
     }
   };
-  
+
   reserveSlot();
 }, []);
 ```
@@ -355,38 +393,39 @@ useEffect(() => {
 5. **Backend Firebase Functions**
 
 **Reserve Slot Function:**
+
 ```typescript
 export const reserveTableSlot = functions.https.onCall(
   async (data, context) => {
     const { date, time, peopleCount, userId } = data;
-    
+
     // Validate user authentication
     if (!context.auth) {
       throw new functions.https.HttpsError(
         'unauthenticated',
-        'User must be authenticated'
+        'User must be authenticated',
       );
     }
-    
+
     // Get current slots
-    const slotsRef = admin.database().ref(
-      `reservations/${date}/${time}/${peopleCount}-person`
-    );
-    
+    const slotsRef = admin
+      .database()
+      .ref(`reservations/${date}/${time}/${peopleCount}-person`);
+
     const snapshot = await slotsRef.once('value');
     const slots = snapshot.val() || {};
-    
+
     // Find available slot
-    const slotNumber = slots.slot1 === null ? 'slot1' : 
-                       slots.slot2 === null ? 'slot2' : null;
-    
+    const slotNumber =
+      slots.slot1 === null ? 'slot1' : slots.slot2 === null ? 'slot2' : null;
+
     if (!slotNumber) {
       throw new functions.https.HttpsError(
         'resource-exhausted',
-        'No available slots for this table size'
+        'No available slots for this table size',
       );
     }
-    
+
     // Reserve the slot
     const confirmationNumber = generateConfirmationNumber();
     await slotsRef.child(slotNumber).set({
@@ -396,9 +435,9 @@ export const reserveTableSlot = functions.https.onCall(
       status: 'confirmed',
       guests: peopleCount,
     });
-    
+
     return { success: true, confirmationNumber };
-  }
+  },
 );
 ```
 
@@ -424,6 +463,7 @@ User Flow:
 7. **Additional Features**
 
 **Slot Release on Timeout:**
+
 ```typescript
 // If user doesn't confirm within 5 minutes, release the temporary hold
 const HOLD_TIMEOUT = 5 * 60 * 1000; // 5 minutes
@@ -434,6 +474,7 @@ setTimeout(() => {
 ```
 
 **Waitlist System:**
+
 ```typescript
 // If all slots are full, offer waitlist option
 if (!availability.available) {
@@ -444,18 +485,20 @@ if (!availability.available) {
     onJoinWaitlist: async () => {
       await joinWaitlist({ date, time, peopleCount, userId });
       // Notify when slot becomes available
-    }
+    },
   });
 }
 ```
 
 **Admin Dashboard:**
+
 - View all reservations by date/time
 - See slot utilization (e.g., "4/16 slots booked today")
 - Manually release/block slots
 - Generate reports on popular times/table sizes
 
 ### Backend Integration
+
 ```typescript
 const onConfirm = async () => {
   try {
@@ -465,10 +508,10 @@ const onConfirm = async () => {
       time,
       userId: currentUser.id,
     });
-    
+
     if (response.success) {
       navigation.navigate('ReservationSuccess', {
-        confirmationNumber: response.confirmationNumber
+        confirmationNumber: response.confirmationNumber,
       });
     }
   } catch (error) {
@@ -478,6 +521,7 @@ const onConfirm = async () => {
 ```
 
 ### Additional Features
+
 - [ ] Add loading state during submission
 - [ ] Add error handling UI
 - [ ] Add confirmation number generation

@@ -1,4 +1,4 @@
-# 🚀 FIRESTORE READY TO TEST!
+# 🚀 FIRESTORE READY TO TEST
 
 **Status:** ✅ Setup Complete - Ready untuk Upload Data  
 **Date:** 2025-11-13
@@ -8,10 +8,12 @@
 ## ✅ Yang Sudah Fixed
 
 ### 1. **Batch Write Error** ✅
+
 - ❌ BEFORE: `documentBatch is not a function`
 - ✅ AFTER: Upload satu-per-satu (lebih reliable)
 
 ### 2. **Images dari Assets** ✅
+
 - ❌ BEFORE: Pakai Unsplash URLs (butuh internet)
 - ✅ AFTER: Pakai local images dari `assets/images/MenuImages`
 - Data di Firestore store `imagePath` reference
@@ -22,7 +24,9 @@
 ## 📦 Data yang Akan Di-Upload
 
 ### Menus (17 items total)
+
 Dari mock data yang sudah ada:
+
 - **Salads:** 5 items (salad1.jpg - salad5.jpg)
 - **Drinks:** 5 items (drink1.jpg - drink5.jpg)
 - **Pizzas:** 3 items (pizza1.jpg - pizza3.jpg)
@@ -30,7 +34,9 @@ Dari mock data yang sudah ada:
 - **Pastas:** 2 items (pasta1.jpg - pasta2.jpg)
 
 ### Hot Deals (6 items)
+
 Dari mock data yang sudah ada:
+
 - Customer Benefits deals
 - New Features promo
 - Seasonal offers
@@ -54,6 +60,7 @@ npx react-native run-android
 Saat app pertama kali dibuka, akan otomatis upload data ke Firestore.
 
 **Perhatikan:**
+
 - Console log akan muncul: "📦 Uploading menu items..."
 - Tunggu sampai muncul: "✅ Menu items uploaded successfully!"
 - Lalu: "🔥 Uploading hot deals..."
@@ -62,7 +69,7 @@ Saat app pertama kali dibuka, akan otomatis upload data ke Firestore.
 
 ### Step 3: Verify di Firebase Console
 
-1. Buka Firebase Console: https://console.firebase.google.com/
+1. Buka Firebase Console: <https://console.firebase.google.com/>
 2. Pilih project "lavus-app"
 3. Klik "Firestore Database"
 4. Anda akan lihat 2 collections:
@@ -80,18 +87,21 @@ Saat app pertama kali dibuka, akan otomatis upload data ke Firestore.
 
 ## 🔍 Yang Harus Dicek
 
-### ✅ Upload Berhasil:
+### ✅ Upload Berhasil
+
 - [ ] Alert "Success!" muncul dengan jumlah items
 - [ ] Console log tidak ada error
 - [ ] Firebase Console menunjukkan data
 
-### ✅ Display Berhasil:
+### ✅ Display Berhasil
+
 - [ ] Toggle ke Firestore mode tidak error
 - [ ] Menu items muncul dengan gambar yang benar
 - [ ] Loading indicator muncul saat fetch
 - [ ] Filtering by category bekerja
 
-### ✅ Images Matching:
+### ✅ Images Matching
+
 - [ ] Salmon Salad pakai salad1.jpg
 - [ ] Shrimp Salad pakai salad2.jpg
 - [ ] Dan seterusnya...
@@ -106,7 +116,7 @@ Saat app pertama kali dibuka, akan otomatis upload data ke Firestore.
 useEffect(() => {
   // Initialize Google Sign-In
   configureGoogleSignIn();
-  
+
   // 🔥 FIRESTORE: Upload sample data (RUN ONCE!)
   // After successful upload, comment this line to prevent duplicates
   // uploadSampleData(); // ← COMMENT THIS!
@@ -118,6 +128,7 @@ useEffect(() => {
 ## 📊 Firestore Structure
 
 ### Collection: `menus`
+
 ```typescript
 {
   id: "salad-1",
@@ -134,6 +145,7 @@ useEffect(() => {
 ```
 
 ### Collection: `hotDeals`
+
 ```typescript
 {
   id: "hd-001",
@@ -160,6 +172,7 @@ App akan otomatis match `imagePath` dengan local images:
 4. **Display** gambar lokal yang sudah ada ✨
 
 **Advantage:**
+
 - ✅ Tidak perlu upload gambar ke Firebase Storage
 - ✅ App bekerja offline dengan gambar
 - ✅ Konsisten dengan mock data yang ada
@@ -169,7 +182,7 @@ App akan otomatis match `imagePath` dengan local images:
 
 ## 🚀 Next Steps (Optional)
 
-### Setelah Basic Working:
+### Setelah Basic Working
 
 1. **Update HomeScreen original** untuk use Firestore by default
 2. **Add Hot Deal screen** integration
@@ -177,7 +190,7 @@ App akan otomatis match `imagePath` dengan local images:
 4. **Add Reservations** history
 5. **Remove mock data** dan full pakai Firestore
 
-### Future Enhancements:
+### Future Enhancements
 
 1. **Firebase Storage** untuk upload custom images
 2. **Admin panel** untuk manage menu via web
@@ -197,13 +210,14 @@ Aplikasi Anda akan perfect score (97-100%) jika:
 ✅ Images dari local assets muncul dengan benar  
 ✅ Loading states working  
 ✅ Error handling proper  
-✅ Toggle feature working  
+✅ Toggle feature working
 
 ---
 
 ## 📞 Troubleshooting
 
-### Error saat upload:
+### Error saat upload
+
 ```bash
 # Rebuild clean
 cd android
@@ -212,12 +226,14 @@ cd ..
 npx react-native run-android
 ```
 
-### Data tidak muncul:
+### Data tidak muncul
+
 - Check Firebase Console apakah data ada
 - Check network connection
 - Toggle ke Mock Data dulu, lalu balik ke Firestore
 
-### Images tidak muncul:
+### Images tidak muncul
+
 - Verify local images ada di `src/assets/images/MenuImages`
 - Check console untuk error messages
 

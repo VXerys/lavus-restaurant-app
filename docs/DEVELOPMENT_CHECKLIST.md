@@ -47,11 +47,13 @@ This checklist integrates seamlessly with:
 #### Core System Requirements
 
 **Operating System Compatibility:**
+
 - **Windows 10/11:** Recommended with WSL2 for enhanced performance
 - **macOS 12+:** Required for iOS development; optional for Android-only
 - **Linux (Ubuntu 20.04+):** Supported for Android development
 
 **Hardware Recommendations:**
+
 - **RAM:** Minimum 8GB (16GB+ recommended for emulator performance)
 - **Storage:** 20GB+ free space for SDKs, emulators, and dependencies
 - **Processor:** Intel Core i5 / AMD Ryzen 5 or better with virtualization support
@@ -63,6 +65,7 @@ This checklist integrates seamlessly with:
 **Installation Steps:**
 
 - [ ] **Install Node.js LTS** (v20.x recommended as of Nov 2025)
+
   - Download from: [https://nodejs.org/](https://nodejs.org/)
   - Windows: Use installer with automatic PATH configuration
   - macOS: `brew install node@20`
@@ -73,7 +76,7 @@ This checklist integrates seamlessly with:
   ```powershell
   node -v
   # Expected output: v20.x.x
-  
+
   npm -v
   # Expected output: 10.x.x
   ```
@@ -93,11 +96,11 @@ This checklist integrates seamlessly with:
 
 **Troubleshooting:**
 
-| Issue | Symptom | Solution |
-|-------|---------|----------|
-| `node: command not found` | Terminal doesn't recognize node command | Restart terminal; verify PATH includes Node.js installation directory |
-| Permission errors (macOS/Linux) | `EACCES` errors during npm install | Use `sudo npm install -g yarn` or configure npm prefix: `npm config set prefix ~/.npm-global` |
-| Version mismatch | Wrong Node version installed | Use `nvm` (Node Version Manager) to switch versions: `nvm install 20 && nvm use 20` |
+| Issue                           | Symptom                                 | Solution                                                                                      |
+| ------------------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `node: command not found`       | Terminal doesn't recognize node command | Restart terminal; verify PATH includes Node.js installation directory                         |
+| Permission errors (macOS/Linux) | `EACCES` errors during npm install      | Use `sudo npm install -g yarn` or configure npm prefix: `npm config set prefix ~/.npm-global` |
+| Version mismatch                | Wrong Node version installed            | Use `nvm` (Node Version Manager) to switch versions: `nvm install 20 && nvm use 20`           |
 
 ---
 
@@ -106,6 +109,7 @@ This checklist integrates seamlessly with:
 **Android development requires JDK 17:**
 
 - [ ] **Download JDK 17**
+
   - **Windows:** [Adoptium Temurin 17](https://adoptium.net/temurin/releases/)
   - **macOS:** `brew install openjdk@17`
   - **Linux:** `sudo apt install openjdk-17-jdk`
@@ -117,7 +121,7 @@ This checklist integrates seamlessly with:
   ```powershell
   # Set JAVA_HOME
   [System.Environment]::SetEnvironmentVariable('JAVA_HOME', 'C:\Program Files\Eclipse Adoptium\jdk-17.0.x', 'Machine')
-  
+
   # Add to PATH
   [System.Environment]::SetEnvironmentVariable('PATH', $env:PATH + ';%JAVA_HOME%\bin', 'Machine')
   ```
@@ -134,7 +138,7 @@ This checklist integrates seamlessly with:
   ```powershell
   java -version
   # Expected: openjdk version "17.0.x"
-  
+
   echo %JAVA_HOME%  # Windows
   echo $JAVA_HOME   # macOS/Linux
   # Expected: Path to JDK 17 installation
@@ -153,16 +157,19 @@ This checklist integrates seamlessly with:
 **Complete Android Development Setup:**
 
 - [ ] **Download and Install Android Studio**
+
   - Download: [https://developer.android.com/studio](https://developer.android.com/studio)
   - Install with recommended settings (includes Android SDK, AVD Manager, SDK Tools)
 
 - [ ] **Install Required SDK Components**
 
   Open Android Studio → SDK Manager → SDK Platforms:
+
   - [ ] Android 14.0 (API Level 34) - Recommended target
   - [ ] Android 13.0 (API Level 33) - Backward compatibility
 
   SDK Tools tab:
+
   - [ ] Android SDK Build-Tools 34.0.0
   - [ ] Android Emulator
   - [ ] Android SDK Platform-Tools
@@ -201,7 +208,7 @@ This checklist integrates seamlessly with:
   ```powershell
   adb version
   # Expected: Android Debug Bridge version 1.0.41
-  
+
   echo %ANDROID_HOME%  # Windows
   echo $ANDROID_HOME   # macOS/Linux
   # Expected: Path to Android SDK
@@ -210,9 +217,10 @@ This checklist integrates seamlessly with:
 - [ ] **Create Android Virtual Device (AVD)**
 
   Android Studio → AVD Manager → Create Virtual Device:
+
   - **Device:** Pixel 5 or Pixel 6 (recommended for testing)
   - **System Image:** Android 14.0 (API 34) with Google Play
-  - **Configuration:** 
+  - **Configuration:**
     - RAM: 2048 MB minimum (4096 MB recommended)
     - VM Heap: 256 MB
     - Internal Storage: 2048 MB
@@ -222,10 +230,12 @@ This checklist integrates seamlessly with:
 - [ ] **Enable Hardware Acceleration**
 
   **Windows (Hyper-V or HAXM):**
+
   - Check virtualization in BIOS: `systeminfo` → look for "Virtualization Enabled In Firmware: Yes"
   - Enable Hyper-V (Windows 10 Pro+) or install HAXM from SDK Manager
 
   **macOS:**
+
   - Built-in support; no additional configuration needed
 
   **Linux (KVM):**
@@ -241,6 +251,7 @@ This checklist integrates seamlessly with:
 #### 1.1.4 Git Version Control Setup
 
 - [ ] **Install Git** (2.40+)
+
   - **Windows:** [Git for Windows](https://git-scm.com/download/win)
   - **macOS:** `brew install git` or Xcode Command Line Tools
   - **Linux:** `sudo apt install git`
@@ -257,19 +268,19 @@ This checklist integrates seamlessly with:
   ```powershell
   # Use main as default branch name
   git config --global init.defaultBranch main
-  
+
   # Rebase by default on pull
   git config --global pull.rebase true
-  
+
   # Use VS Code as default editor (if preferred)
   git config --global core.editor "code --wait"
-  
+
   # Enable colored output
   git config --global color.ui auto
-  
+
   # Set line ending handling (Windows)
   git config --global core.autocrlf true
-  
+
   # Set line ending handling (macOS/Linux)
   git config --global core.autocrlf input
   ```
@@ -279,14 +290,14 @@ This checklist integrates seamlessly with:
   ```powershell
   # Generate SSH key
   ssh-keygen -t ed25519 -C "your.email@example.com"
-  
+
   # Start SSH agent
   eval "$(ssh-agent -s)"  # macOS/Linux
   # Set-Service ssh-agent -StartupType Automatic; Start-Service ssh-agent  # Windows
-  
+
   # Add SSH key
   ssh-add ~/.ssh/id_ed25519
-  
+
   # Copy public key to clipboard
   cat ~/.ssh/id_ed25519.pub  # macOS/Linux
   # type %USERPROFILE%\.ssh\id_ed25519.pub | clip  # Windows
@@ -303,10 +314,10 @@ This checklist integrates seamlessly with:
   ```powershell
   # HTTPS method (username/password or token)
   git clone https://github.com/VXerys/lavus-restaurant-app.git
-  
+
   # SSH method (recommended after SSH key setup)
   git clone git@github.com:VXerys/lavus-restaurant-app.git
-  
+
   # Navigate to project directory
   cd lavus-restaurant-app
   ```
@@ -329,7 +340,7 @@ This checklist integrates seamlessly with:
   ```powershell
   # Install Node.js dependencies
   yarn install
-  
+
   # Or if using npm
   npm install
   ```
@@ -341,19 +352,19 @@ This checklist integrates seamlessly with:
   ```powershell
   # Check for node_modules directory
   ls node_modules
-  
+
   # Verify package.json scripts are accessible
   yarn test --version
   ```
 
 **Troubleshooting Dependency Issues:**
 
-| Error | Cause | Solution |
-|-------|-------|----------|
-| `ERESOLVE unable to resolve dependency tree` | Package version conflicts | Try `yarn install --legacy-peer-deps` or `npm install --legacy-peer-deps` |
-| `gyp ERR!` (native module build failures) | Missing build tools | Install `windows-build-tools`: `npm install -g windows-build-tools` (Windows) |
-| Network timeout errors | Slow/blocked network | Use different network or configure proxy: `yarn config set proxy http://proxy:port` |
-| `EACCES` permission errors | Insufficient permissions | Fix npm permissions or use `sudo` (macOS/Linux) with caution |
+| Error                                        | Cause                     | Solution                                                                            |
+| -------------------------------------------- | ------------------------- | ----------------------------------------------------------------------------------- |
+| `ERESOLVE unable to resolve dependency tree` | Package version conflicts | Try `yarn install --legacy-peer-deps` or `npm install --legacy-peer-deps`           |
+| `gyp ERR!` (native module build failures)    | Missing build tools       | Install `windows-build-tools`: `npm install -g windows-build-tools` (Windows)       |
+| Network timeout errors                       | Slow/blocked network      | Use different network or configure proxy: `yarn config set proxy http://proxy:port` |
+| `EACCES` permission errors                   | Insufficient permissions  | Fix npm permissions or use `sudo` (macOS/Linux) with caution                        |
 
 ---
 
@@ -412,26 +423,26 @@ yarn test
 
 ## Masalah Umum & Solusi Cepat
 
-| Gejala | Penyebab | Solusi |
-|--------|----------|--------|
-| `Could not find Java` | JAVA_HOME belum set | Set env JAVA_HOME & restart terminal |
-| Emulator lambat | Hardware acceleration OFF | Aktifkan Hyper-V / HAXM sesuai device |
-| Metro stuck / hang | Cache korup | Jalankan reset cache perintah di atas |
-| `adb devices` kosong | USB debugging belum aktif | Aktifkan di perangkat / restart adb server |
+| Gejala                | Penyebab                  | Solusi                                     |
+| --------------------- | ------------------------- | ------------------------------------------ |
+| `Could not find Java` | JAVA_HOME belum set       | Set env JAVA_HOME & restart terminal       |
+| Emulator lambat       | Hardware acceleration OFF | Aktifkan Hyper-V / HAXM sesuai device      |
+| Metro stuck / hang    | Cache korup               | Jalankan reset cache perintah di atas      |
+| `adb devices` kosong  | USB debugging belum aktif | Aktifkan di perangkat / restart adb server |
 
 ## Alignment dengan Rubrik Penilaian
 
-| Kategori | Checklist/Bagian Terkait | Hasil yang Dinilai |
-|----------|--------------------------|--------------------|
-| Project Setup & Structure | Onboarding (tools, env), Perintah Penting | App berjalan tanpa error di emulator |
-| UI & Design Implementation | Pra-PR (screenshot UI, layout test) | Konsistensi dan kerapihan tampilan |
-| Functionality & Interactivity | Pra-PR (error state, test unit) | Fitur inti bekerja & tidak crash |
-| State Management & Hooks | Pra-PR (state error ditangani) | UI reaktif sesuai perubahan state |
-| Navigation & Data Flow | Uji manual flow utama | Navigasi tidak membingungkan / crash |
-| API Integration & Data Handling | Error state & test memeriksa fetch | Loading/error/empty ditangani |
-| Code Quality & Documentation | Lint, typecheck, docs update | Kode bersih & terdokumentasi |
-| Creativity & Innovation | Tambahan screenshot / optimasi opsional | Fitur ekstra terlihat jelas |
-| Presentation & Demonstration | Screenshot sebelum/sesudah di PR | Demo lancar & jelas |
+| Kategori                        | Checklist/Bagian Terkait                  | Hasil yang Dinilai                   |
+| ------------------------------- | ----------------------------------------- | ------------------------------------ |
+| Project Setup & Structure       | Onboarding (tools, env), Perintah Penting | App berjalan tanpa error di emulator |
+| UI & Design Implementation      | Pra-PR (screenshot UI, layout test)       | Konsistensi dan kerapihan tampilan   |
+| Functionality & Interactivity   | Pra-PR (error state, test unit)           | Fitur inti bekerja & tidak crash     |
+| State Management & Hooks        | Pra-PR (state error ditangani)            | UI reaktif sesuai perubahan state    |
+| Navigation & Data Flow          | Uji manual flow utama                     | Navigasi tidak membingungkan / crash |
+| API Integration & Data Handling | Error state & test memeriksa fetch        | Loading/error/empty ditangani        |
+| Code Quality & Documentation    | Lint, typecheck, docs update              | Kode bersih & terdokumentasi         |
+| Creativity & Innovation         | Tambahan screenshot / optimasi opsional   | Fitur ekstra terlihat jelas          |
+| Presentation & Demonstration    | Screenshot sebelum/sesudah di PR          | Demo lancar & jelas                  |
 
 ## Cara Mengganti Placeholder
 

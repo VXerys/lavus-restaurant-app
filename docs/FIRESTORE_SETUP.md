@@ -12,7 +12,7 @@ Firestore telah diintegrasikan untuk menyediakan real-time database untuk aplika
 
 ### 1. Firebase Console Setup
 
-1. **Buka Firebase Console:** https://console.firebase.google.com/
+1. **Buka Firebase Console:** <https://console.firebase.google.com/>
 2. **Pilih project:** `lavus-app`
 3. **Buat Firestore Database:**
    - Klik "Firestore Database" di sidebar
@@ -46,39 +46,39 @@ Untuk **Production Mode**, gunakan rules ini:
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
+
     // Menu Items - Public read, admin write only
     match /menus/{menuId} {
       allow read: if true;
       allow write: if request.auth != null && request.auth.token.admin == true;
     }
-    
+
     // Hot Deals - Public read, admin write only
     match /hotDeals/{dealId} {
       allow read: if true;
       allow write: if request.auth != null && request.auth.token.admin == true;
     }
-    
+
     // Reviews - Public read, authenticated users can write their own
     match /reviews/{reviewId} {
       allow read: if true;
       allow create: if request.auth != null;
-      allow update, delete: if request.auth != null && 
+      allow update, delete: if request.auth != null &&
                               request.auth.uid == resource.data.userId;
     }
-    
+
     // Reservations - Users can only access their own reservations
     match /reservations/{reservationId} {
-      allow read: if request.auth != null && 
+      allow read: if request.auth != null &&
                     request.auth.uid == resource.data.userId;
       allow create: if request.auth != null;
-      allow update: if request.auth != null && 
+      allow update: if request.auth != null &&
                       request.auth.uid == resource.data.userId;
     }
-    
+
     // Users - Users can only read/write their own data
     match /users/{userId} {
-      allow read, write: if request.auth != null && 
+      allow read, write: if request.auth != null &&
                            request.auth.uid == userId;
     }
   }
@@ -92,6 +92,7 @@ service cloud.firestore {
 ### Collections
 
 #### 1. **menus** Collection
+
 Menyimpan data menu items restaurant.
 
 ```typescript
@@ -110,6 +111,7 @@ Menyimpan data menu items restaurant.
 ```
 
 #### 2. **hotDeals** Collection
+
 Menyimpan promo dan deals yang sedang aktif.
 
 ```typescript
@@ -127,6 +129,7 @@ Menyimpan promo dan deals yang sedang aktif.
 ```
 
 #### 3. **reviews** Collection
+
 Menyimpan review dari user untuk menu items.
 
 ```typescript
@@ -143,6 +146,7 @@ Menyimpan review dari user untuk menu items.
 ```
 
 #### 4. **reservations** Collection
+
 Menyimpan booking reservasi table.
 
 ```typescript
@@ -160,6 +164,7 @@ Menyimpan booking reservasi table.
 ```
 
 #### 5. **users** Collection (Optional)
+
 Menyimpan additional user data (points, preferences, dll).
 
 ```typescript
@@ -209,7 +214,7 @@ useEffect(() => {
       setLoading(false);
     }
   };
-  
+
   loadMenus();
 }, []);
 ```
@@ -227,7 +232,7 @@ const handleReservation = async () => {
       date: selectedDate,
       time: selectedTime,
     });
-    
+
     Alert.alert('Success', 'Reservation created!');
   } catch (error) {
     Alert.alert('Error', 'Failed to create reservation');
@@ -259,12 +264,14 @@ useEffect(() => {
 ## 🔍 Monitoring & Testing
 
 ### Firebase Console
+
 - **View Data:** Firestore Database > Data tab
 - **Query Data:** Gunakan filters dan sorting
 - **Add/Edit Data:** Manual via console
 - **Monitor Usage:** Usage tab untuk tracking reads/writes
 
 ### Testing in App
+
 ```typescript
 // Log fetched data
 const menus = await fetchMenuItems();
@@ -289,13 +296,16 @@ console.log('Menus:', menus);
 ## 🆘 Troubleshooting
 
 ### Error: "Missing or insufficient permissions"
+
 - Check Firestore security rules
 - Pastikan user sudah login (untuk protected collections)
 
 ### Error: "FIRESTORE (X.X.X) INTERNAL ASSERTION FAILED"
+
 - Rebuild app: `cd android && ./gradlew clean && cd .. && npx react-native run-android`
 
 ### Data tidak muncul
+
 - Check Firebase Console apakah data sudah ada
 - Check network connection
 - Log error messages untuk debugging

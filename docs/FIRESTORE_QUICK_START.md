@@ -33,7 +33,8 @@ Setelah database dibuat, Anda perlu menambahkan data. Ada 3 cara:
 2. Klik **"Start collection"**
 3. **Collection ID:** `menus`
 4. Tambahkan document pertama:
-   ```
+
+   ```plaintext
    Document ID: auto-generate
    Fields:
    - name (string): "Salmon Salad"
@@ -46,6 +47,7 @@ Setelah database dibuat, Anda perlu menambahkan data. Ada 3 cara:
    - createdAt (timestamp): (klik jam untuk auto)
    - updatedAt (timestamp): (klik jam untuk auto)
    ```
+
 5. Klik **"Save"**
 6. Ulangi untuk menambah menu lainnya
 
@@ -157,7 +159,7 @@ const handleReservation = async () => {
       date: selectedDate,
       time: selectedTime,
     });
-    
+
     navigation.navigate('ReservationWellDone', { reservationId });
   } catch (error) {
     Alert.alert('Error', 'Failed to create reservation');
@@ -184,12 +186,15 @@ const handleReservation = async () => {
 ## 🆘 Troubleshooting
 
 ### "Permission denied" error
+
 → Pastikan Firestore rules di-set ke **test mode** atau sesuaikan security rules
 
 ### Data tidak muncul
+
 → Check Firebase Console apakah data sudah ada di collection `menus`
 
 ### App crash setelah rebuild
+
 → Try: `cd android && ./gradlew clean && cd .. && npx react-native run-android`
 
 ---

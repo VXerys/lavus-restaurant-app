@@ -5,18 +5,22 @@
 ### **Masalah yang Sudah Diperbaiki:**
 
 #### **1. ❌ Image Handling Salah**
+
 **Masalah Lama:**
+
 ```typescript
 // ❌ SALAH: Mencoba upload ImageSourcePropType (require()) ke Firestore
 imagePath: `local_${menu.category}_${menu.id}`, // String random
 ```
 
 **Kenapa Gagal:**
+
 - Mock data punya `image: MenuImages.salad.salad1` (hasil dari `require()`)
 - Firestore **TIDAK BISA** menyimpan object JavaScript atau `ImageSourcePropType`
 - Firestore hanya menerima: string, number, boolean, array, object (plain), timestamp
 
 **Solusi Baru:**
+
 ```typescript
 // ✅ BENAR: Simpan hanya ID reference
 imageRef: menu.id, // e.g., "salad-1"
@@ -27,30 +31,37 @@ imageRef: menu.id, // e.g., "salad-1"
 ```
 
 #### **2. ❌ Type Conversion Salah**
+
 **Masalah Lama:**
+
 ```typescript
 // ❌ SALAH: Mengubah type hero → buy1get1
 type: deal.type === 'hero' ? 'buy1get1' : 'discount',
 ```
 
 **Kenapa Salah:**
+
 - Di `hotDeals.ts`, ada type: `'hero'` dan `'regular'`
 - Tapi konversi mengubah jadi `'buy1get1'` dan `'discount'`
 - Ini mismatch data, bisa bikin bingung saat read data
 
 **Solusi Baru:**
+
 ```typescript
 // ✅ BENAR: Preserve type asli
 type: deal.type, // Keep 'hero' or 'regular' as is
 ```
 
 #### **3. ❌ Error Handling Kurang Detail**
+
 **Masalah Lama:**
+
 - Kalau import mock data gagal, tidak ada pesan jelas
 - Kalau koneksi gagal, tidak ada guidance
 - User bingung harus apa
 
 **Solusi Baru:**
+
 - Validasi mock data di awal dengan pesan jelas
 - Test koneksi dulu sebelum upload
 - Error message spesifik per masalah:
@@ -59,12 +70,15 @@ type: deal.type, // Keep 'hero' or 'regular' as is
   - Import error → check mock files
 
 #### **4. ❌ Sample Fallback Data Tidak Perlu**
+
 **Masalah Lama:**
+
 - Ada 180+ baris sample data hardcoded
 - Memperpanjang file, tidak digunakan
 - Redundant dengan mock files
 
 **Solusi Baru:**
+
 ```typescript
 // ✅ Langsung load dari mock files, no fallback
 const mockData = loadMockData();
@@ -181,6 +195,7 @@ const mockData = loadMockData();
 ### **Menu Items:**
 
 **Input (Mock Data):**
+
 ```typescript
 {
   id: 'salad-1',
@@ -195,6 +210,7 @@ const mockData = loadMockData();
 ```
 
 **Output (Firestore Document):**
+
 ```typescript
 {
   originalId: 'salad-1',
@@ -211,6 +227,7 @@ const mockData = loadMockData();
 ```
 
 **Mapping Back (When Reading):**
+
 ```typescript
 // When reading from Firestore:
 const menu = firestoreDoc.data();
@@ -228,6 +245,7 @@ const getImageByRef = (ref: string) => {
 ### **Hot Deals:**
 
 **Input (Mock Data):**
+
 ```typescript
 {
   id: 'hd-002',
@@ -242,6 +260,7 @@ const getImageByRef = (ref: string) => {
 ```
 
 **Output (Firestore Document):**
+
 ```typescript
 {
   originalId: 'hd-002',
@@ -261,6 +280,7 @@ const getImageByRef = (ref: string) => {
 ## ✅ **Best Practices yang Diterapkan**
 
 ### **1. Early Validation**
+
 ```typescript
 // ✅ Validate di awal, fail fast
 const mockData = loadMockData();
@@ -270,6 +290,7 @@ if (mockData.menus.length === 0) {
 ```
 
 ### **2. Clear Error Messages**
+
 ```typescript
 // ❌ Kurang jelas
 throw new Error('Connection failed');
@@ -277,14 +298,15 @@ throw new Error('Connection failed');
 // ✅ Jelas dan actionable
 throw new Error(
   'Firestore connection failed!\n\n' +
-  'Possible causes:\n' +
-  '• No internet connection\n' +
-  '• Firestore not enabled\n' +
-  '• google-services.json invalid'
+    'Possible causes:\n' +
+    '• No internet connection\n' +
+    '• Firestore not enabled\n' +
+    '• google-services.json invalid',
 );
 ```
 
 ### **3. Granular Error Handling**
+
 ```typescript
 // ✅ Handle per item, don't stop semua kalau 1 gagal
 for (const menu of menus) {
@@ -303,6 +325,7 @@ if (error.code === 'permission-denied') {
 ```
 
 ### **4. Progress Logging**
+
 ```typescript
 // ✅ User bisa lihat progress real-time
 console.log(`✅ [1/13] Salmon Salad`);
@@ -311,6 +334,7 @@ console.log(`✅ [2/13] Shrimp Salad`);
 ```
 
 ### **5. Data Integrity**
+
 ```typescript
 // ✅ Preserve original data structure
 type: deal.type, // Keep 'hero' or 'regular'
@@ -321,6 +345,7 @@ expiryDate: deal.validUntil || new Date('2099-12-31'),
 ```
 
 ### **6. No Hardcoded Data**
+
 ```typescript
 // ❌ Avoid hardcoded fallback
 const fallbackMenus = [{...}, {...}, ...]; // 180 lines
@@ -334,11 +359,13 @@ const mockData = require('@mocks/data/popularMenus');
 ## 🚀 **Yang Diupload:**
 
 ### **Apa yang TIDAK Diupload:**
+
 - ❌ Image assets (MenuImages, HotDealImages)
 - ❌ `require()` objects
 - ❌ Local file paths
 
 ### **Yang Diupload:**
+
 - ✅ Menu metadata (nama, harga, rating, dll)
 - ✅ Deal metadata (title, discount, expiry, dll)
 - ✅ Image references (ID string) untuk mapping
@@ -372,30 +399,33 @@ Firestore Database
 ## 🔧 **Cara Testing:**
 
 ### **Test 1: Dry Run (Check Only)**
+
 ```typescript
 // In App.tsx
 useEffect(() => {
   // Uncomment test function
   testFirestoreConnection();
-  
+
   // Comment upload
   // uploadSampleData();
 }, []);
 ```
 
 ### **Test 2: Upload**
+
 ```typescript
 // In App.tsx
 useEffect(() => {
   // Comment test
   // testFirestoreConnection();
-  
+
   // Uncomment upload
   uploadSampleData();
 }, []);
 ```
 
 ### **Test 3: Verify in Firebase Console**
+
 1. Go to Firebase Console
 2. Firestore Database
 3. Check collections:
@@ -431,7 +461,7 @@ useEffect(() => {
 📊 Menus: 13/13 uploaded
 
 🔥 Uploading hot deals...
-✅ [1/5] Accumulate with 
+✅ [1/5] Accumulate with
 ✅ [2/5] Lavu's Greatest Deal
 ...
 ✅ [5/5] Lavu's Happy Hour

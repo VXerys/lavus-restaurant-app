@@ -45,11 +45,12 @@ For solo developers or very small teams (1-3 people):
 
 ## 1. Sprint Planning Ceremony
 
-### Ceremony Overview
+### Sprint Planning Overview
 
 **Primary Objective:** Collaboratively establish the sprint goal, select user stories from the product backlog, decompose work into actionable tasks, and commit to a realistic sprint scope that balances ambition with achievability.
 
 **Participants:**
+
 - **Product Owner (Required):** Clarifies business priorities, acceptance criteria, and stakeholder expectations
 - **Development Team (Required):** Estimates effort, identifies technical dependencies, and commits to deliverables
 - **Scrum Master (Required):** Facilitates discussion, manages timebox, removes impediments
@@ -57,6 +58,7 @@ For solo developers or very small teams (1-3 people):
 **Timebox:** 60-90 minutes (adjust based on sprint duration: 1 hour per week of sprint)
 
 **Prerequisites (Definition of Ready):**
+
 - Product backlog prioritized by Product Owner with top stories detailed
 - Acceptance criteria defined for candidate stories
 - Technical dependencies identified and documented
@@ -64,7 +66,7 @@ For solo developers or very small teams (1-3 people):
 
 ---
 
-### Detailed Agenda Structure
+### Sprint Planning Agenda Structure
 
 #### Phase 1: Context Setting & Business Alignment (10 minutes)
 
@@ -77,13 +79,13 @@ For solo developers or very small teams (1-3 people):
 **Facilitation Script:**
 
 ```text
-Scrum Master: "Welcome to Sprint <<SPRINT_NUMBER>> Planning. Before we dive in, let's align on capacity. 
-              Based on the team's 3-sprint rolling average of 38 points and accounting for [Developer B]'s 
-              2-day PTO, our planning capacity is approximately 32-35 points. [Product Owner], please share 
+Scrum Master: "Welcome to Sprint <<SPRINT_NUMBER>> Planning. Before we dive in, let's align on capacity.
+              Based on the team's 3-sprint rolling average of 38 points and accounting for [Developer B]'s
+              2-day PTO, our planning capacity is approximately 32-35 points. [Product Owner], please share
               the business goals for this sprint."
 
-Product Owner: "Our primary goal this sprint is to enhance the reservation flow, enabling users to select 
-               date and time slots more intuitively. Secondary goals include implementing menu filtering 
+Product Owner: "Our primary goal this sprint is to enhance the reservation flow, enabling users to select
+               date and time slots more intuitively. Secondary goals include implementing menu filtering
                by dietary preferences and addressing three critical bugs from production monitoring."
 
 Scrum Master: "Excellent. Let's review the top-priority items in the backlog."
@@ -112,11 +114,11 @@ Scrum Master: "Excellent. Let's review the top-priority items in the backlog."
 **Sample Exchange:**
 
 ```text
-Developer A: "For the reservation date selection story, will the API return available time slots 
+Developer A: "For the reservation date selection story, will the API return available time slots
              based on restaurant capacity, or should we show all slots with availability status?"
 
-Product Owner: "The backend will return only available slots. The endpoint is 
-               GET /api/reservations/slots?date=YYYY-MM-DD&partySize=N, returning an array of 
+Product Owner: "The backend will return only available slots. The endpoint is
+               GET /api/reservations/slots?date=YYYY-MM-DD&partySize=N, returning an array of
                {time, capacity} objects. I'll link the API documentation in the story description."
 
 Developer B: "Are we handling timezone considerations, or is everything in local restaurant time?"
@@ -139,15 +141,15 @@ Scrum Master: "Great clarification. Let's document that assumption in the accept
 
 **Estimation Guidelines:**
 
-| Story Points | Effort Interpretation | Typical Complexity |
-|--------------|----------------------|-------------------|
-| **1 point** | ~4 hours | Trivial change (color adjustment, text update) |
-| **2 points** | ~8 hours | Small feature (new button with action) |
-| **3 points** | ~12 hours | Medium feature (form with validation) |
-| **5 points** | ~20 hours | Complex feature (API integration + UI) |
-| **8 points** | ~32 hours | Very complex (multi-screen flow) |
-| **13 points** | ~52 hours | Should be decomposed into smaller stories |
-| **20+ points** | Epic-level | Must be broken down before sprint commitment |
+| Story Points   | Effort Interpretation | Typical Complexity                             |
+| -------------- | --------------------- | ---------------------------------------------- |
+| **1 point**    | ~4 hours              | Trivial change (color adjustment, text update) |
+| **2 points**   | ~8 hours              | Small feature (new button with action)         |
+| **3 points**   | ~12 hours             | Medium feature (form with validation)          |
+| **5 points**   | ~20 hours             | Complex feature (API integration + UI)         |
+| **8 points**   | ~32 hours             | Very complex (multi-screen flow)               |
+| **13 points**  | ~52 hours             | Should be decomposed into smaller stories      |
+| **20+ points** | Epic-level            | Must be broken down before sprint commitment   |
 
 **Estimation Dialogue Example:**
 
@@ -158,17 +160,17 @@ Scrum Master: "Let's estimate the reservation time slot selection story. Please 
 
 Scrum Master: "We have some divergence. Developer C, why 8 points?"
 
-Developer C: "I'm concerned about handling real-time slot updates if another user books simultaneously. 
+Developer C: "I'm concerned about handling real-time slot updates if another user books simultaneously.
              We'll need optimistic locking or polling logic."
 
-Developer A: "That's fair, but the requirements don't mention real-time updates. I assumed a simple 
+Developer A: "That's fair, but the requirements don't mention real-time updates. I assumed a simple
             fetch on page load. Product Owner, can you clarify?"
 
 Product Owner: "For MVP, we're okay with stale data with a refresh button. Real-time updates are v2."
 
 Developer C: "In that case, I'll revise to 5 points."
 
-Developer B: "Actually, I initially underestimated the UI complexity with different time slot layouts. 
+Developer B: "Actually, I initially underestimated the UI complexity with different time slot layouts.
             I'll also go with 5."
 
 Scrum Master: "Consensus at 5 points. Moving on to the next story..."
@@ -202,7 +204,7 @@ Selected Stories:
 Total Committed: 30 points (85.7% of capacity)
 Buffer: 5 points (14.3% for unforeseen issues)
 
-Scrum Master: "We're at 30 committed points with a healthy 5-point buffer. This aligns with our 
+Scrum Master: "We're at 30 committed points with a healthy 5-point buffer. This aligns with our
               capacity planning principles. Are we comfortable with this scope?"
 
 Team: [Thumbs up consensus]
@@ -229,15 +231,19 @@ Team: [Thumbs up consensus]
 **Sprint Goal Examples:**
 
 ✅ **Good:**
+
 > "Enable users to make restaurant reservations by selecting their preferred date, time, and party size with real-time availability feedback, improving conversion from browse to book."
 
 ✅ **Good:**
+
 > "Implement comprehensive menu discovery features including search, dietary filtering, and category browsing to reduce time-to-order by 30%."
 
 ❌ **Poor (Too Vague):**
+
 > "Work on the reservation system."
 
 ❌ **Poor (Task-Focused, Not Outcome):**
+
 > "Complete stories #45, #47, #52, and #61."
 
 ---
@@ -253,11 +259,11 @@ Team: [Thumbs up consensus]
 
 **Risk Register Template:**
 
-| Risk Description | Probability | Impact | Mitigation Strategy | Owner |
-|-----------------|-------------|--------|---------------------|-------|
-| Backend API for time slots not ready by Day 2 | Medium | High | Front-load API contract discussion; prepare mock data | Dev A |
-| Figma designs for dietary filters pending | Low | Medium | Use wireframes for structure; apply final styling later | Dev B |
-| Real-device testing unavailable | Low | Low | Extended emulator testing; request device from PO | SM |
+| Risk Description                              | Probability | Impact | Mitigation Strategy                                     | Owner |
+| --------------------------------------------- | ----------- | ------ | ------------------------------------------------------- | ----- |
+| Backend API for time slots not ready by Day 2 | Medium      | High   | Front-load API contract discussion; prepare mock data   | Dev A |
+| Figma designs for dietary filters pending     | Low         | Medium | Use wireframes for structure; apply final styling later | Dev B |
+| Real-device testing unavailable               | Low         | Low    | Extended emulator testing; request device from PO       | SM    |
 
 ---
 
@@ -285,7 +291,7 @@ Team: [Thumbs up consensus]
 
 ---
 
-### Ceremony Outputs & Artifacts
+### Sprint Planning Outputs & Artifacts
 
 **Mandatory Deliverables:**
 
@@ -304,21 +310,25 @@ Team: [Thumbs up consensus]
 **Sprint Goal:** <<GOAL_STATEMENT>>
 
 ## Team Capacity
+
 - **Available Capacity:** <<POINTS>> story points
 - **Committed Scope:** <<COMMITTED_POINTS>> points
 - **Buffer:** <<BUFFER_POINTS>> points (<<PERCENTAGE>>%)
 
 ## Committed User Stories
+
 1. [#<<ISSUE>>] <<STORY_TITLE>> - <<POINTS>> points - <<ASSIGNEE>>
 2. [#<<ISSUE>>] <<STORY_TITLE>> - <<POINTS>> points - <<ASSIGNEE>>
-...
+   ...
 
 ## Identified Risks
-| Risk | Mitigation | Owner |
-|------|------------|-------|
+
+| Risk                 | Mitigation          | Owner     |
+| -------------------- | ------------------- | --------- |
 | <<RISK_DESCRIPTION>> | <<MITIGATION_PLAN>> | <<OWNER>> |
 
 ## Definition of Done Reminder
+
 - [ ] All acceptance criteria met
 - [ ] Code reviewed and approved
 - [ ] Tests written with ≥70% coverage
@@ -329,23 +339,30 @@ Team: [Thumbs up consensus]
 ---
 
 ## 2. Daily Standup
+
 ### Tujuan
+
 Sinkron status & hambatan.
+
 ### Timebox
+
 15 menit.
+
 ### Format 3 Pertanyaan
+
 1. Apa yang dikerjakan kemarin?
 2. Apa yang akan dikerjakan hari ini?
 3. Ada hambatan?
 
 ### Contoh
-```
+
+```text
 
 ---
 
 ## 2. Daily Standup (Daily Scrum)
 
-### Ceremony Overview
+### Daily Standup Overview
 
 **Primary Objective:** Synchronize team activities, surface impediments requiring immediate attention, and maintain transparency on sprint progress through brief, focused daily touchpoints.
 
@@ -443,32 +460,32 @@ Each team member addresses three focused questions:
 ```text
 Scrum Master: "Good morning team. Let's start our standup. We have 15 minutes. [Developer A], please begin."
 
-Developer A: "Yesterday I completed the MenuCard component implementation with all unit tests passing. 
-             Today I'm integrating the component with the menu listing screen and adding loading states. 
-             One challenge: the staging API is responding slowly with 2-3 second latency, which makes 
+Developer A: "Yesterday I completed the MenuCard component implementation with all unit tests passing.
+             Today I'm integrating the component with the menu listing screen and adding loading states.
+             One challenge: the staging API is responding slowly with 2-3 second latency, which makes
              testing difficult. Not blocked yet, but if it persists I may need mock data."
 
 Scrum Master: "Noted. Let's check API performance post-standup. [Developer B]?"
 
-Developer B: "I finished the date picker UI yesterday and started on the time slot selector component. 
-             Today I'll complete the time slot logic and write integration tests. I'm currently blocked 
-             on the API contract - I need clarification on how unavailable slots are represented in the 
+Developer B: "I finished the date picker UI yesterday and started on the time slot selector component.
+             Today I'll complete the time slot logic and write integration tests. I'm currently blocked
+             on the API contract - I need clarification on how unavailable slots are represented in the
              response. [Product Owner], can we sync after standup?"
 
 Product Owner: "Yes, I'll share the updated API documentation right after this meeting."
 
-Developer C: "Yesterday I resolved the navigation back stack bug (#67) and submitted PR for review. 
-             Today I'm addressing review comments and starting on the profile photo upload feature. 
+Developer C: "Yesterday I resolved the navigation back stack bug (#67) and submitted PR for review.
+             Today I'm addressing review comments and starting on the profile photo upload feature.
              No blockers, but I'll need [Developer A] to review my PR by end of day if possible."
 
 Developer A: "I'll prioritize your PR review before lunch."
 
-Scrum Master: "Excellent. Quick board check: we have 18 points remaining with 5 days left in the sprint. 
-              We're slightly behind ideal burndown but within recovery range. Three items in code review 
-              need attention. Let's focus on unblocking those today. [Developer B] and [Product Owner], 
-              please connect on API contracts. [Developer A], let me know if API performance doesn't 
+Scrum Master: "Excellent. Quick board check: we have 18 points remaining with 5 days left in the sprint.
+              We're slightly behind ideal burndown but within recovery range. Three items in code review
+              need attention. Let's focus on unblocking those today. [Developer B] and [Product Owner],
+              please connect on API contracts. [Developer A], let me know if API performance doesn't
               improve by midday. Meeting adjourned. Parking lot topics: API performance investigation."
-```
+````
 
 ---
 
@@ -477,6 +494,7 @@ Scrum Master: "Excellent. Quick board check: we have 18 points remaining with 5 
 For solo developers or 2-3 person teams:
 
 **Async Standup Alternative:**
+
 - Post daily update in shared doc or Slack channel
 - Include: Yesterday's progress, Today's plan, Blockers
 - Review team updates at start of workday
@@ -487,16 +505,19 @@ For solo developers or 2-3 person teams:
 ## Daily Update - 2025-11-12
 
 ### ✅ Yesterday (Completed)
+
 - Implemented MenuCard component with responsive sizing
 - Added unit tests (87% coverage)
 - Fixed API error handling in useFetchMenu hook
 
 ### 🎯 Today (Planned)
+
 - Integrate MenuCard into MenuListScreen
 - Add loading and empty states
 - Begin dietary filter chip UI
 
 ### 🚧 Blockers / Challenges
+
 - Staging API latency (2-3s responses) - will use mock data if persists
 - Awaiting final Figma designs for filter UI - using wireframes for now
 ```
@@ -505,11 +526,12 @@ For solo developers or 2-3 person teams:
 
 ## 3. Backlog Refinement (Grooming) Ceremony
 
-### Ceremony Overview
+### Backlog Refinement Overview
 
 **Primary Objective:** Collaboratively prepare upcoming backlog items for future sprint planning by clarifying requirements, decomposing large stories, estimating effort, and ensuring Definition of Ready compliance.
 
 **Participants:**
+
 - **Product Owner (Required):** Provides business context and clarifies requirements
 - **Development Team (Required):** Asks clarifying questions and provides estimation
 - **Scrum Master (Facilitator):** Guides discussion and timebox management
@@ -522,11 +544,12 @@ For solo developers or 2-3 person teams:
 
 ---
 
-### Detailed Agenda Structure
+### Backlog Refinement Agenda Structure
 
 #### Phase 1: Prioritization Review (5 minutes)
 
 **Activities:**
+
 - Product Owner shares any shifts in backlog priority since last session
 - Team notes any newly added stories or changed dependencies
 - Confirm which stories to refine in this session (focus on top of backlog)
@@ -556,8 +579,8 @@ For solo developers or 2-3 person teams:
 **Sample Refinement Dialogue:**
 
 ```text
-Product Owner: "Next story is implementing a favorites feature allowing users to save preferred menu 
-               items for quick reordering. The business value is reducing browse-to-order time and 
+Product Owner: "Next story is implementing a favorites feature allowing users to save preferred menu
+               items for quick reordering. The business value is reducing browse-to-order time and
                increasing order frequency for repeat customers."
 
 Developer A: "Will favorites be persisted server-side or locally on device?"
@@ -566,18 +589,18 @@ Product Owner: "Server-side with local caching. We want favorites accessible acr
 
 Developer B: "What's the maximum number of favorite items a user can have?"
 
-Product Owner: "Good question. Let's say 50 items max to prevent database bloat. I'll add that to 
+Product Owner: "Good question. Let's say 50 items max to prevent database bloat. I'll add that to
                acceptance criteria."
 
 Developer C: "Should favoriting happen optimistically with offline support, or require network connection?"
 
-Product Owner: "Optimistic with sync when online. If offline, show favorites from cache and sync 
+Product Owner: "Optimistic with sync when online. If offline, show favorites from cache and sync
                changes when connection returns."
 
-Scrum Master: "That sounds like additional complexity. Should we capture offline sync as a separate 
+Scrum Master: "That sounds like additional complexity. Should we capture offline sync as a separate
              technical story?"
 
-Team: [Discussion ensues, decision to split into: (1) Basic favorites with network requirement, 
+Team: [Discussion ensues, decision to split into: (1) Basic favorites with network requirement,
       (2) Offline sync enhancement for follow-up sprint]
 ```
 
@@ -594,13 +617,13 @@ Team: [Discussion ensues, decision to split into: (1) Basic favorites with netwo
 
 **Decomposition Techniques:**
 
-| Technique | Description | Example |
-|-----------|-------------|---------|
-| **Workflow Steps** | Split by user journey stages | Favorites: (1) Add to favorites, (2) View favorites list, (3) Remove from favorites |
-| **CRUD Operations** | Separate Create, Read, Update, Delete | Menu Admin: (1) Create menu item, (2) Edit item, (3) Delete item, (4) List all items |
+| Technique                     | Description                            | Example                                                                                     |
+| ----------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------- |
+| **Workflow Steps**            | Split by user journey stages           | Favorites: (1) Add to favorites, (2) View favorites list, (3) Remove from favorites         |
+| **CRUD Operations**           | Separate Create, Read, Update, Delete  | Menu Admin: (1) Create menu item, (2) Edit item, (3) Delete item, (4) List all items        |
 | **Happy Path vs. Edge Cases** | Basic flow first, error handling later | Reservation: (1) Happy path booking, (2) Error handling & validation, (3) Cancellation flow |
-| **Architectural Layers** | Front-end, back-end, integration | Payment: (1) UI components, (2) API integration, (3) State management |
-| **Device/Platform** | iOS-specific, Android-specific, shared | Push Notifications: (1) Android setup, (2) iOS setup, (3) Shared notification logic |
+| **Architectural Layers**      | Front-end, back-end, integration       | Payment: (1) UI components, (2) API integration, (3) State management                       |
+| **Device/Platform**           | iOS-specific, Android-specific, shared | Push Notifications: (1) Android setup, (2) iOS setup, (3) Shared notification logic         |
 
 ---
 
@@ -639,7 +662,7 @@ Confirm each refined story meets Definition of Ready criteria:
 
 ---
 
-### Ceremony Outputs
+### Backlog Refinement Outputs
 
 **Deliverables:**
 
@@ -653,11 +676,12 @@ Confirm each refined story meets Definition of Ready criteria:
 
 ## 4. Sprint Review (Sprint Demo)
 
-### Ceremony Overview
+### Sprint Review Overview
 
 **Primary Objective:** Demonstrate completed increment to stakeholders, gather feedback on delivered functionality, and inform product backlog prioritization based on stakeholder input and market learnings.
 
 **Participants:**
+
 - **Development Team (Required):** Demonstrates completed work
 - **Product Owner (Required):** Contextualizes work and accepts deliverables
 - **Scrum Master (Facilitator):** Guides agenda and captures feedback
@@ -671,7 +695,7 @@ Confirm each refined story meets Definition of Ready criteria:
 
 ---
 
-### Detailed Agenda Structure
+### Sprint Review Agenda Structure
 
 #### Phase 1: Sprint Context & Goals (5 minutes)
 
@@ -684,9 +708,9 @@ Confirm each refined story meets Definition of Ready criteria:
 **Opening Script Example:**
 
 ```text
-Product Owner: "Welcome to the Sprint <<SPRINT_NUMBER>> review. Our sprint goal was to enhance the 
-               reservation experience by enabling date/time selection and dietary filtering. We 
-               committed to 35 story points and successfully delivered 32 points, with one 3-point 
+Product Owner: "Welcome to the Sprint <<SPRINT_NUMBER>> review. Our sprint goal was to enhance the
+               reservation experience by enabling date/time selection and dietary filtering. We
+               committed to 35 story points and successfully delivered 32 points, with one 3-point
                story carried over due to API dependency delays. Let's dive into what we've built."
 ```
 
@@ -704,6 +728,7 @@ Product Owner: "Welcome to the Sprint <<SPRINT_NUMBER>> review. Our sprint goal 
 **Demonstration Best Practices:**
 
 ✅ **Do:**
+
 - Use realistic test data that stakeholders recognize
 - Demonstrate on actual devices (phone/tablet) when possible
 - Walk through user personas' typical workflows
@@ -711,6 +736,7 @@ Product Owner: "Welcome to the Sprint <<SPRINT_NUMBER>> review. Our sprint goal 
 - Highlight performance, accessibility, or quality improvements
 
 ❌ **Don't:**
+
 - Read PowerPoint slides about what was built
 - Show incomplete or buggy features
 - Spend time on technical architecture (save for tech demos)
@@ -719,37 +745,37 @@ Product Owner: "Welcome to the Sprint <<SPRINT_NUMBER>> review. Our sprint goal 
 **Sample Demonstration Flow:**
 
 ```text
-Developer A: "Let me show you the enhanced reservation flow. I'm logged in as Sarah, a returning 
+Developer A: "Let me show you the enhanced reservation flow. I'm logged in as Sarah, a returning
              customer who wants to book dinner for 4 people this Friday evening.
 
              [Navigates to Reservation screen]
-             
+
              You'll notice the new calendar date picker here. I'll select Friday, November 15th.
-             
+
              [Selects date]
-             
+
              The system now queries available time slots based on our party size and date. You can see
              available slots highlighted in green, with unavailable times grayed out.
-             
+
              [Selects 7:00 PM slot]
-             
+
              The confirmation screen summarizes our reservation details. If I need to change anything,
              I can tap 'Edit' to return to the previous step without losing progress.
-             
+
              [Demonstrates edit flow]
-             
-             Now let's test an error scenario. What happens if I try to book a slot that just became 
+
+             Now let's test an error scenario. What happens if I try to book a slot that just became
              unavailable?
-             
+
              [Simulates concurrent booking conflict]
-             
-             You can see the friendly error message explaining the slot is no longer available, with 
+
+             You can see the friendly error message explaining the slot is no longer available, with
              alternative time suggestions."
 
-Stakeholder: "This looks great! One question - can users set a dietary preference to filter available 
+Stakeholder: "This looks great! One question - can users set a dietary preference to filter available
              menu items when they arrive?"
 
-Product Owner: "Excellent suggestion. That's actually our next sprint priority. Let's capture that as 
+Product Owner: "Excellent suggestion. That's actually our next sprint priority. Let's capture that as
                feedback and I can show you the wireframes after this demo."
 ```
 
@@ -766,11 +792,11 @@ Product Owner: "Excellent suggestion. That's actually our next sprint priority. 
 
 **Feedback Capture Template:**
 
-| Feedback Item | Source | Priority | Product Owner Action |
-|---------------|--------|----------|---------------------|
-| Add dietary preference filtering | Stakeholder A | High | Add to next sprint |
-| Increase font size on time slot buttons | End User B | Medium | Create accessibility story |
-| Export reservation confirmation as PDF | Stakeholder C | Low | Defer to backlog for evaluation |
+| Feedback Item                           | Source        | Priority | Product Owner Action            |
+| --------------------------------------- | ------------- | -------- | ------------------------------- |
+| Add dietary preference filtering        | Stakeholder A | High     | Add to next sprint              |
+| Increase font size on time slot buttons | End User B    | Medium   | Create accessibility story      |
+| Export reservation confirmation as PDF  | Stakeholder C | Low      | Defer to backlog for evaluation |
 
 ---
 
@@ -794,7 +820,7 @@ Product Owner: "Excellent suggestion. That's actually our next sprint priority. 
 
 ---
 
-### Ceremony Outputs
+### Sprint Review Outputs
 
 **Deliverables:**
 
@@ -807,11 +833,12 @@ Product Owner: "Excellent suggestion. That's actually our next sprint priority. 
 
 ## 5. Sprint Retrospective
 
-### Ceremony Overview
+### Sprint Retrospective Overview
 
 **Primary Objective:** Reflect on team processes, collaboration dynamics, and working agreements to identify concrete improvements that will enhance productivity, quality, and team satisfaction in subsequent sprints.
 
 **Participants:**
+
 - **Development Team (Required):** All team members contribute experiences and insights
 - **Scrum Master (Required):** Facilitates discussion and ensures psychological safety
 - **Product Owner (Optional):** May attend if team agrees; focuses on team-PO collaboration
@@ -824,7 +851,7 @@ Product Owner: "Excellent suggestion. That's actually our next sprint priority. 
 
 ---
 
-### Detailed Agenda Structure
+### Sprint Retrospective Agenda Structure
 
 #### Phase 1: Set the Stage (5-10 minutes)
 
@@ -844,15 +871,15 @@ Product Owner: "Excellent suggestion. That's actually our next sprint priority. 
 **Opening Script:**
 
 ```text
-Scrum Master: "Welcome to our Sprint <<SPRINT_NUMBER>> retrospective. This is our safe space to speak 
-              openly about what's working and what we can improve. Everything shared here stays in this 
+Scrum Master: "Welcome to our Sprint <<SPRINT_NUMBER>> retrospective. This is our safe space to speak
+              openly about what's working and what we can improve. Everything shared here stays in this
               room, and we focus on systems and processes, not blaming individuals. Before we dive in,
               let's do a quick check-in: On a scale of 1-5, how energized do you feel about this sprint?
-              
+
               [Team shares energy levels]
-              
-              Last sprint we committed to three improvements: (1) Smaller PRs for faster review, 
-              (2) Daily Slack updates for async coordination, (3) Dedicated time for tech debt. 
+
+              Last sprint we committed to three improvements: (1) Smaller PRs for faster review,
+              (2) Daily Slack updates for async coordination, (3) Dedicated time for tech debt.
               How did we do on these?"
 
 Team: [Brief progress discussion]
@@ -866,22 +893,22 @@ Team: [Brief progress discussion]
 
 Use structured format to collect team observations and experiences:
 
-**Format Option A: Start / Stop / Continue**
+#### Format Option A: Start / Stop / Continue
 
-| Start Doing | Stop Doing | Continue Doing |
-|-------------|------------|----------------|
+| Start Doing                         | Stop Doing                                  | Continue Doing                               |
+| ----------------------------------- | ------------------------------------------- | -------------------------------------------- |
 | What new practices should we adopt? | What current practices should we eliminate? | What's working well that we should maintain? |
 
-**Format Option B: Liked / Learned / Lacked / Longed For (4Ls)**
+#### Format Option B: Liked / Learned / Lacked / Longed For (4Ls)
 
-| Liked | Learned | Lacked | Longed For |
-|-------|---------|--------|------------|
+| Liked           | Learned            | Lacked            | Longed For              |
+| --------------- | ------------------ | ----------------- | ----------------------- |
 | What went well? | What did we learn? | What was missing? | What do we wish we had? |
 
-**Format Option C: Mad / Sad / Glad**
+#### Format Option C: Mad / Sad / Glad
 
-| Mad (Frustrating) | Sad (Disappointing) | Glad (Celebrating) |
-|-------------------|---------------------|-------------------|
+| Mad (Frustrating)    | Sad (Disappointing)     | Glad (Celebrating)        |
+| -------------------- | ----------------------- | ------------------------- |
 | What frustrated you? | What was disappointing? | What should we celebrate? |
 
 **Data Collection Methods:**
@@ -893,17 +920,20 @@ Use structured format to collect team observations and experiences:
 **Example Gathered Data (Start/Stop/Continue):**
 
 **Start:**
+
 - Pair programming on complex stories to share knowledge
 - Documenting API integration patterns in team wiki
 - Running Lighthouse performance audits before PR approval
 - Mid-sprint check-ins with Product Owner on high-uncertainty stories
 
 **Stop:**
+
 - Merging PRs late Friday afternoon (causes weekend anxiety)
 - Adding scope mid-sprint without removing equivalent work
 - Deferring test writing until end of story implementation
 
 **Continue:**
+
 - Daily async standups in Slack
 - Sprint planning poker for estimation alignment
 - Celebrating PR approvals with emoji reactions
@@ -923,21 +953,21 @@ Use structured format to collect team observations and experiences:
 **Sample Deep Dive Discussion:**
 
 ```text
-Scrum Master: "The item with most votes is 'Stop merging PRs late Friday afternoon causing weekend 
+Scrum Master: "The item with most votes is 'Stop merging PRs late Friday afternoon causing weekend
               anxiety.' Let's unpack this. Why is this happening?"
 
 Developer A: "Sometimes I finish work late Friday and want to ship it before the weekend."
 
 Scrum Master: "Why do we feel pressure to ship late Friday?"
 
-Developer B: "I guess we worry that holding code over the weekend will cause merge conflicts when others 
+Developer B: "I guess we worry that holding code over the weekend will cause merge conflicts when others
              work Monday."
 
 Scrum Master: "Why might that cause merge conflicts?"
 
 Developer C: "Probably because our PRs tend to be large and touch many files."
 
-Scrum Master: "So it sounds like the root issue might be PR size rather than timing. If we had smaller, 
+Scrum Master: "So it sounds like the root issue might be PR size rather than timing. If we had smaller,
              more focused PRs, would the Friday merge pressure go away?"
 
 Team: "That makes sense. Smaller PRs would merge faster and reduce Friday anxiety."
@@ -971,6 +1001,7 @@ Scrum Master: "Great insight. Let's capture this as our improvement action."
 ## Retrospective Improvement Actions - Sprint <<SPRINT_NUMBER>>
 
 ### Action 1: Reduce PR Size for Faster Review
+
 **Problem:** Large PRs causing review delays and Friday merge anxiety
 **Action:** Limit PRs to max 300 lines of code; break larger features into incremental PRs
 **Owner:** Entire team
@@ -979,6 +1010,7 @@ Scrum Master: "Great insight. Let's capture this as our improvement action."
 **How We'll Measure:** Track PR size metric in GitHub; review in next retro
 
 ### Action 2: Establish PR Review SLA
+
 **Problem:** PRs sometimes sitting unreviewed for 2-3 days
 **Action:** Commit to reviewing assigned PRs within 24 business hours
 **Owner:** Entire team
@@ -987,6 +1019,7 @@ Scrum Master: "Great insight. Let's capture this as our improvement action."
 **How We'll Measure:** Track review time in Sprint Tracking metrics
 
 ### Action 3: Weekly Tech Debt Investment
+
 **Problem:** Tech debt accumulating; quality degrading
 **Action:** Reserve 20% of sprint capacity (8 points) for tech debt and refactoring
 **Owner:** Scrum Master to enforce in sprint planning
@@ -1010,16 +1043,16 @@ Scrum Master: "Great insight. Let's capture this as our improvement action."
 
 ```text
 Scrum Master: "Excellent discussion team. We've committed to three actionable improvements: smaller PRs,
-              24-hour review SLA, and dedicated tech debt time. I'll document these in our Improvement 
+              24-hour review SLA, and dedicated tech debt time. I'll document these in our Improvement
               Summary and we'll review progress in our next retrospective.
-              
-              Before we close, let's do a quick appreciation round. I'll start: [Developer A], I really 
-              appreciated your willingness to pair program with [Developer B] this sprint to share your 
+
+              Before we close, let's do a quick appreciation round. I'll start: [Developer A], I really
+              appreciated your willingness to pair program with [Developer B] this sprint to share your
               API integration knowledge. That's exactly the kind of collaboration that makes us stronger."
 
 [Each team member shares appreciation]
 
-Scrum Master: "One last question: How was this retrospective? Thumbs up if valuable, thumbs sideways if 
+Scrum Master: "One last question: How was this retrospective? Thumbs up if valuable, thumbs sideways if
               okay, thumbs down if we should change format."
 
 [Team provides feedback]
@@ -1033,15 +1066,15 @@ Scrum Master: "Great. See you all at Sprint Planning tomorrow morning. Thanks fo
 
 To maintain freshness and engagement, rotate retrospective formats:
 
-| Format | Best For | Duration |
-|--------|----------|----------|
-| **Start/Stop/Continue** | General process improvement | 45 min |
-| **4Ls (Liked/Learned/Lacked/Longed For)** | Learning-focused retrospectives | 60 min |
-| **Sailboat** | Identifying anchors (drag) and wind (boost) | 60 min |
-| **Timeline** | Reviewing specific events chronologically | 75 min |
-| **Mad/Sad/Glad** | Emotional processing after difficult sprints | 45 min |
-| **5 Whys** | Deep-diving specific recurring problems | 60 min |
-| **Lean Coffee** | Democratic agenda-setting; discuss top topics | 60 min |
+| Format                                    | Best For                                      | Duration |
+| ----------------------------------------- | --------------------------------------------- | -------- |
+| **Start/Stop/Continue**                   | General process improvement                   | 45 min   |
+| **4Ls (Liked/Learned/Lacked/Longed For)** | Learning-focused retrospectives               | 60 min   |
+| **Sailboat**                              | Identifying anchors (drag) and wind (boost)   | 60 min   |
+| **Timeline**                              | Reviewing specific events chronologically     | 75 min   |
+| **Mad/Sad/Glad**                          | Emotional processing after difficult sprints  | 45 min   |
+| **5 Whys**                                | Deep-diving specific recurring problems       | 60 min   |
+| **Lean Coffee**                           | Democratic agenda-setting; discuss top topics | 60 min   |
 
 ---
 
@@ -1049,13 +1082,13 @@ To maintain freshness and engagement, rotate retrospective formats:
 
 Track ceremony health to ensure continuous value delivery:
 
-| Ceremony | Health Indicator | Warning Sign |
-|----------|------------------|--------------|
-| **Sprint Planning** | 90%+ stories meet DoR; <10% carryover | Stories added mid-sprint; >20% carryover |
-| **Daily Standup** | Lasts 10-15 min; surfaces blockers | Exceeds 20 min; no blockers ever mentioned |
-| **Backlog Refinement** | 2-3 sprints worth of ready stories | Planning delayed by unrefined stories |
-| **Sprint Review** | Stakeholder attendance >75%; actionable feedback | Low attendance; no backlog changes |
-| **Retrospective** | 2-3 actions per sprint; 80%+ completion | No actions or zero follow-through |
+| Ceremony               | Health Indicator                                 | Warning Sign                               |
+| ---------------------- | ------------------------------------------------ | ------------------------------------------ |
+| **Sprint Planning**    | 90%+ stories meet DoR; <10% carryover            | Stories added mid-sprint; >20% carryover   |
+| **Daily Standup**      | Lasts 10-15 min; surfaces blockers               | Exceeds 20 min; no blockers ever mentioned |
+| **Backlog Refinement** | 2-3 sprints worth of ready stories               | Planning delayed by unrefined stories      |
+| **Sprint Review**      | Stakeholder attendance >75%; actionable feedback | Low attendance; no backlog changes         |
+| **Retrospective**      | 2-3 actions per sprint; 80%+ completion          | No actions or zero follow-through          |
 
 ---
 
@@ -1082,7 +1115,7 @@ Track ceremony health to ensure continuous value delivery:
 
 **Revision History:**
 
-| Version | Date | Author | Summary of Changes |
-|---------|------|--------|-------------------|
-| 2.0 | 2025-11-12 | Development Team | Comprehensive expansion with detailed scripts, best practices, and facilitation guidance |
-| 1.0 | 2025-11-10 | Development Team | Initial ceremony agenda and basic structure |
+| Version | Date       | Author           | Summary of Changes                                                                       |
+| ------- | ---------- | ---------------- | ---------------------------------------------------------------------------------------- |
+| 2.0     | 2025-11-12 | Development Team | Comprehensive expansion with detailed scripts, best practices, and facilitation guidance |
+| 1.0     | 2025-11-10 | Development Team | Initial ceremony agenda and basic structure                                              |

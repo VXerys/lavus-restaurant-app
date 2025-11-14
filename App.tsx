@@ -6,11 +6,14 @@
  */
 
 import { useEffect } from 'react';
-import { StatusBar, useColorScheme } from 'react-native';
+import { StatusBar, useColorScheme, LogBox } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import RootNavigator from '@navigation/RootNavigator';
 import { AuthProvider } from './src/contexts/AuthContext';
 import { configureGoogleSignIn } from './src/services/authService';
+
+// Ignore Firebase v8 deprecation warnings
+LogBox.ignoreLogs(['v8 method is deprecated']);
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';

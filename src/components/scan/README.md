@@ -5,6 +5,7 @@ This directory contains components for the QR Code scanning functionality.
 ## Components
 
 ### ScanFrame
+
 - Visual frame overlay for camera scanning
 - Animated scanning line that moves up and down
 - Corner brackets to indicate scan area
@@ -12,6 +13,7 @@ This directory contains components for the QR Code scanning functionality.
   - `isScanning`: boolean - Controls the scanning animation
 
 ### ScanAnalyzing
+
 - Overlay displayed during QR code analysis
 - Shows progress bar and analyzing message
 - Auto-dismisses after completion
@@ -36,21 +38,23 @@ import { ScanFrame, ScanAnalyzing } from '@components/scan';
 
 // In your screen
 <ScanFrame isScanning={isScanning} />
-<ScanAnalyzing 
-  isVisible={isAnalyzing} 
-  onComplete={handleAnalysisComplete} 
+<ScanAnalyzing
+  isVisible={isAnalyzing}
+  onComplete={handleAnalysisComplete}
 />
 ```
 
 ## Permissions
 
 ### Android (AndroidManifest.xml)
+
 ```xml
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-feature android:name="android.hardware.camera" android:required="false" />
 ```
 
 ### iOS (Info.plist)
+
 ```xml
 <key>NSCameraUsageDescription</key>
 <string>We need camera access to scan QR codes for payment</string>

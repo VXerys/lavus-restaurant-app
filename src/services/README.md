@@ -18,7 +18,10 @@ Contoh:
 
 ```ts
 // reservationService.ts (placeholder)
-export async function createReservation(payload: { time: string; people: number }) {
+export async function createReservation(payload: {
+  time: string;
+  people: number;
+}) {
   // return await http.post('/reservations', payload)
   return { id: 'temp-id', ...payload };
 }

@@ -41,19 +41,19 @@ lavus-restaurant-app/
 
 ## Penjelasan Folder
 
-| Folder | Fungsi | Contoh File |
-|--------|--------|-------------|
-| `assets/images` | Gambar statis | `salad.png`, `logo.png` |
-| `components` | Komponen generik | `Button.tsx`, `MenuCard.tsx` |
-| `screens` | Halaman navigasi | `HomeScreen.tsx`, `ReserveScreen.tsx` |
-| `navigation` | Struktur navigasi | `RootNavigator.tsx`, `AppTabs.tsx` |
-| `hooks` | Reusable logic | `useFetchMenu.ts`, `useAuth.ts` |
-| `services` | Abstraksi API | `menuService.ts`, `reservationService.ts` |
-| `store` | Global state | `menuSlice.ts`, `userSlice.ts` |
-| `utils` | Helper | `formatCurrency.ts` |
-| `types` | Type definitions | `menu.ts`, `reservation.ts` |
-| `config` | Konfigurasi | `env.ts`, `flags.ts` |
-| `theme` | Variabel styling | `colors.ts`, `spacing.ts` |
+| Folder          | Fungsi            | Contoh File                               |
+| --------------- | ----------------- | ----------------------------------------- |
+| `assets/images` | Gambar statis     | `salad.png`, `logo.png`                   |
+| `components`    | Komponen generik  | `Button.tsx`, `MenuCard.tsx`              |
+| `screens`       | Halaman navigasi  | `HomeScreen.tsx`, `ReserveScreen.tsx`     |
+| `navigation`    | Struktur navigasi | `RootNavigator.tsx`, `AppTabs.tsx`        |
+| `hooks`         | Reusable logic    | `useFetchMenu.ts`, `useAuth.ts`           |
+| `services`      | Abstraksi API     | `menuService.ts`, `reservationService.ts` |
+| `store`         | Global state      | `menuSlice.ts`, `userSlice.ts`            |
+| `utils`         | Helper            | `formatCurrency.ts`                       |
+| `types`         | Type definitions  | `menu.ts`, `reservation.ts`               |
+| `config`        | Konfigurasi       | `env.ts`, `flags.ts`                      |
+| `theme`         | Variabel styling  | `colors.ts`, `spacing.ts`                 |
 
 ## Contoh `colors.ts`
 
@@ -63,7 +63,7 @@ export const Colors = {
   background: '#F0ECE6',
   text: '#0A0A0A',
   danger: '#C32F27',
-  warning: '#FF9F1C'
+  warning: '#FF9F1C',
 };
 ```
 
@@ -130,7 +130,9 @@ import { MenuItem } from '@types/menu';
 const BASE_URL = '<<API_BASE_URL>>';
 
 export async function fetchMenu(category?: string): Promise<MenuItem[]> {
-  const url = category ? `${BASE_URL}/menu?category=${category}` : `${BASE_URL}/menu`;
+  const url = category
+    ? `${BASE_URL}/menu?category=${category}`
+    : `${BASE_URL}/menu`;
   const res = await fetch(url);
   if (!res.ok) throw new Error('Gagal memuat menu');
   return res.json();
@@ -145,27 +147,27 @@ export async function fetchMenu(category?: string): Promise<MenuItem[]> {
 
 ## File Yang Tidak Disimpan di Repo
 
-| Tipe | Alasan |
-|------|--------|
-| `.env.local` | Data sensitif (API keys) |
-| build artifacts | Dihasilkan oleh CI |
-| user data | Privasi |
+| Tipe            | Alasan                   |
+| --------------- | ------------------------ |
+| `.env.local`    | Data sensitif (API keys) |
+| build artifacts | Dihasilkan oleh CI       |
+| user data       | Privasi                  |
 
 ## Cara Mengganti Placeholder
- 
+
 Ganti `<<API_BASE_URL>>` dengan endpoint aktual. Jika belum tersedia gunakan `<<PLACEHOLDER - fill from project brief>>`.
 
 ## Alignment dengan Rubrik Penilaian
 
-| Kategori | Dukungan Struktur | Dampak |
-|----------|-------------------|--------|
-| Project Setup & Structure | Struktur `src/` jelas | Memudahkan penilai menelusuri kode |
-| UI & Design Implementation | Folder `components/`, `theme/` | UI konsisten & reusable |
-| Functionality & Interactivity | `services/`, `hooks/` | Logika terpisah mudah diuji |
-| State Management & Hooks | `store/` & `hooks/` | Arsitektur state rapi |
-| Navigation & Data Flow | `navigation/` + types | Alur data tertib |
-| API Integration | `services/` | Penanganan data terpusat |
-| Code Quality & Documentation | `types/`, `utils/` | Kode mudah dibaca & di-dokumentasi |
+| Kategori                      | Dukungan Struktur              | Dampak                             |
+| ----------------------------- | ------------------------------ | ---------------------------------- |
+| Project Setup & Structure     | Struktur `src/` jelas          | Memudahkan penilai menelusuri kode |
+| UI & Design Implementation    | Folder `components/`, `theme/` | UI konsisten & reusable            |
+| Functionality & Interactivity | `services/`, `hooks/`          | Logika terpisah mudah diuji        |
+| State Management & Hooks      | `store/` & `hooks/`            | Arsitektur state rapi              |
+| Navigation & Data Flow        | `navigation/` + types          | Alur data tertib                   |
+| API Integration               | `services/`                    | Penanganan data terpusat           |
+| Code Quality & Documentation  | `types/`, `utils/`             | Kode mudah dibaca & di-dokumentasi |
 
 ## Related Docs
 

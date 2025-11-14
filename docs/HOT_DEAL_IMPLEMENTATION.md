@@ -1,14 +1,17 @@
 # Hot Deal Screen Implementation
 
 ## Overview
+
 Implementasi lengkap untuk Hot Deal Screen dengan UI slicing yang 100% mirip dengan desain mockup. Screen ini menampilkan berbagai penawaran dan promosi khusus dari Lavu's Restaurant.
 
 ## Components Created
 
 ### 1. **HotDealCard Component** (`src/components/HotDealCard.tsx`)
+
 Reusable card component dengan dua variants:
 
 #### Hero Card (Featured Deal)
+
 - **Background:** Black (#000000)
 - **Layout:** Horizontal dengan text di kiri, image/icon di kanan
 - **Components:**
@@ -20,6 +23,7 @@ Reusable card component dengan dua variants:
 - **Height:** ~180px (responsive)
 
 #### Regular Card (Standard Deals)
+
 - **Background:** White (#FFFFFF)
 - **Layout:** Horizontal dengan image di kiri, content di kanan
 - **Components:**
@@ -31,13 +35,17 @@ Reusable card component dengan dua variants:
 - **Height:** ~125px (responsive)
 
 ### 2. **HotDealScreen** (`src/screens/HotDealScreen.tsx`)
+
 Main screen component yang menampilkan:
+
 - Page title: "Lastest deals on your hand!"
 - Scrollable list of deals
 - Integration dengan mock data
 
 ### 3. **Mock Data** (`src/mocks/data/hotDeals.ts`)
+
 Structured data untuk hot deals:
+
 ```typescript
 interface HotDealItem {
   id: string;
@@ -54,16 +62,18 @@ interface HotDealItem {
 ## Design Specifications
 
 ### Typography
+
 - **Page Title:** Serif font, 30px, black
 - **Hero Card Title:** Serif font, 26px, white, line-height 34px
 - **Hero Card Label:** 10px, uppercase, letter-spacing 1.5, white 70% opacity
 - **Regular Card Title:** Serif font, 21px, black, line-height 27px
 - **Regular Card Label:** 9px, uppercase, letter-spacing 1.3, gray
-- **Button Text:** 
+- **Button Text:**
   - Hero: 15px, black
   - Regular: 13px, olive green
 
 ### Colors
+
 - **Olive Green:** #8B9D5E (buttons)
 - **Card Background (Hero):** #000000
 - **Card Background (Regular):** #FFFFFF
@@ -71,6 +81,7 @@ interface HotDealItem {
 - **Label Gray:** #999999
 
 ### Spacing & Layout
+
 - **Card Margin:** 16px horizontal, 16px bottom
 - **Hero Card Padding:** 32px vertical, 24px/16px horizontal
 - **Regular Card Padding:** 14px vertical, 16px/24px horizontal
@@ -81,19 +92,23 @@ interface HotDealItem {
   - Buttons: 12px
 
 ### Shadows
+
 #### Hero Card
+
 ```
 iOS: shadowOpacity 0.3, shadowRadius 12, offset (0, 4)
 Android: elevation 8
 ```
 
 #### Regular Card
+
 ```
 iOS: shadowOpacity 0.12, shadowRadius 10, offset (0, 3)
 Android: elevation 4
 ```
 
 #### Buttons
+
 ```
 iOS: shadowOpacity 0.15-0.2, shadowRadius 3-4, offset (0, 2)
 Android: elevation 2-3
@@ -102,12 +117,14 @@ Android: elevation 2-3
 ## Responsive Design
 
 ### Scaling Functions Used
+
 - `scaleFontSize()` - untuk semua font sizes
 - `moderateScale()` - untuk padding, spacing, dimensions
 - `scaleHeight()` - untuk heights
 - Semua mengikuti best practices dari `@utils/responsive`
 
 ### Breakpoints Considerations
+
 - Small devices: Reduced image sizes, tighter spacing
 - Large devices: Maintains proportions, comfortable spacing
 - Tablet: Cards tidak terlalu lebar, centered content
@@ -115,6 +132,7 @@ Android: elevation 2-3
 ## Features
 
 ### Current Implementation
+
 ✅ Hero card dengan Lavu's Rewards
 ✅ Regular cards untuk berbagai deals
 ✅ Responsive design dengan proper scaling
@@ -126,7 +144,9 @@ Android: elevation 2-3
 ✅ Bottom tab bar spacing
 
 ### Data Structure
+
 5 Hot Deals:
+
 1. **Lavu's Rewards** (Hero) - Loyalty program
 2. **Greatest Deal** - Boxing Day Sale
 3. **Season Drink** - New seasonal beverages
@@ -136,6 +156,7 @@ Android: elevation 2-3
 ## Assets Added
 
 ### Hot Deal Images
+
 ```typescript
 export const HotDealImages = {
   lavuReward: require('./images/hot-deal/Lavu-reward.png'),
@@ -147,36 +168,43 @@ export const HotDealImages = {
 ## Best Practices Applied
 
 ### 1. **Component Reusability**
+
 - Single `HotDealCard` component handles both hero and regular variants
 - Conditional rendering based on `type` prop
 - Clean props interface
 
 ### 2. **Data Separation**
+
 - Mock data separated from UI components
 - Easy to migrate to API later
 - Helper functions for data filtering
 
 ### 3. **Responsive Design**
+
 - All dimensions use scaling functions
 - Maintains aspect ratios across devices
 - Proper use of flex layout
 
 ### 4. **Type Safety**
+
 - Full TypeScript implementation
 - Strict type definitions
 - No `any` types used
 
 ### 5. **Performance**
+
 - Optimized images with `resizeMode`
 - Efficient list rendering
 - Minimal re-renders
 
 ### 6. **Accessibility**
+
 - Pressable components with ripple effects
 - Proper hit slop areas
 - Semantic structure
 
 ### 7. **Platform Consistency**
+
 - Both iOS and Android shadows
 - Platform-specific ripple effects
 - Consistent spacing across platforms
@@ -184,11 +212,13 @@ export const HotDealImages = {
 ## Files Modified/Created
 
 ### Created
+
 1. ✅ `src/components/HotDealCard.tsx` - Reusable card component
 2. ✅ `src/mocks/data/hotDeals.ts` - Mock data structure
 3. ✅ `docs/HOT_DEAL_IMPLEMENTATION.md` - This documentation
 
 ### Modified
+
 1. ✅ `src/screens/HotDealScreen.tsx` - Complete implementation
 2. ✅ `src/assets/index.ts` - Added HotDealImages export
 
@@ -211,18 +241,21 @@ export const HotDealImages = {
 ## Future Enhancements
 
 ### Phase 1 - Interactivity
+
 - [ ] Navigate to deal detail screen on card press
 - [ ] Add deal detail modal/screen
 - [ ] Implement share functionality
 - [ ] Add to favorites feature
 
 ### Phase 2 - Dynamic Content
+
 - [ ] Connect to real API
 - [ ] Implement deal countdown timers
 - [ ] Show discount badges
 - [ ] Filter by category
 
 ### Phase 3 - Advanced Features
+
 - [ ] Push notifications for new deals
 - [ ] Personalized deal recommendations
 - [ ] Deal history tracking
@@ -231,17 +264,20 @@ export const HotDealImages = {
 ## UI/UX Highlights
 
 ### Visual Hierarchy
+
 1. **Page Title** - Immediate attention grabber
 2. **Hero Card** - Primary featured deal (dark, high contrast)
 3. **Regular Cards** - Secondary deals (light, scannable)
 
 ### User Experience
+
 - **Quick Scanning:** Labels help categorize deals
 - **Clear CTAs:** "Learn more" buttons consistent across all cards
 - **Visual Interest:** Mix of hero and regular cards prevents monotony
 - **Scrollable:** All deals accessible without overwhelming the screen
 
 ### Design Consistency
+
 - Matches overall app design language
 - Uses established color palette
 - Follows typography system

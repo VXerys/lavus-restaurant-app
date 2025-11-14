@@ -6,16 +6,16 @@ Last Updated: 2025-11-10
 
 ## Tabel Ringkas
 
-| Tipe | Prefix | Sumber Awal | Target Merge | Contoh Nama | Tujuan |
-|------|--------|------------|--------------|-------------|--------|
-| Main | `main` | - | - | main | Produksi stabil |
-| Develop (opsional) | `develop` | main | main | develop | Integrasi fitur |
-| Feature | `feature/` | develop atau main | develop atau main | feature/reservation-flow | Fitur baru |
-| Bugfix | `bugfix/` | develop atau main | develop atau main | bugfix/menu-filter-reset | Perbaikan non-kritis |
-| Hotfix | `hotfix/` | main | main | hotfix/checkout-null-crash | Perbaikan kritis produksi |
-| Release | `release/` | develop atau main | main + develop | release/1.2.0 | Stabil sebelum rilis |
-| Chore | `chore/` | develop atau main | develop atau main | chore/update-gradle-wrapper | Tugas teknis |
-| Docs | `docs/` | develop atau main | develop atau main | docs/testing-strategy | Dokumentasi |
+| Tipe               | Prefix     | Sumber Awal       | Target Merge      | Contoh Nama                 | Tujuan                    |
+| ------------------ | ---------- | ----------------- | ----------------- | --------------------------- | ------------------------- |
+| Main               | `main`     | -                 | -                 | main                        | Produksi stabil           |
+| Develop (opsional) | `develop`  | main              | main              | develop                     | Integrasi fitur           |
+| Feature            | `feature/` | develop atau main | develop atau main | feature/reservation-flow    | Fitur baru                |
+| Bugfix             | `bugfix/`  | develop atau main | develop atau main | bugfix/menu-filter-reset    | Perbaikan non-kritis      |
+| Hotfix             | `hotfix/`  | main              | main              | hotfix/checkout-null-crash  | Perbaikan kritis produksi |
+| Release            | `release/` | develop atau main | main + develop    | release/1.2.0               | Stabil sebelum rilis      |
+| Chore              | `chore/`   | develop atau main | develop atau main | chore/update-gradle-wrapper | Tugas teknis              |
+| Docs               | `docs/`    | develop atau main | develop atau main | docs/testing-strategy       | Dokumentasi               |
 
 ## Contoh Perintah
 

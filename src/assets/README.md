@@ -23,7 +23,10 @@ import { Images, CategoryIcons, Fonts } from '@assets';
 Contoh penggunaan gambar logo:
 
 ```tsx
-<Image source={Images.logo} style={{ width:120, height:120, resizeMode:'contain' }} />
+<Image
+  source={Images.logo}
+  style={{ width: 120, height: 120, resizeMode: 'contain' }}
+/>
 ```
 
 Contoh ikon kategori (menggunakan komponen siap pakai):
@@ -31,7 +34,7 @@ Contoh ikon kategori (menggunakan komponen siap pakai):
 ```tsx
 import CategoryIcon from '@components/CategoryIcon';
 
-<CategoryIcon category="salad" label="Salad" active />
+<CategoryIcon category="salad" label="Salad" active />;
 ```
 
 ## Font
@@ -51,7 +54,7 @@ Gunakan wrapper `AppText` untuk konsistensi:
 
 ```tsx
 import AppText from '@components/AppText';
-<AppText weight="semiBold">Judul</AppText>
+<AppText weight="semiBold">Judul</AppText>;
 ```
 
 ### Linking Font ke Native
@@ -108,4 +111,3 @@ Komponen `CategoryIcon` secara otomatis memilih file berdasarkan prop `active` d
 - Jika nanti beralih ke SVG, tetap gunakan struktur dan alias yang sama agar refactor minimal.
 - Hindari mengubah dimensi ikon melalui style > scale besar (pakai file sumber yang cukup besar kalau perlu ukuran lebih besar).
 - Simpan varian besar gambar (hero/banner) terkompres WebP untuk performa (Android/iOS mendukung via fallback PNG bila perlu).
-

@@ -89,26 +89,26 @@ git branch --merged | findstr /v "* main" | foreach { git branch -d $_ }
 
 ## Troubleshooting Singkat
 
-| Gejala | Solusi Cepat |
-|--------|--------------|
-| Metro tidak connect | Jalankan `adb reverse tcp:8081 tcp:8081` |
-| Modul alias gagal | Reset cache & cek `babel.config.js` |
-| APK tidak terbuat | Cek error Gradle; jalankan `./gradlew clean --warning-mode all` |
-| Test lambat | Gunakan `--runInBand=false` atau upgrade Node |
+| Gejala              | Solusi Cepat                                                    |
+| ------------------- | --------------------------------------------------------------- |
+| Metro tidak connect | Jalankan `adb reverse tcp:8081 tcp:8081`                        |
+| Modul alias gagal   | Reset cache & cek `babel.config.js`                             |
+| APK tidak terbuat   | Cek error Gradle; jalankan `./gradlew clean --warning-mode all` |
+| Test lambat         | Gunakan `--runInBand=false` atau upgrade Node                   |
 
 ## Alignment dengan Rubrik Penilaian
 
-| Kategori | Perintah Terkait | Bukti Penilaian |
-|----------|------------------|-----------------|
-| Project Setup & Structure | Node, info RN, run-android | App berjalan & environment benar |
-| UI & Design Implementation | Reload & logcat untuk inspeksi UI | Tampilan bersih tanpa error |
-| Functionality & Interactivity | Logcat & test menjalankan fitur | Tidak ada crash saat interaksi |
-| State Management & Hooks | Jest watch saat modifikasi hooks | Re-render sesuai state |
-| Navigation & Data Flow | Debug dev menu + log param | Navigasi lancar |
-| API Integration & Data Handling | Logcat HTTP, clearing data app | Loading/error state teruji |
-| Code Quality & Documentation | Lint & prettier | Kode konsisten |
-| Creativity & Innovation | Custom script format & clean | Optimalisasi workflow |
-| Presentation & Demonstration | Perintah ringkas siap salin | Demo efisien |
+| Kategori                        | Perintah Terkait                  | Bukti Penilaian                  |
+| ------------------------------- | --------------------------------- | -------------------------------- |
+| Project Setup & Structure       | Node, info RN, run-android        | App berjalan & environment benar |
+| UI & Design Implementation      | Reload & logcat untuk inspeksi UI | Tampilan bersih tanpa error      |
+| Functionality & Interactivity   | Logcat & test menjalankan fitur   | Tidak ada crash saat interaksi   |
+| State Management & Hooks        | Jest watch saat modifikasi hooks  | Re-render sesuai state           |
+| Navigation & Data Flow          | Debug dev menu + log param        | Navigasi lancar                  |
+| API Integration & Data Handling | Logcat HTTP, clearing data app    | Loading/error state teruji       |
+| Code Quality & Documentation    | Lint & prettier                   | Kode konsisten                   |
+| Creativity & Innovation         | Custom script format & clean      | Optimalisasi workflow            |
+| Presentation & Demonstration    | Perintah ringkas siap salin       | Demo efisien                     |
 
 ## Cara Mengganti Placeholder
 

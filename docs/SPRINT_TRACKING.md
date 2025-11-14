@@ -38,13 +38,13 @@ Sprint tracking focuses on measuring and optimizing:
 
 ### Recommended Tools Comparison
 
-| Platform | Core Strengths | Potential Limitations | Optimal Use Case |
-|----------|---------------|----------------------|------------------|
-| **GitHub Projects** | • Native GitHub integration<br>• Zero additional licensing cost<br>• Seamless issue/PR linking<br>• Customizable project boards | • Limited advanced reporting<br>• Basic burndown capabilities<br>• Less sophisticated than Jira | **Recommended for:** Small-to-medium teams prioritizing simplicity and GitHub-centric workflows |
-| **Jira Software** | • Comprehensive Agile features<br>• Advanced reporting & dashboards<br>• Configurable workflows<br>• Enterprise-grade scalability<br>• Extensive integration ecosystem | • Steeper learning curve<br>• Higher setup complexity<br>• Licensing costs at scale<br>• Can feel heavyweight | **Recommended for:** Larger teams requiring sophisticated reporting, cross-project dependencies, and enterprise integrations |
-| **Trello** | • Intuitive visual interface<br>• Minimal learning curve<br>• Lightweight & fast<br>• Excellent for Kanban | • Limited metric reporting<br>• Basic sprint support<br>• Minimal automation<br>• Lacks built-in burndown | **Recommended for:** Very small teams or projects prioritizing visual simplicity over detailed analytics |
-| **Azure DevOps** | • Comprehensive ALM platform<br>• Strong CI/CD integration<br>• Built-in Git repositories<br>• Microsoft ecosystem alignment | • Can be complex to configure<br>• Less intuitive UI<br>• Primarily beneficial within Microsoft stack | **Recommended for:** Teams already invested in Microsoft/Azure ecosystem |
-| **Linear** | • Modern, fast interface<br>• Excellent keyboard shortcuts<br>• Strong GitHub integration<br>• Built for engineering teams | • Relatively newer platform<br>• Smaller integration ecosystem<br>• Limited traditional Scrum features | **Recommended for:** Tech-savvy teams valuing speed and modern UX |
+| Platform            | Core Strengths                                                                                                                                                         | Potential Limitations                                                                                         | Optimal Use Case                                                                                                             |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **GitHub Projects** | • Native GitHub integration<br>• Zero additional licensing cost<br>• Seamless issue/PR linking<br>• Customizable project boards                                        | • Limited advanced reporting<br>• Basic burndown capabilities<br>• Less sophisticated than Jira               | **Recommended for:** Small-to-medium teams prioritizing simplicity and GitHub-centric workflows                              |
+| **Jira Software**   | • Comprehensive Agile features<br>• Advanced reporting & dashboards<br>• Configurable workflows<br>• Enterprise-grade scalability<br>• Extensive integration ecosystem | • Steeper learning curve<br>• Higher setup complexity<br>• Licensing costs at scale<br>• Can feel heavyweight | **Recommended for:** Larger teams requiring sophisticated reporting, cross-project dependencies, and enterprise integrations |
+| **Trello**          | • Intuitive visual interface<br>• Minimal learning curve<br>• Lightweight & fast<br>• Excellent for Kanban                                                             | • Limited metric reporting<br>• Basic sprint support<br>• Minimal automation<br>• Lacks built-in burndown     | **Recommended for:** Very small teams or projects prioritizing visual simplicity over detailed analytics                     |
+| **Azure DevOps**    | • Comprehensive ALM platform<br>• Strong CI/CD integration<br>• Built-in Git repositories<br>• Microsoft ecosystem alignment                                           | • Can be complex to configure<br>• Less intuitive UI<br>• Primarily beneficial within Microsoft stack         | **Recommended for:** Teams already invested in Microsoft/Azure ecosystem                                                     |
+| **Linear**          | • Modern, fast interface<br>• Excellent keyboard shortcuts<br>• Strong GitHub integration<br>• Built for engineering teams                                             | • Relatively newer platform<br>• Smaller integration ecosystem<br>• Limited traditional Scrum features        | **Recommended for:** Tech-savvy teams valuing speed and modern UX                                                            |
 
 ### Recommended Configuration: GitHub Projects + Issues + Milestones
 
@@ -73,14 +73,14 @@ For small-to-medium development teams (1-10 developers) working within GitHub:
 
 **Optimized Workflow Stages:**
 
-| Column Name | Entry Criteria | Exit Criteria | WIP Limit | Purpose |
-|-------------|---------------|---------------|-----------|---------|
-| **📋 Backlog** | • User story defined<br>• No commitment made | • Sprint planning selection | Unlimited | Repository of potential work items awaiting prioritization |
-| **📝 Ready** | • Acceptance criteria defined<br>• Dependencies resolved<br>• Estimation completed | • Developer assignment<br>• Sprint commitment | 2x Sprint Capacity | Sprint-committed work awaiting initiation |
-| **🚀 In Progress** | • Developer assigned<br>• Work actively begun | • Implementation complete<br>• Tests written | 5-7 items | Active development work |
-| **👀 Code Review** | • PR created<br>• CI passing<br>• Self-review complete | • Approval obtained<br>• Feedback addressed | 3-5 items | Peer review and quality validation |
-| **🧪 Testing** | • Code merged to test environment<br>• Test scenarios defined | • All test cases passed<br>• QA sign-off | 3-4 items | Quality assurance validation |
-| **✅ Done** | • All acceptance criteria met<br>• Definition of Done satisfied | • Sprint review demonstration | Unlimited | Completed work eligible for release |
+| Column Name        | Entry Criteria                                                                     | Exit Criteria                                 | WIP Limit          | Purpose                                                    |
+| ------------------ | ---------------------------------------------------------------------------------- | --------------------------------------------- | ------------------ | ---------------------------------------------------------- |
+| **📋 Backlog**     | • User story defined<br>• No commitment made                                       | • Sprint planning selection                   | Unlimited          | Repository of potential work items awaiting prioritization |
+| **📝 Ready**       | • Acceptance criteria defined<br>• Dependencies resolved<br>• Estimation completed | • Developer assignment<br>• Sprint commitment | 2x Sprint Capacity | Sprint-committed work awaiting initiation                  |
+| **🚀 In Progress** | • Developer assigned<br>• Work actively begun                                      | • Implementation complete<br>• Tests written  | 5-7 items          | Active development work                                    |
+| **👀 Code Review** | • PR created<br>• CI passing<br>• Self-review complete                             | • Approval obtained<br>• Feedback addressed   | 3-5 items          | Peer review and quality validation                         |
+| **🧪 Testing**     | • Code merged to test environment<br>• Test scenarios defined                      | • All test cases passed<br>• QA sign-off      | 3-4 items          | Quality assurance validation                               |
+| **✅ Done**        | • All acceptance criteria met<br>• Definition of Done satisfied                    | • Sprint review demonstration                 | Unlimited          | Completed work eligible for release                        |
 
 ### Work-In-Progress (WIP) Limits Rationale
 
@@ -114,13 +114,13 @@ Sprint Velocity = Σ (Story Points of Completed User Stories)
 
 #### Velocity Trend Analysis
 
-| Sprint | Committed Points | Completed Points | Completion Rate | Trend Indicator |
-|--------|-----------------|------------------|-----------------|-----------------|
-| Sprint 1 | 40 | 35 | 87.5% | 📈 Baseline |
-| Sprint 2 | 38 | 40 | 105.3% | 🎯 Above Target |
-| Sprint 3 | 42 | 38 | 90.5% | ✅ Stable |
-| Sprint 4 | 40 | 41 | 102.5% | ✅ Consistent |
-| Sprint 5 | 40 | 39 | 97.5% | ✅ Predictable |
+| Sprint   | Committed Points | Completed Points | Completion Rate | Trend Indicator |
+| -------- | ---------------- | ---------------- | --------------- | --------------- |
+| Sprint 1 | 40               | 35               | 87.5%           | 📈 Baseline     |
+| Sprint 2 | 38               | 40               | 105.3%          | 🎯 Above Target |
+| Sprint 3 | 42               | 38               | 90.5%           | ✅ Stable       |
+| Sprint 4 | 40               | 41               | 102.5%          | ✅ Consistent   |
+| Sprint 5 | 40               | 39               | 97.5%           | ✅ Predictable  |
 
 **Interpretation Guidelines:**
 
@@ -176,12 +176,12 @@ Day    Ideal Remaining    Actual Remaining    Status
 
 #### Cycle Time Breakdown
 
-| Work Item Type | Target Cycle Time | Acceptable Range | Action Threshold |
-|----------------|------------------|------------------|------------------|
-| **Bug Fix (Minor)** | 0.5 - 1 day | ≤ 2 days | > 3 days - investigate blockers |
-| **Small Story (1-3 pts)** | 1 - 2 days | ≤ 3 days | > 4 days - decompose or pair |
-| **Medium Story (5-8 pts)** | 3 - 5 days | ≤ 7 days | > 8 days - re-estimate or split |
-| **Large Story (13+ pts)** | Should be split | N/A | Break into smaller stories |
+| Work Item Type             | Target Cycle Time | Acceptable Range | Action Threshold                |
+| -------------------------- | ----------------- | ---------------- | ------------------------------- |
+| **Bug Fix (Minor)**        | 0.5 - 1 day       | ≤ 2 days         | > 3 days - investigate blockers |
+| **Small Story (1-3 pts)**  | 1 - 2 days        | ≤ 3 days         | > 4 days - decompose or pair    |
+| **Medium Story (5-8 pts)** | 3 - 5 days        | ≤ 7 days         | > 8 days - re-estimate or split |
+| **Large Story (13+ pts)**  | Should be split   | N/A              | Break into smaller stories      |
 
 **Cycle Time Formula:**
 
@@ -232,13 +232,13 @@ Carryover Rate = (Incomplete Story Points ÷ Committed Story Points) × 100%
 
 #### Quality Metrics Dashboard
 
-| Sprint | Stories Delivered | Production Bugs | Defect Rate | Severity Breakdown |
-|--------|------------------|-----------------|-------------|-------------------|
-| Sprint 1 | 7 stories | 2 bugs | 28.6% | 1 Critical, 1 Minor |
-| Sprint 2 | 8 stories | 1 bug | 12.5% | 1 Medium |
-| Sprint 3 | 6 stories | 0 bugs | 0% | - |
-| Sprint 4 | 7 stories | 3 bugs | 42.9% | 2 Medium, 1 Minor |
-| Sprint 5 | 8 stories | 1 bug | 12.5% | 1 Minor |
+| Sprint   | Stories Delivered | Production Bugs | Defect Rate | Severity Breakdown  |
+| -------- | ----------------- | --------------- | ----------- | ------------------- |
+| Sprint 1 | 7 stories         | 2 bugs          | 28.6%       | 1 Critical, 1 Minor |
+| Sprint 2 | 8 stories         | 1 bug           | 12.5%       | 1 Medium            |
+| Sprint 3 | 6 stories         | 0 bugs          | 0%          | -                   |
+| Sprint 4 | 7 stories         | 3 bugs          | 42.9%       | 2 Medium, 1 Minor   |
+| Sprint 5 | 8 stories         | 1 bug           | 12.5%       | 1 Minor             |
 
 **Defect Rate Formula:**
 
@@ -281,7 +281,7 @@ Total Capacity = 84 hours
 **Story Point to Hours Mapping (Typical):**
 
 - 1 point = ~4 hours
-- 3 points = ~12 hours  
+- 3 points = ~12 hours
 - 5 points = ~20 hours
 - 8 points = ~32 hours
 
@@ -357,22 +357,22 @@ Brief overview of sprint outcomes, major accomplishments, and critical challenge
 
 ## Commitment vs. Delivery
 
-| Metric | Target | Actual | Variance | Status |
-|--------|--------|--------|----------|:------:|
-| **Story Points Committed** | <<COMMITTED_POINTS>> | N/A | N/A | - |
-| **Story Points Completed** | <<COMMITTED_POINTS>> | <<COMPLETED_POINTS>> | <<VARIANCE>>% | <<🎯/⚠️/❌>> |
-| **Completion Rate** | 100% | <<PERCENTAGE>>% | <<DELTA>>% | <<STATUS>> |
-| **Carryover Points** | 0 | <<CARRYOVER_POINTS>> | <<PERCENTAGE>>% | <<STATUS>> |
+| Metric                     | Target               | Actual               | Variance        |    Status    |
+| -------------------------- | -------------------- | -------------------- | --------------- | :----------: |
+| **Story Points Committed** | <<COMMITTED_POINTS>> | N/A                  | N/A             |      -       |
+| **Story Points Completed** | <<COMMITTED_POINTS>> | <<COMPLETED_POINTS>> | <<VARIANCE>>%   | <<🎯/⚠️/❌>> |
+| **Completion Rate**        | 100%                 | <<PERCENTAGE>>%      | <<DELTA>>%      |  <<STATUS>>  |
+| **Carryover Points**       | 0                    | <<CARRYOVER_POINTS>> | <<PERCENTAGE>>% |  <<STATUS>>  |
 
 ---
 
 ## Velocity Trend Analysis
 
-| Sprint | Velocity | 3-Sprint Rolling Avg | Trend |
-|--------|----------|---------------------|-------|
-| Sprint N-2 | <<POINTS>> | - | - |
-| Sprint N-1 | <<POINTS>> | <<AVERAGE>> | <<ARROW>> |
-| Sprint N (Current) | <<POINTS>> | <<AVERAGE>> | <<ARROW>> |
+| Sprint             | Velocity   | 3-Sprint Rolling Avg | Trend     |
+| ------------------ | ---------- | -------------------- | --------- |
+| Sprint N-2         | <<POINTS>> | -                    | -         |
+| Sprint N-1         | <<POINTS>> | <<AVERAGE>>          | <<ARROW>> |
+| Sprint N (Current) | <<POINTS>> | <<AVERAGE>>          | <<ARROW>> |
 
 **Interpretation:** <<ANALYSIS_OF_VELOCITY_PATTERN>>
 
@@ -383,6 +383,7 @@ Brief overview of sprint outcomes, major accomplishments, and critical challenge
 **Visual:** <<LINK_TO_BURNDOWN_CHART_IMAGE>>
 
 **Pattern Assessment:**
+
 - Sprint start pace: <<EARLY/MODERATE/SLOW>>
 - Mid-sprint progress: <<ON_TRACK/AHEAD/BEHIND>>
 - Final delivery: <<COMPLETE/PARTIAL_CARRYOVER>>
@@ -395,26 +396,27 @@ Brief overview of sprint outcomes, major accomplishments, and critical challenge
 
 ### Completed Stories (Done)
 
-| Issue # | Title | Story Points | Cycle Time | Assignee |
-|---------|-------|--------------|------------|----------|
-| #<<NUM>> | <<TITLE>> | <<POINTS>> | <<DAYS>> days | <<NAME>> |
-| #<<NUM>> | <<TITLE>> | <<POINTS>> | <<DAYS>> days | <<NAME>> |
+| Issue #  | Title     | Story Points | Cycle Time    | Assignee |
+| -------- | --------- | ------------ | ------------- | -------- |
+| #<<NUM>> | <<TITLE>> | <<POINTS>>   | <<DAYS>> days | <<NAME>> |
+| #<<NUM>> | <<TITLE>> | <<POINTS>>   | <<DAYS>> days | <<NAME>> |
 
 **Total Completed:** <<NUMBER>> stories, <<POINTS>> points
 
 ### Carried Over (Incomplete)
 
-| Issue # | Title | Story Points | Reason | Next Sprint Action |
-|---------|-------|--------------|--------|-------------------|
-| #<<NUM>> | <<TITLE>> | <<POINTS>> | <<BLOCKER/COMPLEXITY/SCOPE>> | <<PLAN>> |
+| Issue #  | Title     | Story Points | Reason                       | Next Sprint Action |
+| -------- | --------- | ------------ | ---------------------------- | ------------------ |
+| #<<NUM>> | <<TITLE>> | <<POINTS>>   | <<BLOCKER/COMPLEXITY/SCOPE>> | <<PLAN>>           |
 
 ### Bugs & Production Issues
 
-| Issue # | Severity | Root Cause Sprint | Resolution Time | Status |
-|---------|----------|------------------|-----------------|:------:|
-| #<<NUM>> | <<CRITICAL/HIGH/MEDIUM/LOW>> | Sprint <<N>> | <<HOURS>> | <<✅/🚧>> |
+| Issue #  | Severity                     | Root Cause Sprint | Resolution Time |  Status   |
+| -------- | ---------------------------- | ----------------- | --------------- | :-------: |
+| #<<NUM>> | <<CRITICAL/HIGH/MEDIUM/LOW>> | Sprint <<N>>      | <<HOURS>>       | <<✅/🚧>> |
 
 **Defect Metrics:**
+
 - Production bugs introduced: <<NUMBER>>
 - Defect escape rate: <<PERCENTAGE>>%
 - Critical/High severity: <<NUMBER>>
@@ -423,10 +425,10 @@ Brief overview of sprint outcomes, major accomplishments, and critical challenge
 
 ## Team Capacity & Utilization
 
-| Team Member | Available Hours | Allocated Hours | Utilization % | Notes |
-|-------------|----------------|-----------------|---------------|-------|
-| <<NAME>> | <<HOURS>> | <<HOURS>> | <<PERCENT>>% | <<PTO/MEETINGS/OTHER>> |
-| **Team Total** | **<<TOTAL>>** | **<<ALLOCATED>>** | **<<AVG>>%** | - |
+| Team Member    | Available Hours | Allocated Hours   | Utilization % | Notes                  |
+| -------------- | --------------- | ----------------- | ------------- | ---------------------- |
+| <<NAME>>       | <<HOURS>>       | <<HOURS>>         | <<PERCENT>>%  | <<PTO/MEETINGS/OTHER>> |
+| **Team Total** | **<<TOTAL>>**   | **<<ALLOCATED>>** | **<<AVG>>%**  | -                      |
 
 **Capacity Observations:** <<UNDER_UTILIZED/OPTIMAL/OVER_COMMITTED>>
 
@@ -448,10 +450,10 @@ Brief overview of sprint outcomes, major accomplishments, and critical challenge
 
 ### Action Items for Next Sprint 🎯
 
-| Action Item | Owner | Priority | Due Date |
-|-------------|-------|----------|----------|
-| <<ACTION>> | <<NAME>> | <<HIGH/MEDIUM/LOW>> | <<DATE>> |
-| <<ACTION>> | <<NAME>> | <<HIGH/MEDIUM/LOW>> | <<DATE>> |
+| Action Item | Owner    | Priority            | Due Date |
+| ----------- | -------- | ------------------- | -------- |
+| <<ACTION>>  | <<NAME>> | <<HIGH/MEDIUM/LOW>> | <<DATE>> |
+| <<ACTION>>  | <<NAME>> | <<HIGH/MEDIUM/LOW>> | <<DATE>> |
 
 ---
 
@@ -488,14 +490,14 @@ Brief overview of sprint outcomes, major accomplishments, and critical challenge
 
 ### Common Sprint Risks & Countermeasures
 
-| Risk Category | Symptoms / Indicators | Root Causes | Mitigation Strategies |
-|---------------|----------------------|-------------|----------------------|
-| **Velocity Instability** | >20% variance sprint-to-sprint | • Inconsistent estimation<br>• Team composition changes<br>• External interruptions | • Calibrate estimation through planning poker<br>• Use historical data for forecasting<br>• Protect team time from ad-hoc requests |
-| **Flat Burndown (Early Sprint)** | Minimal progress in first 2-3 days | • Unclear priorities<br>• Technical blockers<br>• Waiting for dependencies | • Front-load sprint planning clarity<br>• Identify and resolve blockers in daily standup<br>• Establish work-ready criteria (Definition of Ready) |
-| **Excessive Carryover** | >20% committed work incomplete | • Over-commitment<br>• Under-estimation<br>• Scope creep | • Commit to 80% of calculated capacity<br>• Decompose large stories<br>• Enforce sprint scope freeze after planning |
-| **Code Review Bottleneck** | Work accumulating in review column | • Reviewer unavailability<br>• Large PR sizes<br>• Insufficient reviewer capacity | • Establish review SLA (24-hour max)<br>• Limit PR size to <500 lines<br>• Rotate review responsibilities |
-| **Testing Backlog** | Work piling up in QA/testing | • Late development completion<br>• Insufficient test scenarios<br>• QA capacity constraint | • Implement continuous testing during development<br>• Automate regression tests<br>• Pair developers with QA early |
-| **Technical Debt Accumulation** | Increasing defect rates, slower velocity over time | • "Quick fix" mentality<br>• Skipping refactoring<br>• Incomplete DoD compliance | • Allocate 15-20% capacity to tech debt<br>• Make refactoring part of DoD<br>• Track tech debt items explicitly |
+| Risk Category                    | Symptoms / Indicators                              | Root Causes                                                                                | Mitigation Strategies                                                                                                                             |
+| -------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Velocity Instability**         | >20% variance sprint-to-sprint                     | • Inconsistent estimation<br>• Team composition changes<br>• External interruptions        | • Calibrate estimation through planning poker<br>• Use historical data for forecasting<br>• Protect team time from ad-hoc requests                |
+| **Flat Burndown (Early Sprint)** | Minimal progress in first 2-3 days                 | • Unclear priorities<br>• Technical blockers<br>• Waiting for dependencies                 | • Front-load sprint planning clarity<br>• Identify and resolve blockers in daily standup<br>• Establish work-ready criteria (Definition of Ready) |
+| **Excessive Carryover**          | >20% committed work incomplete                     | • Over-commitment<br>• Under-estimation<br>• Scope creep                                   | • Commit to 80% of calculated capacity<br>• Decompose large stories<br>• Enforce sprint scope freeze after planning                               |
+| **Code Review Bottleneck**       | Work accumulating in review column                 | • Reviewer unavailability<br>• Large PR sizes<br>• Insufficient reviewer capacity          | • Establish review SLA (24-hour max)<br>• Limit PR size to <500 lines<br>• Rotate review responsibilities                                         |
+| **Testing Backlog**              | Work piling up in QA/testing                       | • Late development completion<br>• Insufficient test scenarios<br>• QA capacity constraint | • Implement continuous testing during development<br>• Automate regression tests<br>• Pair developers with QA early                               |
+| **Technical Debt Accumulation**  | Increasing defect rates, slower velocity over time | • "Quick fix" mentality<br>• Skipping refactoring<br>• Incomplete DoD compliance           | • Allocate 15-20% capacity to tech debt<br>• Make refactoring part of DoD<br>• Track tech debt items explicitly                                   |
 
 ---
 
@@ -506,7 +508,7 @@ Brief overview of sprint outcomes, major accomplishments, and critical challenge
 ```javascript
 // sprint-metrics.js - Simple GitHub API integration for metric collection
 
-const { Octokit } = require("@octokit/rest");
+const { Octokit } = require('@octokit/rest');
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
@@ -516,42 +518,49 @@ async function getSprintMetrics(owner, repo, sprintLabel) {
     owner,
     repo,
     labels: sprintLabel,
-    state: "all",
-    per_page: 100
+    state: 'all',
+    per_page: 100,
   });
 
   // Calculate metrics
   const metrics = {
     totalIssues: issues.length,
-    closedIssues: issues.filter(i => i.state === "closed").length,
-    openIssues: issues.filter(i => i.state === "open").length,
+    closedIssues: issues.filter(i => i.state === 'closed').length,
+    openIssues: issues.filter(i => i.state === 'open').length,
     totalPoints: 0,
     completedPoints: 0,
-    carryoverPoints: 0
+    carryoverPoints: 0,
   };
 
   issues.forEach(issue => {
     // Extract story points from labels (e.g., "points:5")
-    const pointLabel = issue.labels.find(l => l.name.startsWith("points:"));
-    const points = pointLabel ? parseInt(pointLabel.name.split(":")[1]) : 0;
+    const pointLabel = issue.labels.find(l => l.name.startsWith('points:'));
+    const points = pointLabel ? parseInt(pointLabel.name.split(':')[1]) : 0;
 
     metrics.totalPoints += points;
-    if (issue.state === "closed") {
+    if (issue.state === 'closed') {
       metrics.completedPoints += points;
     } else {
       metrics.carryoverPoints += points;
     }
   });
 
-  metrics.completionRate = ((metrics.completedPoints / metrics.totalPoints) * 100).toFixed(1);
-  metrics.carryoverRate = ((metrics.carryoverPoints / metrics.totalPoints) * 100).toFixed(1);
+  metrics.completionRate = (
+    (metrics.completedPoints / metrics.totalPoints) *
+    100
+  ).toFixed(1);
+  metrics.carryoverRate = (
+    (metrics.carryoverPoints / metrics.totalPoints) *
+    100
+  ).toFixed(1);
 
   return metrics;
 }
 
 // Usage
-getSprintMetrics("owner-name", "repo-name", "sprint-5")
-  .then(metrics => console.log(JSON.stringify(metrics, null, 2)));
+getSprintMetrics('owner-name', 'repo-name', 'sprint-5').then(metrics =>
+  console.log(JSON.stringify(metrics, null, 2)),
+);
 ```
 
 ### GitHub Actions Workflow for Automated Reporting
@@ -570,20 +579,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      
+
       - name: Install dependencies
         run: npm install @octokit/rest
-      
+
       - name: Generate sprint metrics
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node sprint-metrics.js > metrics-output.json
-      
+
       - name: Create summary report
         run: |
           echo "## Sprint Metrics Summary" >> $GITHUB_STEP_SUMMARY
@@ -599,14 +608,17 @@ jobs:
 Use sprint metrics to guide retrospective discussions:
 
 1. **Velocity Analysis:**
+
    - "Our velocity decreased by 15% this sprint. What factors contributed?"
    - "We exceeded our commitment by 20%. Should we increase capacity planning?"
 
 2. **Cycle Time Investigation:**
+
    - "Story #123 took 8 days to complete. What caused the extended cycle time?"
    - "Our average cycle time is trending upward. What process improvements could help?"
 
 3. **Carryover Deep Dive:**
+
    - "We carried over 25% of committed work. Were we over-optimistic or did blockers arise?"
    - "Which carried-over stories should we split for better estimability?"
 
@@ -665,7 +677,7 @@ Replace template placeholders with actual sprint data:
 
 **Revision History:**
 
-| Version | Date | Author | Summary of Changes |
-|---------|------|--------|-------------------|
-| 2.0 | 2025-11-12 | Development Team | Comprehensive expansion with detailed metrics, automation examples, and risk mitigation strategies |
-| 1.0 | 2025-11-10 | Development Team | Initial sprint tracking framework and basic metrics definition |
+| Version | Date       | Author           | Summary of Changes                                                                                 |
+| ------- | ---------- | ---------------- | -------------------------------------------------------------------------------------------------- |
+| 2.0     | 2025-11-12 | Development Team | Comprehensive expansion with detailed metrics, automation examples, and risk mitigation strategies |
+| 1.0     | 2025-11-10 | Development Team | Initial sprint tracking framework and basic metrics definition                                     |
