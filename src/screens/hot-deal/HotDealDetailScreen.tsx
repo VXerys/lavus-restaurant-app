@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Animated } from 'react-native';
+import { View, StyleSheet, ScrollView, Animated, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   AppText,
@@ -13,7 +13,7 @@ import {
 } from '@components';
 import { Colors, Spacing } from '@theme/tokens';
 import { scaleHeight, scaleFontSize } from '@utils/responsive';
-import { getHotDealById } from '@mocks/data/hotDeals';
+import { fetchHotDealById } from '@mocks/data/hotDeals';
 import { useClaimDealAnimation } from '@hooks/useClaimDealAnimation';
 
 interface HotDealDetailScreenProps {
@@ -32,7 +32,20 @@ const HotDealDetailScreen: React.FC<HotDealDetailScreenProps> = ({
   route,
 }) => {
   const dealId = propDealId || route?.params?.dealId || 'hd-001';
-  const dealData = getHotDealById(dealId);
+  const [dealData, setDealData] = React.useState<any | undefined>(undefined);
+  const [loading, setLoading] = React.useState<boolean>(true);
+
+  React.useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      setLoading(true);
+      const d = await fetchHotDealById(dealId);
+      if (mounted) setDealData(d);
+      setLoading(false);
+    };
+    load();
+    return () => { mounted = false };
+  }, [dealId]);
 
   // Use custom hook for claim animation
   const {
@@ -44,6 +57,19 @@ const HotDealDetailScreen: React.FC<HotDealDetailScreenProps> = ({
     checkmarkRotate,
     handleClaimDeal,
   } = useClaimDealAnimation(onBack);
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.safeArea} edges={['top']}>
+        <View style={styles.container}>
+          <DetailScreenHeader title="" onBack={onBack} />
+          <View style={styles.errorContainer}>
+            <ActivityIndicator size="large" color={Colors.black} />
+          </View>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   if (!dealData) {
     return (
@@ -80,7 +106,7 @@ const HotDealDetailScreen: React.FC<HotDealDetailScreenProps> = ({
           showsVerticalScrollIndicator={false}
         >
           {/* Deal Image */}
-          <DealImageSection image={dealData.image} />
+          <DealImageSection image={typeof dealData.image === 'string' ? { uri: dealData.image } : dealData.image} />
 
           {/* Deal Info Section */}
           <View style={styles.infoSection}>

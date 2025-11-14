@@ -33,13 +33,15 @@ const ReserveScreen: React.FC<ReserveScreenProps> = ({ navigation }) => {
   const [showDateModal, setShowDateModal] = useState(false);
 
   const handleReservation = () => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const selectedDateOnly = new Date(selectedDate);
-    selectedDateOnly.setHours(0, 0, 0, 0);
+    // Normalize dates to local date-only (year, month, day) to avoid
+    // timezone/DST issues when comparing. Using getTime on UTC-normalized
+    // date avoids bugs where midnight offsets make dates appear earlier.
+    const now = new Date();
+    const todayOnly = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+    const sel = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate()).getTime();
 
-    // Validate: Check if user has selected a valid future date
-    if (selectedDateOnly < today) {
+    // Validate: Check if user has selected a valid future or same-day date
+    if (sel < todayOnly) {
       setShowDateModal(true);
       return;
     }

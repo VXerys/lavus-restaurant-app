@@ -85,7 +85,16 @@ export const signInWithGoogle = async () => {
   try {
     // Check if device supports Google Play
     await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-    
+    // Force account chooser: clear any cached Google user so the account
+    // selection UI is shown each time the user taps the Google button.
+    // This ensures the user must explicitly pick an account instead of
+    // automatically reusing a previously cached account.
+    try {
+      await GoogleSignin.signOut();
+    } catch {
+      // Ignore signOut errors (may not be signed in) and continue to signIn
+    }
+
     // Get user ID token
     const response = await GoogleSignin.signIn();
     const idToken = response.data?.idToken;

@@ -1,4 +1,4 @@
-import { Reservation } from '@types';
+import { Reservation } from '../../types'; // Adjust the path as needed to point to your actual types file
 
 export const reservations: Reservation[] = [
   {

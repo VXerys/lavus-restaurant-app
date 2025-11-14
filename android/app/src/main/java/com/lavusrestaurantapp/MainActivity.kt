@@ -39,6 +39,7 @@ class MainActivity : ReactActivity() {
 
   private fun hideNavigationBar() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+      @Suppress("DEPRECATION")
       window.setDecorFitsSystemWindows(false)
       window.insetsController?.let {
         it.hide(WindowInsets.Type.navigationBars())

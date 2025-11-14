@@ -1,4 +1,4 @@
-import { Review } from '@types';
+import { Review } from '../../types'; // Adjust the path as needed to point to your Review type definition
 
 export const reviews: Review[] = [
   {

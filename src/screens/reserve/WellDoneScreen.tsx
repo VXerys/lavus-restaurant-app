@@ -1,21 +1,19 @@
-import React, { useEffect, useRef } from 'react';
-import { View, StyleSheet, Image, Pressable, Animated, ScrollView } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { View, StyleSheet, Image, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AppText from '@components/common/AppText';
 import Button from '@components/common/Button';
-import { NavigationIcons } from '@assets';
+import ReminderPopup from '@components/common/ReminderPopup';
 import { Colors } from '@theme/tokens';
 import { scaleWidth, scaleHeight, scaleFontSize, moderateScale } from '@utils/responsive';
 
 interface WellDoneScreenProps {
-  onBack?: () => void;
   onSetReminder?: () => void;
   onGoHome?: () => void;
 }
 
 const WellDoneScreen: React.FC<WellDoneScreenProps> = ({
-  onBack,
-  onSetReminder,
+  onSetReminder: _onSetReminder,
   onGoHome,
 }) => {
   // Animation values
@@ -43,18 +41,24 @@ const WellDoneScreen: React.FC<WellDoneScreenProps> = ({
     ]).start();
   }, [scaleAnim, checkmarkAnim]);
 
+  // Reminder popup state (rendered via separate component)
+  const [reminderVisible, setReminderVisible] = useState(false);
+
+  const showReminderPopup = () => {
+    setReminderVisible(true);
+    // Auto dismiss after 2.5s
+    setTimeout(() => {
+      setReminderVisible(false);
+    }, 2500);
+  };
+
+  const hideReminderPopup = () => {
+    setReminderVisible(false);
+  };
+
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
-      <ScrollView 
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.container}>
-        {/* Back Button */}
-        <Pressable style={styles.backButton} onPress={onBack}>
-          <Image source={NavigationIcons.back} style={styles.backIcon} />
-        </Pressable>
+      <View style={styles.container}>
 
         {/* Logo */}
         <View style={styles.logoContainer}>
@@ -105,7 +109,12 @@ const WellDoneScreen: React.FC<WellDoneScreenProps> = ({
         <View style={styles.buttonsContainer}>
           <Button
             title="Set A Reminder"
-            onPress={onSetReminder}
+            onPress={() => {
+              // Show animated popup indicating feature is in progress
+              showReminderPopup();
+              // Optionally keep calling external handler if present
+              // onSetReminder?.();
+            }}
             variant="primary"
             width={scaleWidth(280)}
           />
@@ -120,7 +129,14 @@ const WellDoneScreen: React.FC<WellDoneScreenProps> = ({
           />
         </View>
         </View>
-      </ScrollView>
+
+      {/* Reminder Popup (extracted component) */}
+      <ReminderPopup
+        visible={reminderVisible}
+        title="Feature in progress"
+        message={"The \"Set A Reminder\" feature is still under development. We're working on it — stay tuned!"}
+        onClose={hideReminderPopup}
+      />
     </SafeAreaView>
   );
 };
@@ -130,32 +146,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.bg,
   },
-  scrollView: {
-    flex: 1,
-    backgroundColor: Colors.bg,
-  },
-  scrollContent: {
-    flexGrow: 1,
-  },
+  
   container: {
     flex: 1,
     backgroundColor: Colors.bg,
     paddingHorizontal: scaleWidth(20),
   },
-  backButton: {
-    width: moderateScale(44),
-    height: moderateScale(44),
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: scaleHeight(8),
-    marginLeft: scaleWidth(-8),
-  },
-  backIcon: {
-    width: moderateScale(24),
-    height: moderateScale(24),
-    tintColor: Colors.black,
-    resizeMode: 'contain',
-  },
+  
   logoContainer: {
     alignItems: 'center',
     marginTop: scaleHeight(20),
@@ -208,6 +205,7 @@ const styles = StyleSheet.create({
   buttonSpacing: {
     height: scaleHeight(16),
   },
+  // reminder styles moved to ReminderPopup component
 });
 
 export default WellDoneScreen;

@@ -27,7 +27,9 @@ const RedeemSuccessScreen: React.FC<Props> = ({ navigation, route }) => {
     // Clear the navigation stack and go to Home
     navigation.reset({
       index: 0,
-      routes: [{ name: 'Home' as any }],
+      routes: [
+        { name: 'Main' as any, params: { initialTab: 'home' as const } },
+      ],
     });
   };
 

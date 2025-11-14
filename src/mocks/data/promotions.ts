@@ -1,4 +1,4 @@
-import { Promotion } from '@types';
+import { Promotion } from '../../types'; // Adjust the path as needed to point to where Promotion is actually defined
 
 export const promotions: Promotion[] = [
   {
