@@ -1,7 +1,7 @@
 # Lavu's Restaurant App
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/ecb0b5d0-86c5-4d76-96dd-45486858312d" alt="logo-lavus" width="220" />
+  <img width="175" height="304" alt="logo-restaurant" src="https://github.com/user-attachments/assets/fd97376b-9e23-4598-a988-db1a0c193098" />
 </p>
 
 _Last updated: 2025-11-16 — README aligned with current project progress_
