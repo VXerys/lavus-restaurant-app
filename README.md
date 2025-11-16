@@ -1,6 +1,10 @@
 # Lavu's Restaurant App
 
-![logo-lavus](https://github.com/user-attachments/assets/ecb0b5d0-86c5-4d76-96dd-45486858312d)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ecb0b5d0-86c5-4d76-96dd-45486858312d" alt="logo-lavus" width="220" />
+</p>
+
+_Last updated: 2025-11-16 — README aligned with current project progress_
 
 Satu aplikasi mobile untuk pemesanan meja, pre-order makanan, tracking promosi, & program loyalitas restoran. *Reserve • Order • Earn • Experience*
 
@@ -358,14 +362,18 @@ Hak cipta akademik tugas UTS – penggunaan publik memerlukan izin. Lisensi akan
 
 ## Status Proyek (Ringkas)
 
-| Aspek             | Status                             |
-| ----------------- | ---------------------------------- |
-| Setup Environment | OK                                 |
-| Struktur Proyek   | Draft disiapkan                    |
-| Fitur Reservasi   | Placeholder UI                     |
-| Loyalty           | Konsep (belum kalkulasi real)      |
-| Testing           | Kerangka siap (belum banyak kasus) |
-| Dokumentasi       | Komprehensif (README + docs)       |
+| Aspek             | Status (2025-11-16)                                               |
+| ----------------- | ------------------------------------------------------------------ |
+| Setup Environment | OK — environment & quick demo verified on Android (see `docs/SETUP_COMPLETE.md`) |
+| Struktur Proyek   | Terorganisir — folder `src/`, `docs/` dan mock data tersedia       |
+| Fitur Reservasi   | Demo-ready (UI & flow using mock data)                             |
+| Hot Deal & Promo   | UI & placeholder logic present (klaim promo + animasi placeholder) |
+| Loyalty           | Konsep & UI tersedia — kalkulasi real-time masih placeholder       |
+| Scan / QR         | UI flow implemented (mock-based)                                   |
+| Testing           | Basic tests present (`__tests__/App.test.tsx`) — testing framework configured |
+| Dokumentasi       | Komprehensif — README + `docs/` lengkap                            |
+| Integrasi API     | Pending — service layer placeholders exist (see `src/services`)    |
+| CI / Release      | Belum ada CI terpasang; manual build instructions di README        |
 
 ---
 
@@ -378,6 +386,28 @@ yarn install
 yarn start
 yarn android
 ```
+
+Catatan: repositori sudah menyediakan mock data di `src/mocks` sehingga banyak alur dapat didemokan tanpa backend.
+
+---
+
+**Project Progress Summary (singkat)**
+
+- Environment dan struktur proyek sudah siap untuk demonstrasi (Android).
+- Banyak fitur UI utama (Home, Menu, Reservasi, Hot Deal, Rewards, Scan) tersedia dan dapat di-navigate.
+- Data saat ini banyak menggunakan mock (lihat `src/mocks`), integrasi API nyata masih dalam roadmap.
+- Testing: ada test dasar; disarankan menambahkan unit test untuk kalkulasi loyalty dan komponen kunci.
+
+**Rekomendasi langkah berikutnya**
+
+- Implementasikan service/API stub yang menyajikan data sama seperti mock (mempermudah integrasi backend nanti).
+- Tambah unit tests untuk komponen kritikal dan fungsi kalkulasi point loyalty.
+- (Opsional) Tambah GitHub Actions untuk lint, typecheck, dan test pada PR.
+
+Jika kamu mau, saya bisa:
+- Menambahkan badge build/test (CI) dan contoh workflow GitHub Actions.
+- Membuat template endpoint mock (Express) untuk integrasi lokal.
+
 
 Dev menu: Ctrl + M | Reload: tekan R dua kali.
 
