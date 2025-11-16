@@ -404,13 +404,6 @@ Catatan: repositori sudah menyediakan mock data di `src/mocks` sehingga banyak a
 - Tambah unit tests untuk komponen kritikal dan fungsi kalkulasi point loyalty.
 - (Opsional) Tambah GitHub Actions untuk lint, typecheck, dan test pada PR.
 
-Jika kamu mau, saya bisa:
-- Menambahkan badge build/test (CI) dan contoh workflow GitHub Actions.
-- Membuat template endpoint mock (Express) untuk integrasi lokal.
-
-
-Dev menu: Ctrl + M | Reload: tekan R dua kali.
-
 ---
 
 ## Acknowledgements
